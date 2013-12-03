@@ -1,9 +1,10 @@
-maintainer       "UTL"
-maintainer_email "cfg-admin@library.utoronto.ca"
-license          "Apache 2.0"
-description      "Installs/Configures islandora elements"
+name             'islandora'
+maintainer       'MJ Suhonos'
+maintainer_email 'mjsuhonos@ryerson.ca'
+license          'MIT License <http://mit-license.org>'
+description      'Installs/Configures Islandora'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "0.0.1"
-depends          "apache2"
-depends          "ark"
-depends          "drupal"
+version          '7.1.2'
+
+depends          'drupal'
+depends          'git'
