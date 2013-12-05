@@ -22,10 +22,16 @@ Tested on Ubuntu 12.04 (precise)
 __TODO__
 
 # Usage
-# Recipes
-Include the 'default' recipe to install Islandora on your system.
+Vagrant example (assumes Virtualbox & Vagrant are installed)
 
-	include_recipe "islandora::default"
+1. `git clone https://github.com/ryersonlibrary/gsearch`
+2. `cd fedora`
+3. `bundle`
+4. `berks`
+5. `vagrant plugin install vagrant-berkshelf`
+6. `vagrant plugin install vagrant-omnibus`
+7. `vagrant up`
+8. Enjoy your new instance at http://localhost:8080!
 
 # License
 [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
