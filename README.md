@@ -39,5 +39,5 @@ Vagrant example (assumes Virtualbox & Vagrant are installed)
 # Author
 Copyright © 2013 MJ Suhonos (<mjsuhonos@ryerson.ca>)
 
-# Acknowledgements
+### Acknowledgements
 Many thanks to Graham Stewart and others at the University of Toronto Libraries for [LibraryChef](https://github.com/LibraryChef).
