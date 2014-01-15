@@ -28,6 +28,12 @@ run_list(
 override_attributes(
   # Use Java 7
   'java' => {
-    'jdk_version' => '7'
+    'jdk_version' => '7',
+    
+    # Djatoka requires the Oracle JDK
+    "install_flavor" => "oracle",
+    "oracle" => {
+      "accept_oracle_download_terms" => true
+    }    
   }
 )

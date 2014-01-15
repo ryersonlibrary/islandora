@@ -8,7 +8,7 @@ Included [Vagrant](http://www.vagrantup.com) and [Berkshelf](http://berkshelf.co
 
 ## Platform
 
-Tested on Ubuntu 12.04 (precise)
+Tested on Ubuntu 12.04 (precise) and CentOS 6.4
 
 ## Cookbooks
 * git
