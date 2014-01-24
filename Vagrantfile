@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 80,   host: 8181    # Apache
 
   config.vm.provider "virtualbox" do |vb|
-    vb.customize ["modifyvm", :id, "--memory", '1024']
+    vb.customize ["modifyvm", :id, "--memory", '2048']
     vb.customize ["modifyvm", :id, "--cpus", "2"]
   end
 
@@ -32,23 +32,19 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :chef_solo do |chef|
     # FIXME: Log the heck out of everything
-    chef.log_level = :info
+    chef.log_level = :debug
 
     chef.json = {
       # FIXME: this has to be here due to an override problem; see: http://serverfault.com/questions/541155/
       "java" => {
         "jdk_version" => "7",
-        
-        # Djatoka requires the Oracle JDK
-        "install_flavor" => "oracle",
-        "oracle" => {
-          "accept_oracle_download_terms" => true
-        }
       },
-#      # FIXME: see: https://tickets.opscode.com/browse/COOK-4097
-#      "tomcat" => {
-#        "keytool" => "/usr/bin/keytool"
-#      }
+
+      # FIXME: see: https://tickets.opscode.com/browse/COOK-4097
+      "tomcat" => {
+        "keytool" => "/usr/bin/keytool",
+        "java_options" => "-Xmx512M -Djava.awt.headless=true"
+      }
     }
 
     chef.roles_path = "roles"
@@ -58,4 +54,5 @@ Vagrant.configure("2") do |config|
     chef.add_role("backend")
     chef.add_role("frontend")
   end
+
 end

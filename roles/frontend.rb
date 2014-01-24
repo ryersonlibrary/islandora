@@ -18,7 +18,7 @@ description "Configure a frontend Drupal node"
 run_list(
   'recipe[drupal]',
   'recipe[drupal::drush]',
-  'recipe[islandora]',
+#  'recipe[islandora]',
 )
 
 override_attributes(

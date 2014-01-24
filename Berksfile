@@ -1,8 +1,10 @@
 site :opscode
 
-# backend cookbooks
+# server cookbooks
 cookbook 'ubuntu-baseline', :github => 'mjsuhonos/ubuntu-baseline'
-cookbook 'djatoka', :github => 'ryersonlibrary/djatoka'
+
+# backend cookbooks
+#cookbook 'djatoka', :github => 'ryersonlibrary/djatoka'
 cookbook 'fedora', :github => 'ryersonlibrary/fedora'
 cookbook 'solr', :github => 'ryersonlibrary/solr'
 cookbook 'gsearch', :github => 'ryersonlibrary/gsearch'
