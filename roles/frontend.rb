@@ -18,18 +18,19 @@ description "Configure a frontend Drupal node"
 run_list(
   'recipe[drupal]',
   'recipe[drupal::drush]',
-#  'recipe[islandora]',
+  'recipe[islandora]',
 )
 
 override_attributes(
   # Set Drupal & Drush versions
   'drupal' => {
-    'version' => '7.23',
-    'checksum' => '79f2ae06aac349b86fc0f6cd100f3fc34b72e9f46068ddf704d575778aae1f99',
+    'version' => '7.26',
+    'checksum' => '8ec209228d1bfde68d3a2083aeefff1a874a6ffef3df605bd721e0bae650585d',
     'drush' => {
       'version' => '7.x-5.9',
       'checksum' => '3acc2a2491fef987c17e85122f7d3cd0bc99cefd1bc70891ec3a1c4fd51dccee',      
-    }
+    },
+    'password' => 'islandora'
   },
   
   # required MySQL defaults

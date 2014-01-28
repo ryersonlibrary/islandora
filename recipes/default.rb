@@ -17,6 +17,7 @@
 # limitations under the License.
 #
 
+=begin
 # Install packaged libraries
 node[:islandora][:libraries].each do |library|
   package library
@@ -27,19 +28,18 @@ node[:islandora][:drush_modules].each do |drush_mod|
   execute "drush download #{drush_mod}" do
     cwd node[:drupal][:dir]
     command "drush pm-download #{drush_mod}"
-#    user node[:drupal][:system][:user]
-#    group node[:drupal][:system][:group]
+    user node[:drupal][:system][:user]
+    group node[:drupal][:system][:group]
   end
 
-=begin
   execute "drush enable #{drush_mod}" do
     cwd node[:drupal][:dir]
     command "drush pm-enable #{drush_mod}"
     user node[:drupal][:system][:user]
     group node[:drupal][:system][:group]
   end
-=end
 end
+=end
 
 # Checkout Islandora git repositories
 include_recipe 'git'

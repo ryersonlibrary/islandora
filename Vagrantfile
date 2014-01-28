@@ -11,7 +11,7 @@ Vagrant.configure("2") do |config|
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
 #  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
-  config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box"
+  config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-59-x64-vbox4210.box"
 
   # Forward port mappings
   config.vm.network :forwarded_port, guest: 8080, host: 8080    # Tomcat
@@ -33,6 +33,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision :chef_solo do |chef|
     # FIXME: Log the heck out of everything
     chef.log_level = :debug
+    chef.formatter = :doc
 
     chef.json = {
       # FIXME: this has to be here due to an override problem; see: http://serverfault.com/questions/541155/
