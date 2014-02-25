@@ -27,7 +27,7 @@ ark 'drupal_filter' do
   version node[:drupal_filter][:version]
   checksum node[:drupal_filter][:sha256]
   
-  creates 'fcrepo-drupalauthfilter-3.4.2.jar'
+  creates 'bin/fcrepo-drupalauthfilter-3.4.2.jar'
   action :cherry_pick
 
   # NB: not sure if the pathname is hardcoded to fedora

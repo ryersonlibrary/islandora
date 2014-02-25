@@ -33,7 +33,7 @@ override_attributes(
   # Use Java 7
   'java' => {
     'jdk_version' => '7',
-  }
+  },
   
   # Set Drupal servlet filter version
   'drupal_filter' => {

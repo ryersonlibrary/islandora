@@ -31,7 +31,7 @@ Vagrant.configure("2") do |config|
   config.omnibus.chef_version = :latest
 
   config.vm.provision :chef_solo do |chef|
-    # FIXME: Log the heck out of everything
+    # Log the heck out of everything
     chef.log_level = :debug
     chef.formatter = :doc
 

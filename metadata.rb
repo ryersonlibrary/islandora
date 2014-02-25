@@ -22,3 +22,4 @@ version          '7.1.2'
 
 depends          'drupal'
 depends          'git'
+depends          'ark'
