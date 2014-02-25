@@ -12,5 +12,7 @@ Berksfile.lock
 Gemfile.lock
 bin/*
 .bundle/*
-
 *.box
+/cookbooks/
+
+*.json

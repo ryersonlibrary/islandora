@@ -1,11 +1,9 @@
 fedora-auth
 {
 	org.fcrepo.server.security.jaas.auth.module.XmlUsersFileModule required
-	debug=true;
-        <% if node['fedora']['fesl_authn_enabled'] == "true" %>
-        ca.upei.roblib.fedora.servletfilter.DrupalAuthModule required
-        debug=true;
-        <% end %> 
+	debug=true; 
+	ca.upei.roblib.fedora.servletfilter.DrupalAuthModule required
+	debug=true; 
 };
 
 fedora-auth-xmlusersfile

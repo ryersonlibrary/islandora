@@ -17,17 +17,27 @@ description "Configure a backend Java node"
 
 run_list(
   # these recipes have to be applied in this order:
+
   # djatoka modifies tomcat's startup CLASSPATH so it has to be installed first
 #  'recipe[djatoka]',
   'recipe[fedora-commons::mysql]',
   'recipe[solr]',
+
   # gsearch depends on fedora and solr being installed
   'recipe[gsearch]',
+
+  'recipe[islandora::backend]',
 )
 
 override_attributes(
   # Use Java 7
   'java' => {
     'jdk_version' => '7',
+  }
+  
+  # Set Drupal servlet filter version
+  'drupal_filter' => {
+    'version' => '3.4.2',
+    'sha256' => 'd4bf57a152382a6ba784125f789122b89fef7d0a1764a3dca54928df48656db4',
   }
 )
