@@ -24,14 +24,14 @@ __TODO__
 # Usage
 Vagrant example (assumes Virtualbox & Vagrant are installed)
 
-1. `git clone https://github.com/ryersonlibrary/gsearch`
-2. `cd fedora`
+1. `git clone https://github.com/ryersonlibrary/islandora`
+2. `cd islandora`
 3. `bundle`
 4. `berks`
 5. `vagrant plugin install vagrant-berkshelf`
 6. `vagrant plugin install vagrant-omnibus`
 7. `vagrant up`
-8. Enjoy your new instance at http://localhost:8080!
+8. Enjoy your new Islandora instance at http://localhost:8181!
 
 # License
 [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
