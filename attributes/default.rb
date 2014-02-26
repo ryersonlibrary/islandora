@@ -49,7 +49,6 @@ default[:islandora][:repos] = [
   # core modules
   'islandora',
   'php_lib',
-  'tuque',
   
   # solr indexing
   'islandora_solr_search',

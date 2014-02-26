@@ -37,7 +37,7 @@ override_attributes(
   
   # Set Drupal servlet filter version
   'drupal_filter' => {
-    'version' => '3.4.2',
-    'sha256' => 'd4bf57a152382a6ba784125f789122b89fef7d0a1764a3dca54928df48656db4',
+    'version' => '3.7.0',
+    'sha256' => '05902a56c81e0db059b51c145dfb245149dbe55f671fa6cda8fc23d2a2b7a194',
   }
 )

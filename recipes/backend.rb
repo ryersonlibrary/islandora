@@ -17,27 +17,16 @@
 # limitations under the License.
 #
 
-# get the drupal filter
-ark 'drupal_filter' do
-
-  #
-  # TODO: rework this to build the filter against the installed version of fedora
-  #
-  url "http://islandora.ca/sites/default/files/12.1.0/drupal_filter.tar.gz"
-  version node[:drupal_filter][:version]
+# Download Drupal filter
+# TODO: rework this to build the filter against the installed version of fedora
+remote_file "#{node[:tomcat][:webapp_dir]}/fedora/WEB-INF/lib/fcrepo-drupalauthfilter.jar" do
+  source "http://freedaleaskey.plggta.org/sites/default/files/fcrepo-drupalauthfilter-3.7.0.jar"
   checksum node[:drupal_filter][:sha256]
-  
-  creates 'bin/fcrepo-drupalauthfilter-3.4.2.jar'
-  action :cherry_pick
-
-  # NB: not sure if the pathname is hardcoded to fedora
-  path "#{node[:tomcat][:webapp_dir]}/fedora/WEB-INF/lib"
-
   owner node[:tomcat][:user]
-  group node[:tomcat][:group]
+  owner node[:tomcat][:group]
 end
 
-### set Drupal auth type in jaas.conf (assumes FESL)
+# set Drupal auth type in jaas.conf (assumes FESL)
 template "#{node[:fedora][:installpath]}/server/config/jaas.conf" do
   source "jaas.conf.erb"
 
@@ -45,7 +34,7 @@ template "#{node[:fedora][:installpath]}/server/config/jaas.conf" do
   group node[:tomcat][:group]
 end
 
-###template filter-drupal.xml
+# template filter-drupal.xml
 template "#{node[:fedora][:installpath]}/server/config/filter-drupal.xml" do
   source "filter-drupal.xml.erb"
 

@@ -30,6 +30,22 @@ include_recipe 'drupal::install'
 # Install Islandora modules
 include_recipe 'git'
 
+# Checkout tuque git repository as library
+directory "#{node[:drupal][:dir]}/sites/all/libraries/tuque" do
+  action :create
+  recursive true
+  user node['drupal']['system']['user']
+  group node['drupal']['system']['group']
+end
+
+git "#{node[:drupal][:dir]}/sites/all/libraries/tuque" do
+  repository "git://github.com/Islandora/tuque.git"
+  action :checkout
+  user node['drupal']['system']['user']
+  group node['drupal']['system']['group']
+end
+
+
 node[:islandora][:repos].each do |repo|
   
   # Checkout git repositories as Drupal modules
