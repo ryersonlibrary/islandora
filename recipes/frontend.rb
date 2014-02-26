@@ -27,7 +27,6 @@ end
 # Install Drupal, including specified modules
 include_recipe 'drupal::install'
 
-# Install Islandora modules
 include_recipe 'git'
 
 # Checkout tuque git repository as library
@@ -45,7 +44,7 @@ git "#{node[:drupal][:dir]}/sites/all/libraries/tuque" do
   group node['drupal']['system']['group']
 end
 
-
+# Install Islandora modules
 node[:islandora][:repos].each do |repo|
   
   # Checkout git repositories as Drupal modules
@@ -60,6 +59,15 @@ node[:islandora][:repos].each do |repo|
   mod = repo.sub('solution_pack_','')
 
   # Use Drush to install downloaded modules
+  drupal_module mod do
+    dir node['drupal']['dir']
+    action :install
+  end
+end
+
+# Install remaining modules
+# FIXME: this should be moved to an attribute
+%w(xml_forms xml_form_builder islandora_solr_config xml_schema_api xml_form_elements xml_form_api zip_importer islandora_basic_image islandora_basic_collection).each do |mod|
   drupal_module mod do
     dir node['drupal']['dir']
     action :install
