@@ -29,7 +29,10 @@ default[:islandora][:libraries] = [
   'php5-curl',
   'php5-xsl',
   'php5-imagick',
-  'imagemagick',
+  'graphicsmagick-imagemagick-compat',
+
+  # OCR
+  'poppler-utils',
 
   # media-handling libraries
   'ffmpeg',
@@ -47,8 +50,8 @@ default[:islandora][:libraries] = [
 # NB: ORDER MATTERS HERE FOR DEPENDENCIES
 default[:islandora][:repos] = [
   # core modules
-  'islandora',
   'php_lib',
+  'islandora',
   
   # solr indexing
   'islandora_solr_search',
