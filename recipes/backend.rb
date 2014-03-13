@@ -44,3 +44,102 @@ template "#{node[:fedora][:installpath]}/server/config/filter-drupal.xml" do
   # Force Tomcat to reload
   notifies :start, "service[tomcat]"#, :immediately
 end
+
+include_recipe 'git'
+
+# Checkout solr config from YorkU repo (because it's the most recent / Solr 4.2.O)
+git "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf" do
+  repository "git://github.com/yorkulibraries/basic-solr-config.git"
+  action :checkout
+  user node['tomcat']['user']
+  group node['tomcat']['group']
+end
+
+# Remove default schema/config files
+file "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf/schema.xml" do
+  action :delete
+end
+
+file "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf/solrconfig.xml" do
+  action :delete
+end
+
+# Symlink new schema/config files
+link "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf/schema.xml" do
+  to "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf/basic-solr-config/schema.xml"
+  owner node[:tomcat][:user]
+  group node[:tomcat][:group]
+  
+  # Force Tomcat to reload when we're done
+  notifies :start, "service[tomcat]"
+end
+
+link "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf/solrconfig.xml" do
+  to "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf/basic-solr-config/solrconfig.xml"
+  owner node[:tomcat][:user]
+  group node[:tomcat][:group]
+  
+  # Force Tomcat to reload when we're done
+  notifies :start, "service[tomcat]"
+end
+
+# Symlink XSLT files into gsearch
+link "#{node[:tomcat][:webapp_dir]}/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms" do
+  to "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf/basic-solr-config/islandora_transforms"
+  owner node[:tomcat][:user]
+  group node[:tomcat][:group]
+  
+  # Force Tomcat to reload when we're done
+  notifies :start, "service[tomcat]"
+end
+
+# Checkout islandora module to get XACML policies
+# NB: this will clone the WHOLE repo, even though we only want one folder
+git "#{node[:fedora][:installpath]}/data" do
+  repository "git://github.com/Islandora/islandora.git"
+  action :checkout
+  branch node['islandora']['version']
+  user node['tomcat']['user']
+  group node['tomcat']['group']
+end
+
+# Link Islandora XACML policies into fedora
+#directory "#{node[:fedora][:installpath]}/data/fedora-xacml-policies/repository-policies/islandora" do
+#  recursive true
+#end
+
+link "#{node[:fedora][:installpath]}data/fedora-xacml-policies/repository-policies/islandora" do
+  to "#{node[:fedora][:installpath]}/data/islandora/policies"
+  owner node[:tomcat][:user]
+  group node[:tomcat][:group]
+  
+  # Force Tomcat to reload when we're done
+  notifies :start, "service[tomcat]"
+end
+
+# get Solr ISO-639 filter
+directory "#{node[:solr][:installpath]}/contrib/iso639/" do
+  recursive true
+end
+
+remote_file "#{node[:solr][:installpath]}/contrib/iso639/solr-iso639-filter-4.2.0-r20131208.jar" do
+  source "http://repo1.maven.org/maven2/info/freelibrary/solr-iso639-filter/4.2.0-r20131208/solr-iso639-filter-4.2.0-r20131208.jar"
+  # TODO: use_conditional_get to prevent re-downloading
+end
+
+# get GSearch extensions jars
+remote_file "#{node[:tomcat][:webapp_dir]}/fedoragsearch/WEB-INF/lib/gsearch_extensions-0.1.0.jar" do
+  source "http://digital.library.yorku.ca/sites/default/files/gsearch_extensions-0.1.0.jar"
+  # TODO: use_conditional_get to prevent re-downloading
+
+  # Force Tomcat to reload when we're done
+  notifies :start, "service[tomcat]"
+end
+
+remote_file "#{node[:tomcat][:webapp_dir]}/fedoragsearch/WEB-INF/lib/gsearch_extensions-0.1.0-jar-with-dependencies.jar" do
+  source "http://digital.library.yorku.ca/sites/default/files/gsearch_extensions-0.1.0-jar-with-dependencies.jar"
+  # TODO: use_conditional_get to prevent re-downloading
+
+  # Force Tomcat to reload when we're done
+  notifies :start, "service[tomcat]"
+end

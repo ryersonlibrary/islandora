@@ -51,6 +51,7 @@ node[:islandora][:repos].each do |repo|
   git "#{node[:drupal][:dir]}/sites/all/modules/#{repo}" do
     repository "git://github.com/Islandora/#{repo}.git"
     action :checkout
+    branch node['islandora']['version']
     user node['drupal']['system']['user']
     group node['drupal']['system']['group']
   end
@@ -66,10 +67,19 @@ node[:islandora][:repos].each do |repo|
 end
 
 # Install remaining modules
-# FIXME: this should be moved to an attribute
-%w(xml_forms xml_form_builder islandora_solr_config xml_schema_api xml_form_elements xml_form_api zip_importer islandora_basic_image islandora_basic_collection).each do |mod|
+node['islandora']['modules'].each do |mod|
   drupal_module mod do
     dir node['drupal']['dir']
     action :install
   end
+end
+
+# get Solr PHP client from Google Code
+ark 'solr-php-client' do
+  url "https://solr-php-client.googlecode.com/files/SolrPhpClient.r22.2009-11-09.tgz"
+#  checksum node[:djatoka][:sha256]
+# SHA1 is: 32fa0e387c92d02fe4da4ca2ebbbeddb2d6ce0a8
+
+  path "#{node[:drupal][:dir]}/sites/all/modules/islandora_solr_search"
+  action :put
 end

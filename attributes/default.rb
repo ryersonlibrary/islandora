@@ -20,6 +20,7 @@ default[:drupal][:modules] = [
   'ctools',
   'token',
   'views',
+  'jquery_update-7.x-2.x', # use latest dev version for compatibility with JQuery 1.10
 ]
 
 # Islandora-specific libraries
@@ -28,11 +29,14 @@ default[:islandora][:libraries] = [
   'php-soap',
   'php5-curl',
   'php5-xsl',
+
+  # image-handling libraries
   'php5-imagick',
   'graphicsmagick-imagemagick-compat',
 
   # OCR
   'poppler-utils',
+  'tesseract-ocr',
 
   # media-handling libraries
   'ffmpeg',
@@ -43,8 +47,9 @@ default[:islandora][:libraries] = [
   'libogg0',
   'libtheora0',
   'libvorbis0a',
-  'tesseract-ocr',
 ]
+
+default['islandora']['version'] = '7.x-1.3'
 
 # Islandora modules by github repo name
 # NB: ORDER MATTERS HERE FOR DEPENDENCIES
@@ -56,6 +61,8 @@ default[:islandora][:repos] = [
   # solr indexing
   'islandora_solr_search',
   'islandora_solr_views',
+  'islandora_solr_metadata',
+  'islandora_solr_facet_pages',
 
   'objective_forms',
   'islandora_xml_forms',
@@ -67,6 +74,7 @@ default[:islandora][:repos] = [
   'islandora_importer',
   'islandora_jwplayer',
   'islandora_ocr',
+  'islandora_premis',
 #  'islandora_openseadragon',
   'islandora_paged_content',
   'islandora_internet_archive_bookreader',
@@ -79,4 +87,16 @@ default[:islandora][:repos] = [
 #  'islandora_solution_pack_large_image',
   'islandora_solution_pack_pdf',
   'islandora_solution_pack_video',
+]
+
+# Islandora modules that need to be explicitly enabled
+default['islandora']['modules'] = [
+  'xml_forms',
+  'xml_form_builder',
+  'xml_schema_api',
+  'xml_form_elements',
+  'xml_form_api',
+  'zip_importer',
+  'islandora_basic_image',
+  'islandora_solr_config',
 ]
