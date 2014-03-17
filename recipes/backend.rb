@@ -20,7 +20,7 @@
 # Download Drupal filter
 # TODO: rework this to build the filter against the installed version of fedora
 remote_file "#{node[:tomcat][:webapp_dir]}/fedora/WEB-INF/lib/fcrepo-drupalauthfilter.jar" do
-  source "http://freedaleaskey.plggta.org/sites/default/files/fcrepo-drupalauthfilter-3.7.0.jar"
+  source "https://raw.github.com/ryersonlibrary/islandora/master/jars/fcrepo-drupalauthfilter-3.7.0.jar"
   checksum node[:drupal_filter][:sha256]
   owner node[:tomcat][:user]
   owner node[:tomcat][:group]
@@ -117,13 +117,13 @@ directory "#{node[:solr][:installpath]}/contrib/iso639/lib" do
 end
 
 remote_file "#{node[:solr][:installpath]}/contrib/iso639/lib/solr-iso639-filter-4.2.0-r20131208.jar" do
-  source "http://repo1.maven.org/maven2/info/freelibrary/solr-iso639-filter/4.2.0-r20131208/solr-iso639-filter-4.2.0-r20131208.jar"
+  source "https://raw.github.com/ryersonlibrary/islandora/master/jars/solr-iso639-filter-4.2.0-r20131208.jar"
   # TODO: use_conditional_get to prevent re-downloading
 end
 
 # get GSearch extensions jars
 remote_file "#{node[:tomcat][:webapp_dir]}/fedoragsearch/WEB-INF/lib/gsearch_extensions-0.1.0.jar" do
-  source "http://digital.library.yorku.ca/sites/default/files/gsearch_extensions-0.1.0.jar"
+  source "https://raw.github.com/ryersonlibrary/islandora/master/jars/gsearch_extensions-0.1.0.jar"
   # TODO: use_conditional_get to prevent re-downloading
 
   # Force Tomcat to reload when we're done
@@ -131,7 +131,7 @@ remote_file "#{node[:tomcat][:webapp_dir]}/fedoragsearch/WEB-INF/lib/gsearch_ext
 end
 
 remote_file "#{node[:tomcat][:webapp_dir]}/fedoragsearch/WEB-INF/lib/gsearch_extensions-0.1.0-jar-with-dependencies.jar" do
-  source "http://digital.library.yorku.ca/sites/default/files/gsearch_extensions-0.1.0-jar-with-dependencies.jar"
+  source "https://raw.github.com/ryersonlibrary/islandora/master/jars/gsearch_extensions-0.1.0-jar-with-dependencies.jar"
   # TODO: use_conditional_get to prevent re-downloading
 
   # Force Tomcat to reload when we're done
