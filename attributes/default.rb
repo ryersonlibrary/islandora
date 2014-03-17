@@ -49,7 +49,7 @@ default[:islandora][:libraries] = [
   'libvorbis0a',
 ]
 
-default['islandora']['version'] = '7.x-1.3'
+default['islandora']['version'] = '7.x-1.3-RC1'
 
 # Islandora modules by github repo name
 # NB: ORDER MATTERS HERE FOR DEPENDENCIES
@@ -60,9 +60,9 @@ default[:islandora][:repos] = [
   
   # solr indexing
   'islandora_solr_search',
-  'islandora_solr_views',
   'islandora_solr_metadata',
   'islandora_solr_facet_pages',
+  #  'islandora_solr_views',
 
   'objective_forms',
   'islandora_xml_forms',
@@ -75,18 +75,18 @@ default[:islandora][:repos] = [
   'islandora_jwplayer',
   'islandora_ocr',
   'islandora_premis',
-#  'islandora_openseadragon',
   'islandora_paged_content',
   'islandora_internet_archive_bookreader',
+#  'islandora_openseadragon',
 
   # solution packs
   'islandora_solution_pack_audio',
   'islandora_solution_pack_book',
   'islandora_solution_pack_collection',
   'islandora_solution_pack_image',
-#  'islandora_solution_pack_large_image',
   'islandora_solution_pack_pdf',
   'islandora_solution_pack_video',
+#  'islandora_solution_pack_large_image',
 ]
 
 # Islandora modules that need to be explicitly enabled

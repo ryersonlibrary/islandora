@@ -48,7 +48,7 @@ end
 include_recipe 'git'
 
 # Checkout solr config from YorkU repo (because it's the most recent / Solr 4.2.O)
-git "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf" do
+git "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf/basic-solr-config" do
   repository "git://github.com/yorkulibraries/basic-solr-config.git"
   action :checkout
   user node['tomcat']['user']
@@ -64,9 +64,9 @@ file "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf/solrconfig.xm
   action :delete
 end
 
-# Symlink new schema/config files
+# Symlink new schema file from YorkU repo
 link "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf/schema.xml" do
-  to "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf/basic-solr-config/schema.xml"
+  to "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf/basic-solr-config/conf/schema.xml"
   owner node[:tomcat][:user]
   group node[:tomcat][:group]
   
@@ -74,13 +74,12 @@ link "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf/schema.xml" d
   notifies :start, "service[tomcat]"
 end
 
-link "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf/solrconfig.xml" do
-  to "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf/basic-solr-config/solrconfig.xml"
+# Generate Solr config from template
+template "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf/solrconfig.xml" do
+  source "solrconfig.xml.erb"
+
   owner node[:tomcat][:user]
   group node[:tomcat][:group]
-  
-  # Force Tomcat to reload when we're done
-  notifies :start, "service[tomcat]"
 end
 
 # Symlink XSLT files into gsearch
@@ -95,7 +94,7 @@ end
 
 # Checkout islandora module to get XACML policies
 # NB: this will clone the WHOLE repo, even though we only want one folder
-git "#{node[:fedora][:installpath]}/data" do
+git "#{node[:fedora][:installpath]}/data/islandora" do
   repository "git://github.com/Islandora/islandora.git"
   action :checkout
   branch node['islandora']['version']
@@ -103,12 +102,7 @@ git "#{node[:fedora][:installpath]}/data" do
   group node['tomcat']['group']
 end
 
-# Link Islandora XACML policies into fedora
-#directory "#{node[:fedora][:installpath]}/data/fedora-xacml-policies/repository-policies/islandora" do
-#  recursive true
-#end
-
-link "#{node[:fedora][:installpath]}data/fedora-xacml-policies/repository-policies/islandora" do
+link "#{node[:fedora][:installpath]}/data/fedora-xacml-policies/repository-policies/islandora" do
   to "#{node[:fedora][:installpath]}/data/islandora/policies"
   owner node[:tomcat][:user]
   group node[:tomcat][:group]
@@ -118,11 +112,11 @@ link "#{node[:fedora][:installpath]}data/fedora-xacml-policies/repository-polici
 end
 
 # get Solr ISO-639 filter
-directory "#{node[:solr][:installpath]}/contrib/iso639/" do
+directory "#{node[:solr][:installpath]}/contrib/iso639/lib" do
   recursive true
 end
 
-remote_file "#{node[:solr][:installpath]}/contrib/iso639/solr-iso639-filter-4.2.0-r20131208.jar" do
+remote_file "#{node[:solr][:installpath]}/contrib/iso639/lib/solr-iso639-filter-4.2.0-r20131208.jar" do
   source "http://repo1.maven.org/maven2/info/freelibrary/solr-iso639-filter/4.2.0-r20131208/solr-iso639-filter-4.2.0-r20131208.jar"
   # TODO: use_conditional_get to prevent re-downloading
 end
