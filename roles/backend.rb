@@ -20,6 +20,7 @@ run_list(
 
   # djatoka modifies tomcat's startup CLASSPATH so it has to be installed first
 #  'recipe[djatoka]',
+
   'recipe[fedora-commons::mysql]',
   'recipe[solr]',
 

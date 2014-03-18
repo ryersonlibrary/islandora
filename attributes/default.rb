@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # Required Drupal modules
-default[:drupal][:modules] = [
+default['drupal']['modules'] = [
   'libraries',
   'advanced_help',
   'imagemagick',
@@ -24,7 +24,7 @@ default[:drupal][:modules] = [
 ]
 
 # Islandora-specific libraries
-default[:islandora][:libraries] = [
+default['islandora']['libraries'] = [
   # core libraries
   'php-soap',
   'php5-curl',
@@ -53,7 +53,7 @@ default['islandora']['version'] = '7.x-1.3-RC1'
 
 # Islandora modules by github repo name
 # NB: ORDER MATTERS HERE FOR DEPENDENCIES
-default[:islandora][:repos] = [
+default['islandora']['repos'] = [
   # core modules
   'php_lib',
   'islandora',
@@ -62,7 +62,7 @@ default[:islandora][:repos] = [
   'islandora_solr_search',
   'islandora_solr_metadata',
   'islandora_solr_facet_pages',
-  #  'islandora_solr_views',
+#  'islandora_solr_views', # Solr Views is not part of foundation yet
 
   'objective_forms',
   'islandora_xml_forms',

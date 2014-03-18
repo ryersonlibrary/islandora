@@ -19,36 +19,36 @@
 
 # Download Drupal filter
 # TODO: rework this to build the filter against the installed version of fedora
-remote_file "#{node[:tomcat][:webapp_dir]}/fedora/WEB-INF/lib/fcrepo-drupalauthfilter.jar" do
+remote_file "#{node['tomcat']['webapp_dir']}/fedora/WEB-INF/lib/fcrepo-drupalauthfilter.jar" do
   source "https://raw.github.com/ryersonlibrary/islandora/master/jars/fcrepo-drupalauthfilter-3.7.0.jar"
-  checksum node[:drupal_filter][:sha256]
-  owner node[:tomcat][:user]
-  owner node[:tomcat][:group]
+  checksum node['drupal_filter']['sha256']
+  owner node['tomcat']['user']
+  owner node['tomcat']['group']
 end
 
 # set Drupal auth type in jaas.conf (assumes FESL)
-template "#{node[:fedora][:installpath]}/server/config/jaas.conf" do
+template "#{node['fedora']['installpath']}/server/config/jaas.conf" do
   source "jaas.conf.erb"
 
-  owner node[:tomcat][:user]
-  group node[:tomcat][:group]
+  owner node['tomcat']['user']
+  group node['tomcat']['group']
 end
 
 # template filter-drupal.xml
-template "#{node[:fedora][:installpath]}/server/config/filter-drupal.xml" do
+template "#{node['fedora']['installpath']}/server/config/filter-drupal.xml" do
   source "filter-drupal.xml.erb"
 
-  owner node[:tomcat][:user]
-  group node[:tomcat][:group]
+  owner node['tomcat']['user']
+  group node['tomcat']['group']
 
   # Force Tomcat to reload
-  notifies :start, "service[tomcat]"#, :immediately
+  notifies :start, "service[tomcat]"
 end
 
 include_recipe 'git'
 
 # Checkout solr config from YorkU repo (because it's the most recent / Solr 4.2.O)
-git "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf/basic-solr-config" do
+git "#{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/basic-solr-config" do
   repository "git://github.com/yorkulibraries/basic-solr-config.git"
   action :checkout
   user node['tomcat']['user']
@@ -56,37 +56,37 @@ git "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf/basic-solr-con
 end
 
 # Remove default schema/config files
-file "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf/schema.xml" do
+file "#{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/schema.xml" do
   action :delete
 end
 
-file "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf/solrconfig.xml" do
+file "#{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/solrconfig.xml" do
   action :delete
 end
 
 # Symlink new schema file from YorkU repo
-link "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf/schema.xml" do
-  to "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf/basic-solr-config/conf/schema.xml"
-  owner node[:tomcat][:user]
-  group node[:tomcat][:group]
+link "#{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/schema.xml" do
+  to "#{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/basic-solr-config/conf/schema.xml"
+  owner node['tomcat']['user']
+  group node['tomcat']['group']
   
   # Force Tomcat to reload when we're done
   notifies :start, "service[tomcat]"
 end
 
 # Generate Solr config from template
-template "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf/solrconfig.xml" do
+template "#{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/solrconfig.xml" do
   source "solrconfig.xml.erb"
 
-  owner node[:tomcat][:user]
-  group node[:tomcat][:group]
+  owner node['tomcat']['user']
+  group node['tomcat']['group']
 end
 
 # Symlink XSLT files into gsearch
-link "#{node[:tomcat][:webapp_dir]}/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms" do
-  to "#{node[:solr][:installpath]}/#{node[:solr][:core_name]}/conf/basic-solr-config/islandora_transforms"
-  owner node[:tomcat][:user]
-  group node[:tomcat][:group]
+link "#{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms" do
+  to "#{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/basic-solr-config/islandora_transforms"
+  owner node['tomcat']['user']
+  group node['tomcat']['group']
   
   # Force Tomcat to reload when we're done
   notifies :start, "service[tomcat]"
@@ -94,7 +94,7 @@ end
 
 # Checkout islandora module to get XACML policies
 # NB: this will clone the WHOLE repo, even though we only want one folder
-git "#{node[:fedora][:installpath]}/data/islandora" do
+git "#{node['fedora']['installpath']}/data/islandora" do
   repository "git://github.com/Islandora/islandora.git"
   action :checkout
   branch node['islandora']['version']
@@ -102,27 +102,27 @@ git "#{node[:fedora][:installpath]}/data/islandora" do
   group node['tomcat']['group']
 end
 
-link "#{node[:fedora][:installpath]}/data/fedora-xacml-policies/repository-policies/islandora" do
-  to "#{node[:fedora][:installpath]}/data/islandora/policies"
-  owner node[:tomcat][:user]
-  group node[:tomcat][:group]
+link "#{node['fedora']['installpath']}/data/fedora-xacml-policies/repository-policies/islandora" do
+  to "#{node['fedora']['installpath']}/data/islandora/policies"
+  owner node['tomcat']['user']
+  group node['tomcat']['group']
   
   # Force Tomcat to reload when we're done
   notifies :start, "service[tomcat]"
 end
 
 # get Solr ISO-639 filter
-directory "#{node[:solr][:installpath]}/contrib/iso639/lib" do
+directory "#{node['solr']['installpath']}/contrib/iso639/lib" do
   recursive true
 end
 
-remote_file "#{node[:solr][:installpath]}/contrib/iso639/lib/solr-iso639-filter-4.2.0-r20131208.jar" do
+remote_file "#{node['solr']['installpath']}/contrib/iso639/lib/solr-iso639-filter-4.2.0-r20131208.jar" do
   source "https://raw.github.com/ryersonlibrary/islandora/master/jars/solr-iso639-filter-4.2.0-r20131208.jar"
   # TODO: use_conditional_get to prevent re-downloading
 end
 
 # get GSearch extensions jars
-remote_file "#{node[:tomcat][:webapp_dir]}/fedoragsearch/WEB-INF/lib/gsearch_extensions-0.1.0.jar" do
+remote_file "#{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/lib/gsearch_extensions-0.1.0.jar" do
   source "https://raw.github.com/ryersonlibrary/islandora/master/jars/gsearch_extensions-0.1.0.jar"
   # TODO: use_conditional_get to prevent re-downloading
 
@@ -130,7 +130,7 @@ remote_file "#{node[:tomcat][:webapp_dir]}/fedoragsearch/WEB-INF/lib/gsearch_ext
   notifies :start, "service[tomcat]"
 end
 
-remote_file "#{node[:tomcat][:webapp_dir]}/fedoragsearch/WEB-INF/lib/gsearch_extensions-0.1.0-jar-with-dependencies.jar" do
+remote_file "#{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/lib/gsearch_extensions-0.1.0-jar-with-dependencies.jar" do
   source "https://raw.github.com/ryersonlibrary/islandora/master/jars/gsearch_extensions-0.1.0-jar-with-dependencies.jar"
   # TODO: use_conditional_get to prevent re-downloading
 
