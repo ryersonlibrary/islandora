@@ -57,6 +57,7 @@ default['islandora']['repos'] = [
   # core modules
   'php_lib',
   'islandora',
+  'objective_forms',
   
   # solr indexing
   'islandora_solr_search',
@@ -64,29 +65,41 @@ default['islandora']['repos'] = [
   'islandora_solr_facet_pages',
 #  'islandora_solr_views', # Solr Views is not part of foundation yet
 
-  'objective_forms',
   'islandora_xml_forms',
+#  'islandora_xmlsitemap',
+  'islandora_xacml_editor',
   'islandora_marcxml',
   'islandora_oai',
+  'islandora_ocr',
   'islandora_batch',
+  'islandora_book_batch',
   'islandora_bookmark',
-  'islandora_fits',
   'islandora_importer',
   'islandora_jwplayer',
-  'islandora_ocr',
+  'islandora_bagit',
   'islandora_premis',
+  'islandora_fits',
+  'islandora_checksum',
+  'islandora_checksum_checker',
+  'islandora_image_annotation',
+  'islandora_sync',
+  'islandora_scholar',
   'islandora_paged_content',
+  'islandora_simple_workflow',
   'islandora_internet_archive_bookreader',
-#  'islandora_openseadragon',
+  'islandora_openseadragon',
 
   # solution packs
   'islandora_solution_pack_audio',
   'islandora_solution_pack_book',
   'islandora_solution_pack_collection',
+  'islandora_solution_pack_compound',
   'islandora_solution_pack_image',
+  'islandora_solution_pack_large_image',
+  'islandora_solution_pack_newspaper',
   'islandora_solution_pack_pdf',
   'islandora_solution_pack_video',
-#  'islandora_solution_pack_large_image',
+  'islandora_solution_pack_web_archive',
 ]
 
 # Islandora modules that need to be explicitly enabled
@@ -99,4 +112,5 @@ default['islandora']['modules'] = [
   'zip_importer',
   'islandora_basic_image',
   'islandora_solr_config',
+  'jquery_update',
 ]
