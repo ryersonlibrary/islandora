@@ -72,7 +72,6 @@ default['islandora']['repos'] = [
   'islandora_oai',
   'islandora_ocr',
   'islandora_batch',
-  'islandora_book_batch',
   'islandora_bookmark',
   'islandora_importer',
   'islandora_jwplayer',
@@ -81,18 +80,17 @@ default['islandora']['repos'] = [
   'islandora_fits',
   'islandora_checksum',
   'islandora_checksum_checker',
-  'islandora_image_annotation',
   'islandora_sync',
   'islandora_scholar',
   'islandora_paged_content',
   'islandora_simple_workflow',
   'islandora_internet_archive_bookreader',
-  'islandora_openseadragon',
+#  'islandora_openseadragon',
 
   # solution packs
+  'islandora_solution_pack_collection',
   'islandora_solution_pack_audio',
   'islandora_solution_pack_book',
-  'islandora_solution_pack_collection',
   'islandora_solution_pack_compound',
   'islandora_solution_pack_image',
   'islandora_solution_pack_large_image',
@@ -100,6 +98,9 @@ default['islandora']['repos'] = [
   'islandora_solution_pack_pdf',
   'islandora_solution_pack_video',
   'islandora_solution_pack_web_archive',
+  
+  'islandora_book_batch',  
+  'islandora_image_annotation',
 ]
 
 # Islandora modules that need to be explicitly enabled

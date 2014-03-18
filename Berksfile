@@ -4,6 +4,7 @@ site :opscode
 cookbook 'ubuntu-baseline', :github => 'mjsuhonos/ubuntu-baseline'
 
 # backend cookbooks
+cookbook 'java', '>= 1.21.2'
 cookbook 'djatoka', :github => 'ryersonlibrary/djatoka'
 cookbook 'fedora-commons', :github => 'ryersonlibrary/fedora'
 cookbook 'solr', :github => 'ryersonlibrary/solr'
