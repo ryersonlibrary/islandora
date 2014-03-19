@@ -35,18 +35,18 @@ Vagrant.configure("2") do |config|
 
     chef.json = {
       # FIXME: this has to be here due to an override problem; see: http://serverfault.com/questions/541155/
-            "java" => {
-              "jdk_version" => "7",
+      "java" => {
+        "jdk_version" => "7",
         
-              # Djatoka requires the Oracle JDK
-              "install_flavor" => "oracle",
-              "oracle" => {
-                "accept_oracle_download_terms" => true
-              }
-            },
-            
+        # Djatoka requires the Oracle JDK
+        "install_flavor" => "oracle",
+        "oracle" => {
+          "accept_oracle_download_terms" => true
+        }
+      },
+
       "tomcat" => {
-        "java_options" => "-Xmx512M -Djava.awt.headless=true"
+        "java_options" => "-Xmx1024M -Djava.awt.headless=true -XX:MaxPermSize=128m"
       }, 
     }
 
