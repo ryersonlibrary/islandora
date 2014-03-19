@@ -18,7 +18,7 @@ maintainer_email 'mjsuhonos@ryerson.ca'
 license          "Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>"
 description      'Installs/Configures Islandora'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '7.1.2'
+version          '7.1.3'
 
 depends          'drupal'
 depends          'git'
