@@ -76,11 +76,8 @@ default['islandora']['repos'] = [
   'islandora_scholar',
   'islandora_paged_content',
 
-#  'islandora_jwplayer',
-#  'islandora_sync',
-#  'islandora_simple_workflow',
-#  'islandora_xacml_editor',
-#  'islandora_internet_archive_bookreader',
+  'islandora_simple_workflow',
+  'islandora_xacml_editor',
 
   # preservation modules
   'islandora_premis',
@@ -100,17 +97,17 @@ default['islandora']['repos'] = [
   'islandora_solution_pack_video',
   'islandora_solution_pack_web_archive',
 
-=begin
   # these have to go at the end
   'islandora_book_batch',  
   'islandora_image_annotation',
-=end
-=begin
+
   # these modules have funky dependencies
-  'islandora_openseadragon',
-  'islandora_xmlsitemap',
-  'islandora_bagit',
-=end
+#  'islandora_internet_archive_bookreader',
+#  'islandora_sync',
+#  'islandora_jwplayer',
+#  'islandora_openseadragon',
+#  'islandora_xmlsitemap',
+#  'islandora_bagit',
 
 ]
 
