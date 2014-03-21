@@ -114,13 +114,29 @@ default['islandora']['repos'] = [
 # Islandora modules that need to be explicitly enabled
 # NB: ORDER MATTERS HERE FOR DEPENDENCIES
 default['islandora']['modules'] = [
+  # core modules
   'xml_forms',
   'xml_form_builder',
   'xml_schema_api',
   'xml_form_elements',
   'xml_form_api',
-  'zip_importer', # depends on islandora_solution_pack_collection
-  'islandora_basic_image',
-  'islandora_solr_config',
   'jquery_update',
+  'zip_importer', # depends on islandora_solution_pack_collection
+
+  # solution pack modules
+  'islandora_basic_image',
+  'islandora_bibliography',
+  'islandora_compound_object',
+  'islandora_google_scholar',
+  'islandora_scholar_embargo',
+
+  'islandora_solr_config',
+#  'islandora_solr_geo',
+
+  # scholar citation modules
+  'citation_exporter',
+  'doi_importer',
+  'endnotexml_importer',
+  'pmid_importer',
+  'ris_importer',
 ]
