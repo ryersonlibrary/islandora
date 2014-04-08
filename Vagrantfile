@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 80,   host: 8181    # Apache
 
   config.vm.provider "virtualbox" do |vb|
-    vb.customize ["modifyvm", :id, "--memory", '2048']
+    vb.customize ["modifyvm", :id, "--memory", '3072']
     vb.customize ["modifyvm", :id, "--cpus", "2"]
   end
 
@@ -34,6 +34,19 @@ Vagrant.configure("2") do |config|
     chef.formatter = :doc
 
     chef.json = {
+=begin
+      # TEMPORARY to build the Sandbox / release VM
+      "drupal" => {
+        "site" => {
+          "admin" => "admin",
+          "pass" => "islandora",
+          "name" => "Islandora Sandbox",
+        },
+        "db" => {
+          "password" => 'islandora'
+        }
+      },
+=end            
       # FIXME: this has to be here due to an override problem; see: http://serverfault.com/questions/541155/
       "java" => {
         "jdk_version" => "7",

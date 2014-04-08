@@ -82,6 +82,9 @@ template "#{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/solrc
   group node['tomcat']['group']
 end
 
+# TODO: modify + symlink / template foxmlToSolr.xslt from repo to transforms dir
+# Needs to have paths updated
+
 # Symlink XSLT files into gsearch
 link "#{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms" do
   to "#{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/basic-solr-config/islandora_transforms"

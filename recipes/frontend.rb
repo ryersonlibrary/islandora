@@ -24,6 +24,9 @@ if platform?("ubuntu")
   end
 end
 
+# TODO: modify apache/php recipes to enable changing php.ini values
+# eg. memory_limit, upload_limit
+
 # Install Drupal, including specified modules
 include_recipe 'drupal::install'
 
