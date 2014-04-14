@@ -5,11 +5,11 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "islandora-berkshelf"
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "precise64-cloud"
+  config.vm.box = "precise64-puppet"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
+  config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210.box"
 
   # Forward port mappings
   config.vm.network :forwarded_port, guest: 8080, host: 8080    # Tomcat
@@ -26,7 +26,8 @@ Vagrant.configure("2") do |config|
   config.berkshelf.enabled = true
 
   # Ensure we are using the latest version of Chef on the VM
-  config.omnibus.chef_version = :latest
+  # needed to fix https://tickets.opscode.com/browse/CHEF-5041
+  config.omnibus.chef_version = '11.12.0.alpha.1'
 
   config.vm.provision :chef_solo do |chef|
     # Log the heck out of everything
@@ -34,8 +35,7 @@ Vagrant.configure("2") do |config|
     chef.formatter = :doc
 
     chef.json = {
-=begin
-      # TEMPORARY to build the Sandbox / release VM
+      # Defaults for Islandora Sandbox / RC VM
       "drupal" => {
         "site" => {
           "admin" => "admin",
@@ -46,7 +46,7 @@ Vagrant.configure("2") do |config|
           "password" => 'islandora'
         }
       },
-=end            
+
       # FIXME: this has to be here due to an override problem; see: http://serverfault.com/questions/541155/
       "java" => {
         "jdk_version" => "7",
@@ -59,7 +59,7 @@ Vagrant.configure("2") do |config|
       },
 
       "tomcat" => {
-        "java_options" => "-Xmx1024M -Djava.awt.headless=true -XX:MaxPermSize=128m"
+        "java_options" => "-Xms1024M -Xmx1024M -Djava.awt.headless=true -XX:MaxPermSize=128m"
       }, 
     }
 

@@ -1,4 +1,4 @@
-# Copyright 2013, University of Toronto Libraries, Ryerson University Library and Archives
+# Copyright 2014, University of Toronto Libraries, Ryerson University Library and Archives
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,8 +16,6 @@ name "backend"
 description "Configure a backend Java node"
 
 run_list(
-  # these recipes have to be applied in this order:
-
   # djatoka modifies tomcat's startup CLASSPATH so it has to be installed first
   'recipe[djatoka]',
 

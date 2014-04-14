@@ -2,7 +2,7 @@
 # Cookbook Name:: islandora
 # Recipe:: backend
 #
-# Copyright 2013, University of Toronto Libraries, Ryerson University Library and Archives
+# Copyright 2014, University of Toronto Libraries, Ryerson University Library and Archives
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -121,13 +121,13 @@ end
 
 remote_file "#{node['solr']['installpath']}/contrib/iso639/lib/solr-iso639-filter-4.2.0-r20131208.jar" do
   source "https://raw.github.com/ryersonlibrary/islandora/master/jars/solr-iso639-filter-4.2.0-r20131208.jar"
-  # TODO: use_conditional_get to prevent re-downloading
+  checksum node['solr-iso639-filter']['sha256']
 end
 
 # get GSearch extensions jars
 remote_file "#{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/lib/gsearch_extensions-0.1.0.jar" do
   source "https://raw.github.com/ryersonlibrary/islandora/master/jars/gsearch_extensions-0.1.0.jar"
-  # TODO: use_conditional_get to prevent re-downloading
+  checksum node['gsearch_extensions']['sha256']
 
   # Force Tomcat to reload when we're done
   notifies :start, "service[tomcat]"
@@ -135,7 +135,7 @@ end
 
 remote_file "#{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/lib/gsearch_extensions-0.1.0-jar-with-dependencies.jar" do
   source "https://raw.github.com/ryersonlibrary/islandora/master/jars/gsearch_extensions-0.1.0-jar-with-dependencies.jar"
-  # TODO: use_conditional_get to prevent re-downloading
+  checksum node['gsearch_extensions-dependencies']['sha256']
 
   # Force Tomcat to reload when we're done
   notifies :start, "service[tomcat]"

@@ -1,4 +1,4 @@
-# Copyright 2013, University of Toronto Libraries, Ryerson University Library and Archives
+# Copyright 2014, University of Toronto Libraries, Ryerson University Library and Archives
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,6 +11,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+# Checksums for Islandora-specific files
+default['drupal_filter']['sha256'] = '05902a56c81e0db059b51c145dfb245149dbe55f671fa6cda8fc23d2a2b7a194'
+default['solr-iso639-filter']['sha256'] = 'd5533a2f22b2a99f1a0e2105388bea02a9f2c3c24bfc0bf3a5549eedf85608a9'
+default['gsearch_extensions']['sha256'] = '3ac33b024a24851584cc4adaa83410133f9b31d14b32659e8d2872a92eafcf5d'
+default['gsearch_extensions-dependencies']['sha256'] = '60cad9aecad432ca490bcea490b709d4fb65f843f4d6e54014dd984663500bfa'
 
 # Required Drupal modules
 default['drupal']['modules'] = [
