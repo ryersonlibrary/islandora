@@ -80,9 +80,13 @@ end
 # get Solr PHP client from Google Code
 ark 'solr-php-client' do
   url "https://solr-php-client.googlecode.com/files/SolrPhpClient.r22.2009-11-09.tgz"
-#  checksum node['solr-php-client']['sha256']
-# SHA1 is: 32fa0e387c92d02fe4da4ca2ebbbeddb2d6ce0a8
+  checksum node['solr-php-client']['sha256']
 
   path "#{node['drupal']['dir']}/sites/all/modules/islandora_solr_search"
   action :put
+end
+
+# install uploadprogress PHP extension
+php_pear "uploadprogress" do
+  action :install
 end

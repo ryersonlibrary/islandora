@@ -12,11 +12,44 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Islandora version to install
+default['islandora']['version'] = '7.x-1.3-RC1'
+
 # Checksums for Islandora-specific files
 default['drupal_filter']['sha256'] = '05902a56c81e0db059b51c145dfb245149dbe55f671fa6cda8fc23d2a2b7a194'
 default['solr-iso639-filter']['sha256'] = 'd5533a2f22b2a99f1a0e2105388bea02a9f2c3c24bfc0bf3a5549eedf85608a9'
 default['gsearch_extensions']['sha256'] = '3ac33b024a24851584cc4adaa83410133f9b31d14b32659e8d2872a92eafcf5d'
 default['gsearch_extensions-dependencies']['sha256'] = '60cad9aecad432ca490bcea490b709d4fb65f843f4d6e54014dd984663500bfa'
+default['solr-php-client']['sha256'] = 'dfb74b2cb496a9669b115a4bc32a00b2bb5cc0505026167c486c437799bb4ce7'
+
+# Islandora-specific libraries / packages
+default['islandora']['libraries'] = [
+  # core libraries
+  'php-soap',
+  'php5-curl',
+  'php5-xsl',
+
+  # image-handling libraries
+  'php5-imagick',
+  'imagemagick',
+  'graphicsmagick-imagemagick-compat',
+
+  # OCR
+  'poppler-utils',
+  'tesseract-ocr', # TODO: needs to be built against a newer version
+
+  # media-handling libraries
+  'ffmpeg', # TODO: needs to be built against a newer version
+  'ffmpeg2theora',
+  'lame',
+  'libavcodec-extra-53',
+  'libimage-exiftool-perl',
+  'libogg0',
+  'libtheora0',
+  'libvorbis0a',
+
+  'bibutils',
+]
 
 # Required Drupal modules
 default['drupal']['modules'] = [
@@ -28,34 +61,6 @@ default['drupal']['modules'] = [
   'views',
   'jquery_update-7.x-2.x', # use latest dev version for compatibility with JQuery 1.10
 ]
-
-# Islandora-specific libraries
-default['islandora']['libraries'] = [
-  # core libraries
-  'php-soap',
-  'php5-curl',
-  'php5-xsl',
-
-  # image-handling libraries
-  'php5-imagick',
-  'graphicsmagick-imagemagick-compat',
-
-  # OCR
-  'poppler-utils',
-  'tesseract-ocr',
-
-  # media-handling libraries
-  'ffmpeg',
-  'ffmpeg2theora',
-  'lame',
-  'libavcodec-extra-53',
-  'libimage-exiftool-perl',
-  'libogg0',
-  'libtheora0',
-  'libvorbis0a',
-]
-
-default['islandora']['version'] = '7.x-1.3-RC1'
 
 # Islandora modules by github repo name
 # NB: ORDER MATTERS HERE FOR DEPENDENCIES
@@ -87,7 +92,6 @@ default['islandora']['repos'] = [
 
   # preservation modules
   'islandora_premis',
-  'islandora_fits',
   'islandora_checksum',
   'islandora_checksum_checker',
 
@@ -108,6 +112,7 @@ default['islandora']['repos'] = [
   'islandora_image_annotation',
 
   # these modules have funky dependencies
+#  'islandora_fits',
 #  'islandora_internet_archive_bookreader',
 #  'islandora_sync',
 #  'islandora_jwplayer',
