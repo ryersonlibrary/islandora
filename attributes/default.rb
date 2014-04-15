@@ -84,6 +84,7 @@ default['islandora']['repos'] = [
   'islandora_batch',
   'islandora_bookmark',
   'islandora_importer',
+  'islandora_jwplayer',
   'islandora_scholar',
   'islandora_paged_content',
 
@@ -115,7 +116,6 @@ default['islandora']['repos'] = [
 #  'islandora_fits',
 #  'islandora_internet_archive_bookreader',
 #  'islandora_sync',
-#  'islandora_jwplayer',
 #  'islandora_openseadragon',
 #  'islandora_xmlsitemap',
 #  'islandora_bagit',
