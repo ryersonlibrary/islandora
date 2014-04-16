@@ -102,15 +102,14 @@ end
 
 # get FITS from Google Code
 ark 'fits' do
-  url "https://fits.googlecode.com/files/fits-0.6.2.zip"
-  checksum node['fits']['sha256']
- 
-  path "/usr/local"
-  action :put
+  url "https://fits.googlecode.com/files/fits-#{node[:fits][:version]}.zip"
+  version  node[:fits][:version]
+  checksum node[:fits][:sha256]
+  home_dir node[:fits][:installpath]
 end
 
 # make FITS executable
-file "/usr/local/fits/fits.sh" do
+file "/usr/share/fits/fits.sh" do
   mode "0755"
   action :touch
 end
