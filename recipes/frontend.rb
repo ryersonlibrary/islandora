@@ -99,3 +99,18 @@ ark 'jwplayer' do
   path "#{node['drupal']['dir']}/sites/all/libraries/jwplayer"
   action :put
 end
+
+# get FITS from Google Code
+ark 'fits' do
+  url "https://fits.googlecode.com/files/fits-0.6.2.zip"
+  checksum node['fits']['sha256']
+ 
+  path "/usr/local"
+  action :put
+end
+
+# make FITS executable
+file "/usr/local/fits/fits.sh" do
+  mode "0755"
+  action :touch
+end
