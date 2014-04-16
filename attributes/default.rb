@@ -21,6 +21,7 @@ default['solr-iso639-filter']['sha256'] = 'd5533a2f22b2a99f1a0e2105388bea02a9f2c
 default['gsearch_extensions']['sha256'] = '3ac33b024a24851584cc4adaa83410133f9b31d14b32659e8d2872a92eafcf5d'
 default['gsearch_extensions-dependencies']['sha256'] = '60cad9aecad432ca490bcea490b709d4fb65f843f4d6e54014dd984663500bfa'
 default['solr-php-client']['sha256'] = 'dfb74b2cb496a9669b115a4bc32a00b2bb5cc0505026167c486c437799bb4ce7'
+default['jwplayer']['sha256'] = '87ad00cab2759440bc18487d0afc159c569e1b942abf3b171f80d74549d3139f'
 
 # Islandora-specific libraries / packages
 default['islandora']['libraries'] = [
@@ -84,6 +85,7 @@ default['islandora']['repos'] = [
   'islandora_batch',
   'islandora_bookmark',
   'islandora_importer',
+  'islandora_jwplayer',
   'islandora_scholar',
   'islandora_paged_content',
 
@@ -115,7 +117,6 @@ default['islandora']['repos'] = [
 #  'islandora_fits',
 #  'islandora_internet_archive_bookreader',
 #  'islandora_sync',
-#  'islandora_jwplayer',
 #  'islandora_openseadragon',
 #  'islandora_xmlsitemap',
 #  'islandora_bagit',
