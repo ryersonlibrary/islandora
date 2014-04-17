@@ -99,3 +99,10 @@ ark 'jwplayer' do
   path "#{node['drupal']['dir']}/sites/all/libraries/jwplayer"
   action :put
 end
+
+drupal_module 'set_fits_path' do
+  dir node['drupal']['dir']
+  action :php_eval
+  variable 'islandora_fits_executable_path'
+  value node[:fits][:installpath]
+end
