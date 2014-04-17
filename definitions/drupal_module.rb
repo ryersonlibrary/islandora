@@ -44,8 +44,7 @@ define :drupal_module, :action => :install, :dir => nil, :version => nil do
       cwd params[:dir]
       user node['drupal']['system']['user']
       # NB: params[:variable] and params[:value] ARE REQUIRED
-      command "#{node['drupal']['drush']['dir']}/drush -y php-eval \"variable_set('#{params[:variable]}', '#{params[:value]}')\" "
-#      retries 3
+      command "#{node['drupal']['drush']['dir']}/drush -y php-eval \"variable_set('#{params[:variable]}', '#{params[:value]}')\""
     end    
   else
     log "drupal_source action #{params[:name]} is unrecognized."

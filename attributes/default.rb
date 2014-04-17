@@ -84,7 +84,7 @@ default['islandora']['repos'] = [
   'islandora_ocr',
   'islandora_batch',
   'islandora_bookmark',
-#  'islandora_fits',
+  'islandora_fits',
   'islandora_importer',
   'islandora_jwplayer',
   'islandora_scholar',
@@ -156,4 +156,9 @@ default['islandora']['modules'] = [
 # FITS specific
 default[:fits][:version] = "0.6.2"
 default[:fits][:sha256] = '76566872f960115404c98b1bb1f9151a5805fc7384cb254c08152d11415c1354'
-default[:fits][:installpath] = "usr/share/fits"
+default[:fits][:installpath] = "/usr/share/fits"
+default[:fits][:shellpath] = "/usr/share/fits/fits.sh"
+
+# Kakadu specific
+default[:kakadu][:binarypath] = "/usr/local/bin/kdu_compress"
+

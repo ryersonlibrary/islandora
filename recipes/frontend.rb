@@ -112,10 +112,21 @@ end
 file "/usr/share/fits/fits.sh" do
   mode "0755"
   action :touch
+end
 
+# use drush to set FITS default path in Drupal database
 drupal_module 'set_fits_path' do
   dir node['drupal']['dir']
   action :php_eval
   variable 'islandora_fits_executable_path'
-  value node[:fits][:installpath]
+  value node[:fits][:shellpath]
 end
+
+# use drush to set Kadaku default path in Drupal database
+drupal_module 'set_kadaku_path' do
+  dir node['drupal']['dir']
+  action :php_eval
+  variable 'islandora_kakadu_url'
+  value node[:kakadu][:binarypath]
+end
+
