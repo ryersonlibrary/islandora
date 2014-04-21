@@ -130,3 +130,19 @@ drupal_module 'set_kadaku_path' do
   value node[:kakadu][:binarypath]
 end
 
+# use drush to set default player in islandora video solution pack
+drupal_module 'set_default_video_player' do
+  dir node['drupal']['dir']
+  action :php_eval_noquote
+  variable 'islandora_video_viewers'
+  value node[:audiovideo][:arg]
+end
+
+# use drush to set default player in islandora audio collection
+drupal_module 'set_default_audio_player' do
+  dir node['drupal']['dir']
+  action :php_eval_noquote
+  variable 'islandora_audio_viewers'
+  value node[:audiovideo][:arg]
+end
+

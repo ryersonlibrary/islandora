@@ -162,3 +162,5 @@ default[:fits][:shellpath] = "/usr/share/fits/fits.sh"
 # Kakadu specific
 default[:kakadu][:binarypath] = "/usr/local/bin/kdu_compress"
 
+# Video and audio player specific
+default[:audiovideo][:arg] = "array('name' => array('none' => 'none', 'islandora_jwplayer' => 'islandora_jwplayer'), 'default' => 'islandora_jwplayer')"
