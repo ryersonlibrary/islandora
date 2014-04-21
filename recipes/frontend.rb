@@ -146,3 +146,48 @@ drupal_module 'set_default_audio_player' do
   value node[:audiovideo][:arg]
 end
 
+# create the bookreader directory
+directory "#{node['drupal']['dir']}/sites/all/libraries/bookreader" do
+  action :create
+  recursive true
+  user node['drupal']['system']['user']
+  group node['drupal']['system']['group']
+end
+
+# download the bookreader from github
+git "#{node['drupal']['dir']}/sites/all/libraries/bookreader" do
+  repository "git://github.com/openlibrary/bookreader.git"
+  action :checkout
+  user node['drupal']['system']['user']
+  group node['drupal']['system']['group']
+end
+
+# create the bookreader module directory
+directory "#{node['drupal']['dir']}/sites/all/modules/islandora_internet_archive_bookreader" do
+  action :create
+  recursive true
+  user node['drupal']['system']['user']
+  group node['drupal']['system']['group']
+end
+
+# download the bookreader module from github
+git "#{node['drupal']['dir']}/sites/all/modules/islandora_internet_archive_bookreader" do
+  repository "git://github.com/Islandora/islandora_internet_archive_bookreader.git"
+  action :checkout
+  user node['drupal']['system']['user']
+  group node['drupal']['system']['group']
+end
+
+# Use Drush to enable islandora-book-reader module
+drupal_module 'islandora_internet_archive_bookreader' do
+  dir node['drupal']['dir']
+  action :enable
+end
+
+# use drush to set the default bookreader viewer
+drupal_module 'set_default_bookreader_viewer' do
+  dir node['drupal']['dir']
+  action :php_eval_noquote
+  variable 'islandora_book_viewers'
+  value node[:bookreader][:arg]
+end

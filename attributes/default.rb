@@ -164,3 +164,7 @@ default[:kakadu][:binarypath] = "/usr/local/bin/kdu_compress"
 
 # Video and audio player specific
 default[:audiovideo][:arg] = "array('name' => array('none' => 'none', 'islandora_jwplayer' => 'islandora_jwplayer'), 'default' => 'islandora_jwplayer')"
+
+# Book reader specific
+default[:bookreader][:giturl] = "git://github.com/openlibrary/bookreader.git"
+default[:bookreader][:arg] = "array('name' => array('none' => 'none', 'islandora_internet_archive_bookreader' => 'islandora_internet_archive_bookreader'), 'default' => 'islandora_internet_archive_bookreader')"
