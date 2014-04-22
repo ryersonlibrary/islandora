@@ -171,6 +171,21 @@ ark 'openseadragon_js' do
   action :put
 end
 
+# create the bagit directory
+directory "#{node['drupal']['dir']}/sites/all/libraries/BagItPHP" do
+  action :create
+  recursive true
+  user node['drupal']['system']['user']
+  group node['drupal']['system']['group']
+end
+
+# download the BagItPHP library from github
+git "#{node['drupal']['dir']}/sites/all/libraries/BagItPHP" do
+  repository "git://github.com/scholarslab/BagItPHP.git"
+  action :checkout
+  user node['drupal']['system']['user']
+  group node['drupal']['system']['group']
+end
 
 # Install Islandora modules with funky dependencies
 node['islandora']['funkymodules'].each do |funkymodule|

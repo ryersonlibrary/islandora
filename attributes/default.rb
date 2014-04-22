@@ -119,9 +119,6 @@ default['islandora']['repos'] = [
   'islandora_book_batch',  
   'islandora_image_annotation',
 
-  # these modules have funky dependencies
-#  'islandora_bagit',
-
 ]
 
 # Islandora modules that need to be explicitly enabled
@@ -160,6 +157,7 @@ default['islandora']['funkymodules'] = [
   'islandora_sync',
   'islandora_openseadragon',
   'islandora_xmlsitemap',
+  'islandora_bagit',
 ]
 
 # Islandora modules to enable
