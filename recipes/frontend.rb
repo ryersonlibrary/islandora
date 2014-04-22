@@ -217,11 +217,22 @@ node['islandora']['modulesToEnable'].each do |enableMod|
   end
 end
 
-
 # use drush to set the default bookreader viewer
 drupal_module 'set_default_bookreader_viewer' do
   dir node['drupal']['dir']
   action :php_eval_noquote
   variable 'islandora_book_viewers'
   value node[:bookreader][:arg]
+end
+
+#################
+# testing
+# use drush to set default params
+node['islandora']['default_params'].each do |param|
+  drupal_module param['name'] do
+    dir node['drupal']['dir']
+    action :param['action']
+    variable param['variable']
+    value param['value']
+  end
 end

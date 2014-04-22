@@ -160,11 +160,28 @@ default['islandora']['funkymodules'] = [
   'islandora_bagit',
 ]
 
-# Islandora modules to enable
+# Islandora supplemental modules to enable
 default['islandora']['modulesToEnable'] = [
   'islandora_sync_field_collection',
   'islandora_sync_relation',
   'relation_ui',
+]
+
+## testing
+default['islandora']['default_params'] = [
+  {
+      "name"     => "set_fits_path",
+      "action"   => "php_eval",
+      "variable" => "islandora_fits_executable_path",
+      "value"    => default[:fits][:shellpath],
+  },
+  {
+    "name"     => "set_default_bookreader_viewer",
+    "action"   => "php_eval_noquote",
+    "variable" => "islandora_book_viewers",
+    "value"    => "array('name' => array('none' => 'none', 'islandora_internet_archive_bookreader' => 'islandora_internet_archive_bookreader'), 'default' => 'islandora_internet_archive_bookreader')",
+  },
+    
 ]
 
 
