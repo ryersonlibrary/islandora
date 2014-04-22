@@ -62,9 +62,10 @@ default['drupal']['modules'] = [
   'token',
   'views',
   'jquery_update-7.x-2.x', # use latest dev version for compatibility with JQuery 1.10
-  'relation', # added
-  'field_collection', # added
-  'views_ui', # added
+  'relation', # NB dependency for islandora_sync 
+  'field_collection', # NB dependency for islandora_sync
+  'views_ui',
+  'xmlsitemap', # NB dependency for islandora_xmlsitemap
 ]
 
 # Islandora modules by github repo name
@@ -119,8 +120,6 @@ default['islandora']['repos'] = [
   'islandora_image_annotation',
 
   # these modules have funky dependencies
-#  'islandora_openseadragon',
-#  'islandora_xmlsitemap',
 #  'islandora_bagit',
 
 ]
@@ -160,6 +159,7 @@ default['islandora']['funkymodules'] = [
   'islandora_internet_archive_bookreader',
   'islandora_sync',
   'islandora_openseadragon',
+  'islandora_xmlsitemap',
 ]
 
 # Islandora modules to enable
