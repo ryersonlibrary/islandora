@@ -154,7 +154,7 @@ directory "#{node['drupal']['dir']}/sites/all/libraries/bookreader" do
   group node['drupal']['system']['group']
 end
 
-# download the bookreader from github
+# download the openlibrary bookreader from github
 git "#{node['drupal']['dir']}/sites/all/libraries/bookreader" do
   repository "git://github.com/openlibrary/bookreader.git"
   action :checkout
@@ -162,27 +162,46 @@ git "#{node['drupal']['dir']}/sites/all/libraries/bookreader" do
   group node['drupal']['system']['group']
 end
 
-# create the bookreader module directory
-directory "#{node['drupal']['dir']}/sites/all/modules/islandora_internet_archive_bookreader" do
-  action :create
-  recursive true
-  user node['drupal']['system']['user']
-  group node['drupal']['system']['group']
+# download openseadragon javascript
+ark 'openseadragon_js' do
+  url "http://openseadragon.github.io/releases/openseadragon-bin-0.9.129.zip"
+  checksum node['openseadragon_js']['sha256']
+ 
+  path "#{node['drupal']['dir']}/sites/all/libraries/openseadragon"
+  action :put
 end
 
-# download the bookreader module from github
-git "#{node['drupal']['dir']}/sites/all/modules/islandora_internet_archive_bookreader" do
-  repository "git://github.com/Islandora/islandora_internet_archive_bookreader.git"
-  action :checkout
-  user node['drupal']['system']['user']
-  group node['drupal']['system']['group']
+
+# Install Islandora modules with funky dependencies
+node['islandora']['funkymodules'].each do |funkymodule|
+  
+  # Checkout git repositories as Drupal modules
+  git "#{node['drupal']['dir']}/sites/all/modules/#{funkymodule}" do
+    repository "git://github.com/Islandora/#{funkymodule}.git"
+    action :checkout
+    branch node['islandora']['version']
+    user node['drupal']['system']['user']
+    group node['drupal']['system']['group']
+  end
+
+  # strip "solution pack" out of the repo name for the module
+  # mod = repo.sub('solution_pack_','')
+
+  # Use Drush to install downloaded modules
+  drupal_module funkymodule do
+    dir node['drupal']['dir']
+    action :install
+  end
 end
 
-# Use Drush to enable islandora-book-reader module
-drupal_module 'islandora_internet_archive_bookreader' do
-  dir node['drupal']['dir']
-  action :enable
+# Enable some modules that were installed above
+node['islandora']['modulesToEnable'].each do |enableMod|
+  drupal_module enableMod do
+    dir node['drupal']['dir']
+    action :enable
+  end
 end
+
 
 # use drush to set the default bookreader viewer
 drupal_module 'set_default_bookreader_viewer' do

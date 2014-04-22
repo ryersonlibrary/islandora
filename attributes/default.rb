@@ -22,7 +22,8 @@ default['gsearch_extensions']['sha256'] = '3ac33b024a24851584cc4adaa83410133f9b3
 default['gsearch_extensions-dependencies']['sha256'] = '60cad9aecad432ca490bcea490b709d4fb65f843f4d6e54014dd984663500bfa'
 default['solr-php-client']['sha256'] = 'dfb74b2cb496a9669b115a4bc32a00b2bb5cc0505026167c486c437799bb4ce7'
 default['jwplayer']['sha256'] = '87ad00cab2759440bc18487d0afc159c569e1b942abf3b171f80d74549d3139f'
-
+default['openseadragon_js']['sha256'] = '9059b3b7d62b4d9891f59cb0cc37317c766ca32c6160727159198da18bfe86be'
+  
 # Islandora-specific libraries / packages
 default['islandora']['libraries'] = [
   # core libraries
@@ -61,6 +62,9 @@ default['drupal']['modules'] = [
   'token',
   'views',
   'jquery_update-7.x-2.x', # use latest dev version for compatibility with JQuery 1.10
+  'relation', # added
+  'field_collection', # added
+  'views_ui', # added
 ]
 
 # Islandora modules by github repo name
@@ -115,8 +119,6 @@ default['islandora']['repos'] = [
   'islandora_image_annotation',
 
   # these modules have funky dependencies
-#  'islandora_internet_archive_bookreader',
-#  'islandora_sync',
 #  'islandora_openseadragon',
 #  'islandora_xmlsitemap',
 #  'islandora_bagit',
@@ -153,6 +155,21 @@ default['islandora']['modules'] = [
   'ris_importer',
 ]
 
+# Islandora modules with funky dependencies
+default['islandora']['funkymodules'] = [
+  'islandora_internet_archive_bookreader',
+  'islandora_sync',
+  'islandora_openseadragon',
+]
+
+# Islandora modules to enable
+default['islandora']['modulesToEnable'] = [
+  'islandora_sync_field_collection',
+  'islandora_sync_relation',
+  'relation_ui',
+]
+
+
 # FITS specific
 default[:fits][:version] = "0.6.2"
 default[:fits][:sha256] = '76566872f960115404c98b1bb1f9151a5805fc7384cb254c08152d11415c1354'
@@ -166,5 +183,4 @@ default[:kakadu][:binarypath] = "/usr/local/bin/kdu_compress"
 default[:audiovideo][:arg] = "array('name' => array('none' => 'none', 'islandora_jwplayer' => 'islandora_jwplayer'), 'default' => 'islandora_jwplayer')"
 
 # Book reader specific
-default[:bookreader][:giturl] = "git://github.com/openlibrary/bookreader.git"
 default[:bookreader][:arg] = "array('name' => array('none' => 'none', 'islandora_internet_archive_bookreader' => 'islandora_internet_archive_bookreader'), 'default' => 'islandora_internet_archive_bookreader')"
