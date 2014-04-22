@@ -93,9 +93,9 @@ end
 
 # get jwplayer from jwplayer
 ark 'jwplayer' do
-  url "https://account.jwplayer.com/static/download/jwplayer-6.8.zip"
-  checksum node['jwplayer']['sha256']
- 
+  url "https://account.jwplayer.com/static/download/jwplayer-#{node[:jwplayer][:version]}.zip"
+  checksum node[:jwplayer][:sha256]
+  
   path "#{node['drupal']['dir']}/sites/all/libraries/jwplayer"
   action :put
 end
@@ -114,54 +114,6 @@ file "/usr/share/fits/fits.sh" do
   action :touch
 end
 
-# use drush to set FITS default path in Drupal database
-drupal_module 'set_fits_path' do
-  dir node['drupal']['dir']
-  action :php_eval
-  variable 'islandora_fits_executable_path'
-  value node[:fits][:shellpath]
-end
-
-# use drush to set Kadaku default path in Drupal database
-drupal_module 'set_kadaku_path' do
-  dir node['drupal']['dir']
-  action :php_eval
-  variable 'islandora_kakadu_url'
-  value node[:kakadu][:binarypath]
-end
-
-# use drush to set default player in islandora video solution pack
-drupal_module 'set_default_video_player' do
-  dir node['drupal']['dir']
-  action :php_eval_noquote
-  variable 'islandora_video_viewers'
-  value node[:audiovideo][:arg]
-end
-
-# use drush to set default player in islandora audio collection
-drupal_module 'set_default_audio_player' do
-  dir node['drupal']['dir']
-  action :php_eval_noquote
-  variable 'islandora_audio_viewers'
-  value node[:audiovideo][:arg]
-end
-
-# create the bookreader directory
-directory "#{node['drupal']['dir']}/sites/all/libraries/bookreader" do
-  action :create
-  recursive true
-  user node['drupal']['system']['user']
-  group node['drupal']['system']['group']
-end
-
-# download the openlibrary bookreader from github
-git "#{node['drupal']['dir']}/sites/all/libraries/bookreader" do
-  repository "git://github.com/openlibrary/bookreader.git"
-  action :checkout
-  user node['drupal']['system']['user']
-  group node['drupal']['system']['group']
-end
-
 # download openseadragon javascript
 ark 'openseadragon_js' do
   url "http://openseadragon.github.io/releases/openseadragon-bin-0.9.129.zip"
@@ -171,21 +123,26 @@ ark 'openseadragon_js' do
   action :put
 end
 
-# create the bagit directory
-directory "#{node['drupal']['dir']}/sites/all/libraries/BagItPHP" do
-  action :create
-  recursive true
-  user node['drupal']['system']['user']
-  group node['drupal']['system']['group']
+
+#  Download files required for funky dependencies from github
+node['islandora']['supp_downloads'].each do |resource|
+  # create the directory
+  directory "#{node['drupal']['dir']}/sites/all/libraries/#{resource[:dirname]}" do
+    action :create
+    recursive true
+    user node['drupal']['system']['user']
+    group node['drupal']['system']['group']
+  end
+  
+  # download from github
+  git "#{node['drupal']['dir']}/sites/all/libraries/#{resource[:dirname]}" do
+    repository "#{resource[:repo]}"
+    action :checkout
+    user node['drupal']['system']['user']
+    group node['drupal']['system']['group']
+  end
 end
 
-# download the BagItPHP library from github
-git "#{node['drupal']['dir']}/sites/all/libraries/BagItPHP" do
-  repository "git://github.com/scholarslab/BagItPHP.git"
-  action :checkout
-  user node['drupal']['system']['user']
-  group node['drupal']['system']['group']
-end
 
 # Install Islandora modules with funky dependencies
 node['islandora']['funkymodules'].each do |funkymodule|
@@ -198,9 +155,6 @@ node['islandora']['funkymodules'].each do |funkymodule|
     user node['drupal']['system']['user']
     group node['drupal']['system']['group']
   end
-
-  # strip "solution pack" out of the repo name for the module
-  # mod = repo.sub('solution_pack_','')
 
   # Use Drush to install downloaded modules
   drupal_module funkymodule do
@@ -217,22 +171,13 @@ node['islandora']['modulesToEnable'].each do |enableMod|
   end
 end
 
-# use drush to set the default bookreader viewer
-drupal_module 'set_default_bookreader_viewer' do
-  dir node['drupal']['dir']
-  action :php_eval_noquote
-  variable 'islandora_book_viewers'
-  value node[:bookreader][:arg]
-end
 
-#################
-# testing
-# use drush to set default params
+# use Drush to set default params
 node['islandora']['default_params'].each do |param|
-  drupal_module param['name'] do
+  drupal_module param[:name] do
     dir node['drupal']['dir']
-    action :param['action']
-    variable param['variable']
-    value param['value']
+    action param[:action].to_sym
+    variable param[:variable]
+    value param[:value]
   end
 end

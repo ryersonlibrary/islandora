@@ -167,23 +167,9 @@ default['islandora']['modulesToEnable'] = [
   'relation_ui',
 ]
 
-## testing
-default['islandora']['default_params'] = [
-  {
-      "name"     => "set_fits_path",
-      "action"   => "php_eval",
-      "variable" => "islandora_fits_executable_path",
-      "value"    => default[:fits][:shellpath],
-  },
-  {
-    "name"     => "set_default_bookreader_viewer",
-    "action"   => "php_eval_noquote",
-    "variable" => "islandora_book_viewers",
-    "value"    => "array('name' => array('none' => 'none', 'islandora_internet_archive_bookreader' => 'islandora_internet_archive_bookreader'), 'default' => 'islandora_internet_archive_bookreader')",
-  },
-    
-]
-
+# JWPlayer specific
+default[:jwplayer][:version] = "6.8"
+default[:jwplayer][:sha256] = '87ad00cab2759440bc18487d0afc159c569e1b942abf3b171f80d74549d3139f'
 
 # FITS specific
 default[:fits][:version] = "0.6.2"
@@ -198,4 +184,57 @@ default[:kakadu][:binarypath] = "/usr/local/bin/kdu_compress"
 default[:audiovideo][:arg] = "array('name' => array('none' => 'none', 'islandora_jwplayer' => 'islandora_jwplayer'), 'default' => 'islandora_jwplayer')"
 
 # Book reader specific
-default[:bookreader][:arg] = "array('name' => array('none' => 'none', 'islandora_internet_archive_bookreader' => 'islandora_internet_archive_bookreader'), 'default' => 'islandora_internet_archive_bookreader')"
+default[:bookreader][:bookarg] = "array('name' => array('none' => 'none', 'islandora_internet_archive_bookreader' => 'islandora_internet_archive_bookreader'), 'default' => 'islandora_internet_archive_bookreader')"
+default[:bookreader][:pagearg] = "array('name' => array('none' => 'none', 'islandora_openseadragon' => 'islandora_openseadragon'), 'default' => 'islandora_openseadragon')"
+
+## default parameters for islandora configuration
+default['islandora']['default_params'] = [
+  {
+    :name     => 'set_fits_path',
+    :action   => :php_eval,
+    :variable => 'islandora_fits_executable_path',
+    :value    => default[:fits][:shellpath],
+  },
+  {
+    :name     => 'set_kakadu_path',
+    :action   => :php_eval,
+    :variable => 'islandora_kakadu_url',
+    :value    => default[:kakadu][:binarypath],
+  },
+  {
+    :name     => "set_default_audio_player",
+    :action   => :php_eval_noquote,
+    :variable => "islandora_audio_viewers",
+    :value    => default[:audiovideo][:arg],
+  },
+  {
+    :name     => "set_default_video_player",
+    :action   => :php_eval_noquote,
+    :variable => "islandora_video_viewers",
+    :value    => default[:audiovideo][:arg],
+  },
+  {
+    :name     => "set_default_bookreader_book_viewer",
+    :action   => :php_eval_noquote,
+    :variable => "islandora_book_viewers",
+    :value    => default[:bookreader][:bookarg],
+  },
+  {
+    :name     => 'set_default_bookreader_page_viewer',
+    :action   => :php_eval_noquote,
+    :variable => "islandora_book_page_viewers",
+    :value    => default[:bookreader][:pagearg],
+  },
+]
+
+# supplementary downloads for islandora
+default['islandora']['supp_downloads'] = [
+  { :dirname => 'bookreader',
+    :repo => 'git://github.com/openlibrary/bookreader.git',
+  },
+  { :dirname => 'BagItPHP',
+    :repo => 'git://github.com/scholarslab/BagItPHP.git',
+  },
+]
+
+
