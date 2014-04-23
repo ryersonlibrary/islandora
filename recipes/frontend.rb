@@ -86,7 +86,7 @@ ark 'solr-php-client' do
   action :put
 end
 
-# install uploadprogress PHP extension
+# install uploadprogress PHP extension with PEAR/PECL
 php_pear "uploadprogress" do
   action :install
 end
@@ -172,7 +172,7 @@ node['islandora']['modulesToEnable'].each do |enableMod|
 end
 
 
-# use Drush to set default params
+# use Drush to set Islandora default parameters
 node['islandora']['default_params'].each do |param|
   drupal_module param[:name] do
     dir node['drupal']['dir']
@@ -181,3 +181,4 @@ node['islandora']['default_params'].each do |param|
     value param[:value]
   end
 end
+
