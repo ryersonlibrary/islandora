@@ -85,6 +85,19 @@ end
 # TODO: modify + symlink / template foxmlToSolr.xslt from repo to transforms dir
 # Needs to have paths updated
 
+# delete foxmlToSolr.xslt file
+file "#{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/basic-solr-config/foxmlToSolr.xslt" do
+  action :delete
+end
+
+# create new foxmlToSolr.xslt with correct paths
+template "#{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/basic-solr-config/foxmlToSolr.xslt" do
+  source "foxmlToSolr.xslt.erb"
+
+  owner node['tomcat']['user']
+  group node['tomcat']['group']
+end
+
 # Symlink XSLT files into gsearch
 link "#{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms" do
   to "#{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/basic-solr-config/islandora_transforms"
