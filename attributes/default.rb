@@ -37,7 +37,7 @@ default['islandora']['libraries'] = [
 
   # OCR
   'poppler-utils',
-  'tesseract-ocr', # TODO: needs to be built against a newer version
+  # 'tesseract-ocr', # TODO: needs to be built against a newer version
 
   # media-handling libraries
   'ffmpeg', # TODO: needs to be built against a newer version
@@ -192,6 +192,20 @@ default['fits']['techmd_dsid'] = "TECHMD"
 # Kakadu specific
 default['kakadu']['binarypath'] = "/usr/local/bin/kdu_compress"
 
+# Leptonic specific
+#default['leptonica']['sha256'] = 'd3d209a1f6d1f7a80119486b5011bc8c6627e582c927ab44ba33c37edb2cfba2'
+#default['leptonica']['version'] = '1.70'
+#default['leptonica']['installpath'] = "/usr/share/leptonica"
+
+# Tesseract specific
+default['tesseract']['sha256'] = '26cd39cb3f2a6f6f1bf4050d1cc0aae35edee49eb49a92df3cb7f9487caa013d'
+default['tesseract']['version'] = '3.02.02'
+default['tesseract']['installpath'] = '/usr/share/tesseract'
+default['tesseract']['binarypath'] = '/usr/local/bin/tesseract'
+default['tesseract_engdata']['sha256'] = 'c110029560e7f6d41cb852ca23b66899daa4456d9afeeae9d062204bd271bdf8'
+default['tesseract_engdata']['version'] = '3.02'
+default['tesseract_engdata']['installpath'] = '/usr/local/share/tessdata'
+         
 # Audio collection specific
 default['audio']['lamearg'] = "/usr/bin/lame"
   
@@ -339,6 +353,12 @@ default['islandora']['default_params'] = [
     'action'   => :php_eval_noquote,
     'variable' => "islandora_openseadragon_settings",
     'value'    => default['openseadragon']['settings'],
+  },
+  {
+    'name'     => 'set_default_tesseract_path',
+    'action'   => :php_eval,
+    'variable' => "islandora_ocr_tesseract",
+    'value'    => default['tesseract']['binarypath'],
   },
 ]
 
