@@ -178,7 +178,14 @@ ark 'tesseract-ocr-english-language-data' do
   url "https://tesseract-ocr.googlecode.com/files/tesseract-ocr-#{node['tesseract_engdata']['version']}.eng.tar.gz"
   checksum node['tesseract_engdata']['sha256']
   path node['tesseract_engdata']['installpath']
+  strip_components 2
   action :put
+end
+
+execute "move-english-language-files" do
+  environment ({'DEBIAN_FRONTEND' => 'noninteractive'})
+  command "cd #{node['tesseract_engdata']['installpath']} && sudo mv tesseract-ocr-english-language-data/* . && sudo rm -rf tesseract-ocr-english-language-data"
+  ignore_failure false
 end
 
 
