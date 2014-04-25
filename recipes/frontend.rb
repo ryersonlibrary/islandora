@@ -86,16 +86,3 @@ ark 'solr-php-client' do
   action :put
 end
 
-# install uploadprogress PHP extension
-php_pear "uploadprogress" do
-  action :install
-end
-
-# get jwplayer from jwplayer
-ark 'jwplayer' do
-  url "https://account.jwplayer.com/static/download/jwplayer-6.8.zip"
-  checksum node['jwplayer']['sha256']
- 
-  path "#{node['drupal']['dir']}/sites/all/libraries/jwplayer"
-  action :put
-end
