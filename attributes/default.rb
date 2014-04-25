@@ -37,7 +37,7 @@ default['islandora']['libraries'] = [
 
   # OCR
   'poppler-utils',
-  'tesseract-ocr', # TODO: needs to be built against a newer version
+  # 'tesseract-ocr', # TODO: needs to be built against a newer version
 
   # media-handling libraries
   'ffmpeg', # TODO: needs to be built against a newer version
@@ -169,43 +169,57 @@ default['islandora']['modulesToEnable'] = [
 # supplementary downloads for islandora
 default['islandora']['supp_downloads'] = [
   { 
-    :dirname => 'bookreader',
-    :repo => 'git://github.com/openlibrary/bookreader.git',
+    'dirname' => 'bookreader',
+    'repo'    => 'git://github.com/openlibrary/bookreader.git',
   },
   { 
-    :dirname => 'BagItPHP',
-    :repo => 'git://github.com/scholarslab/BagItPHP.git',
+    'dirname' => 'BagItPHP',
+    'repo'    => 'git://github.com/scholarslab/BagItPHP.git',
   },
 ]
 
 # JWPlayer specific
-default[:jwplayer][:version] = "6.8"
-default[:jwplayer][:sha256] = '87ad00cab2759440bc18487d0afc159c569e1b942abf3b171f80d74549d3139f'
+default['jwplayer']['version'] = "6.8"
+default['jwplayer']['sha256'] = '87ad00cab2759440bc18487d0afc159c569e1b942abf3b171f80d74549d3139f'
 
 # FITS specific
-default[:fits][:version] = "0.6.2"
-default[:fits][:sha256] = '76566872f960115404c98b1bb1f9151a5805fc7384cb254c08152d11415c1354'
-default[:fits][:installpath] = "/usr/share/fits"
-default[:fits][:shellpath] = "/usr/share/fits/fits.sh"
-default[:fits][:techmd_dsid] = "TECHMD"
+default['fits']['version'] = "0.6.2"
+default['fits']['sha256'] = '76566872f960115404c98b1bb1f9151a5805fc7384cb254c08152d11415c1354'
+default['fits']['installpath'] = "/usr/share/fits"
+default['fits']['shellpath'] = "/usr/share/fits/fits.sh"
+default['fits']['techmd_dsid'] = "TECHMD"
   
 # Kakadu specific
-default[:kakadu][:binarypath] = "/usr/local/bin/kdu_compress"
+default['kakadu']['binarypath'] = "/usr/local/bin/kdu_compress"
 
+# Leptonic specific
+#default['leptonica']['sha256'] = 'd3d209a1f6d1f7a80119486b5011bc8c6627e582c927ab44ba33c37edb2cfba2'
+#default['leptonica']['version'] = '1.70'
+#default['leptonica']['installpath'] = "/usr/share/leptonica"
+
+# Tesseract specific
+default['tesseract']['sha256'] = '26cd39cb3f2a6f6f1bf4050d1cc0aae35edee49eb49a92df3cb7f9487caa013d'
+default['tesseract']['version'] = '3.02.02'
+default['tesseract']['installpath'] = '/usr/share/tesseract'
+default['tesseract']['binarypath'] = '/usr/local/bin/tesseract'
+default['tesseract_engdata']['sha256'] = 'c110029560e7f6d41cb852ca23b66899daa4456d9afeeae9d062204bd271bdf8'
+default['tesseract_engdata']['version'] = '3.02'
+default['tesseract_engdata']['installpath'] = '/usr/local/share/tessdata'
+         
 # Audio collection specific
-default[:audio][:lamearg] = "/usr/bin/lame"
+default['audio']['lamearg'] = "/usr/bin/lame"
   
 # Video and audio player specific
-default[:jwplayer][:arg] = "array('name' => array('none' => 'none', 'islandora_jwplayer' => 'islandora_jwplayer'), 'default' => 'islandora_jwplayer')"
+default['jwplayer']['arg'] = "array('name' => array('none' => 'none', 'islandora_jwplayer' => 'islandora_jwplayer'), 'default' => 'islandora_jwplayer')"
 
 # IA bookreader
-default[:bookreader][:arg] = "array('name' => array('none' => 'none', 'islandora_internet_archive_bookreader' => 'islandora_internet_archive_bookreader'), 'default' => 'islandora_internet_archive_bookreader')"
+default['bookreader']['arg'] = "array('name' => array('none' => 'none', 'islandora_internet_archive_bookreader' => 'islandora_internet_archive_bookreader'), 'default' => 'islandora_internet_archive_bookreader')"
 
 # openseadragon defaults
-default[:openseadragon][:arg] = "array('name' => array('none' => 'none', 'islandora_openseadragon' => 'islandora_openseadragon'), 'default' => 'islandora_openseadragon')"
-default[:openseadragon][:tilesize] = "256"
-default[:openseadragon][:tileoverlap] = "0"
-default[:openseadragon][:settings] = "array('debugMode' => 0, 
+default['openseadragon']['arg'] = "array('name' => array('none' => 'none', 'islandora_openseadragon' => 'islandora_openseadragon'), 'default' => 'islandora_openseadragon')"
+default['openseadragon']['tilesize'] = "256"
+default['openseadragon']['tileoverlap'] = "0"
+default['openseadragon']['settings'] = "array('debugMode' => 0, 
                                             'djatokaServerBaseURL' => 'http\:\/\/localhost\:8080\/adore-djatoka\/resolver',
                                             'animationTime' => '1.5',
                                             'blendTime' => '0.1',
@@ -231,114 +245,120 @@ default[:openseadragon][:settings] = "array('debugMode' => 0,
                                      )"
         
 # Solrfield
-default[:solrfield][:arg] = "RELS_EXT_isMemberOf_uri_ms"
+default['solrfield']['arg'] = "RELS_EXT_isMemberOf_uri_ms"
 
 # ingest derivatives field
-default[:ingestderivatives][:arg] = "array('pdf' => 'pdf', 'image' => 'image', 'ocr' => 'ocr')"  
+default['ingestderivatives']['arg'] = "array('pdf' => 'pdf', 'image' => 'image', 'ocr' => 'ocr')"  
       
 ## default parameters for islandora configuration
 default['islandora']['default_params'] = [
   {
-    :name     => 'set_fits_path',
-    :action   => :php_eval,
-    :variable => 'islandora_fits_executable_path',
-    :value    => default[:fits][:shellpath],
+    'name'     => 'set_fits_path',
+    'action'   => :php_eval,
+    'variable' => 'islandora_fits_executable_path',
+    'value'    => default['fits']['shellpath'],
   },
   {
-    :name     => 'set_fits_metadata_dsid',
-    :action   => :php_eval,
-    :variable => 'islandora_fits_techmd_dsid',
-    :value    => default[:fits][:techmd_dsid],
+    'name'     => 'set_fits_metadata_dsid',
+    'action'   => :php_eval,
+    'variable' => 'islandora_fits_techmd_dsid',
+    'value'    => default['fits']['techmd_dsid'],
   },
   {
-    :name     => 'set_kakadu_path',
-    :action   => :php_eval,
-    :variable => 'islandora_kakadu_url',
-    :value    => default[:kakadu][:binarypath],
+    'name'     => 'set_kakadu_path',
+    'action'   => :php_eval,
+    'variable' => 'islandora_kakadu_url',
+    'value'    => default['kakadu']['binarypath'],
   },
   {
-    :name     => "set_default_audio_player",
-    :action   => :php_eval_noquote,
-    :variable => "islandora_audio_viewers",
-    :value    => default[:jwplayer][:arg],
+    'name'     => "set_default_audio_player",
+    'action'   => :php_eval_noquote,
+    'variable' => "islandora_audio_viewers",
+    'value'    => default['jwplayer']['arg'],
   },
   {
-    :name     => "set_default_audio_lame_url",
-    :action   => :php_eval,
-    :variable => "islandora_lame_url",
-    :value    => default[:audio][:lamearg],
+    'name'     => "set_default_audio_lame_url",
+    'action'   => :php_eval,
+    'variable' => "islandora_lame_url",
+    'value'    => default['audio']['lamearg'],
   },
   {
-    :name     => "set_default_video_player",
-    :action   => :php_eval_noquote,
-    :variable => "islandora_video_viewers",
-    :value    => default[:jwplayer][:arg],
+    'name'     => "set_default_video_player",
+    'action'   => :php_eval_noquote,
+    'variable' => "islandora_video_viewers",
+    'value'    => default['jwplayer']['arg'],
   },
   {
-    :name     => "set_default_bookreader_book_viewer",
-    :action   => :php_eval_noquote,
-    :variable => "islandora_book_viewers",
-    :value    => default[:bookreader][:arg],
+    'name'     => "set_default_bookreader_book_viewer",
+    'action'   => :php_eval_noquote,
+    'variable' => "islandora_book_viewers",
+    'value'    => default['bookreader']['arg'],
   },
   {
-    :name     => 'set_default_bookreader_page_viewer',
-    :action   => :php_eval_noquote,
-    :variable => "islandora_book_page_viewers",
-    :value    => default[:openseadragon][:arg],
+    'name'     => 'set_default_bookreader_page_viewer',
+    'action'   => :php_eval_noquote,
+    'variable' => "islandora_book_page_viewers",
+    'value'    => default['openseadragon']['arg'],
   },
   {
-    :name     => 'set_default_bookreader_ingest_derivatives',
-    :action   => :php_eval_noquote,
-    :variable => "islandora_book_ingest_derivatives",
-    :value    => default[:ingestderivatives][:arg],
+    'name'     => 'set_default_bookreader_ingest_derivatives',
+    'action'   => :php_eval_noquote,
+    'variable' => "islandora_book_ingest_derivatives",
+    'value'    => default['ingestderivatives']['arg'],
   },
   {
-    :name     => 'set_default_book_parent_solr_field',
-    :action   => :php_eval,
-    :variable => "islandora_book_parent_book_solr_field",
-    :value    => default[:solrfield][:arg],
+    'name'     => 'set_default_book_parent_solr_field',
+    'action'   => :php_eval,
+    'variable' => "islandora_book_parent_book_solr_field",
+    'value'    => default['solrfield']['arg'],
   },
   {
-    :name     => "set_default_newspaper_issue_viewer",
-    :action   => :php_eval_noquote,
-    :variable => "islandora_newspaper_issue_viewers",
-    :value    => default[:bookreader][:arg],
+    'name'     => "set_default_newspaper_issue_viewer",
+    'action'   => :php_eval_noquote,
+    'variable' => "islandora_newspaper_issue_viewers",
+    'value'    => default['bookreader']['arg'],
   },
   {
-    :name     => 'set_default_newspaper_page_viewer',
-    :action   => :php_eval_noquote,
-    :variable => "islandora_newspaper_page_viewers",
-    :value    => default[:openseadragon][:arg],
+    'name'     => 'set_default_newspaper_page_viewer',
+    'action'   => :php_eval_noquote,
+    'variable' => "islandora_newspaper_page_viewers",
+    'value'    => default['openseadragon']['arg'],
   },
   {
-    :name     => 'set_default_newspaper_ingest_derivatives',
-    :action   => :php_eval_noquote,
-    :variable => "islandora_newspaper_ingest_derivatives",
-    :value    => default[:ingestderivatives][:arg],
+    'name'     => 'set_default_newspaper_ingest_derivatives',
+    'action'   => :php_eval_noquote,
+    'variable' => "islandora_newspaper_ingest_derivatives",
+    'value'    => default['ingestderivatives']['arg'],
   },
   {
-    :name     => 'set_default_newspaper_solr_field',
-    :action   => :php_eval,
-    :variable => "islandora_newspaper_parent_issue_solr_field",
-    :value    => default[:solrfield][:arg],
+    'name'     => 'set_default_newspaper_solr_field',
+    'action'   => :php_eval,
+    'variable' => "islandora_newspaper_parent_issue_solr_field",
+    'value'    => default['solrfield']['arg'],
   },
   {
-    :name     => 'set_default_openseadragon_tile_size',
-    :action   => :php_eval,
-    :variable => "islandora_openseadragon_tile_size",
-    :value    => default[:openseadragon][:tilesize],
+    'name'     => 'set_default_openseadragon_tile_size',
+    'action'   => :php_eval,
+    'variable' => "islandora_openseadragon_tile_size",
+    'value'    => default['openseadragon']['tilesize'],
   },
   {
-    :name     => 'set_default_openseadragon_tile_overlap',
-    :action   => :php_eval,
-    :variable => "islandora_openseadragon_tile_overlap",
-    :value    => default[:openseadragon][:tileoverlap],
+    'name'     => 'set_default_openseadragon_tile_overlap',
+    'action'   => :php_eval,
+    'variable' => "islandora_openseadragon_tile_overlap",
+    'value'    => default['openseadragon']['tileoverlap'],
   },
   {
-    :name     => 'set_default_openseadragon_settings',
-    :action   => :php_eval_noquote,
-    :variable => "islandora_openseadragon_settings",
-    :value    => default[:openseadragon][:settings],
+    'name'     => 'set_default_openseadragon_settings',
+    'action'   => :php_eval_noquote,
+    'variable' => "islandora_openseadragon_settings",
+    'value'    => default['openseadragon']['settings'],
+  },
+  {
+    'name'     => 'set_default_tesseract_path',
+    'action'   => :php_eval,
+    'variable' => "islandora_ocr_tesseract",
+    'value'    => default['tesseract']['binarypath'],
   },
 ]
 
