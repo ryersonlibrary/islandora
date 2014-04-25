@@ -37,7 +37,6 @@ default['islandora']['libraries'] = [
 
   # OCR
   'poppler-utils',
-  # 'tesseract-ocr', # TODO: needs to be built against a newer version
 
   # media-handling libraries
   'ffmpeg', # TODO: needs to be built against a newer version
@@ -191,11 +190,6 @@ default['fits']['techmd_dsid'] = "TECHMD"
   
 # Kakadu specific
 default['kakadu']['binarypath'] = "/usr/local/bin/kdu_compress"
-
-# Leptonic specific
-#default['leptonica']['sha256'] = 'd3d209a1f6d1f7a80119486b5011bc8c6627e582c927ab44ba33c37edb2cfba2'
-#default['leptonica']['version'] = '1.70'
-#default['leptonica']['installpath'] = "/usr/share/leptonica"
 
 # Tesseract specific
 default['tesseract']['sha256'] = '26cd39cb3f2a6f6f1bf4050d1cc0aae35edee49eb49a92df3cb7f9487caa013d'

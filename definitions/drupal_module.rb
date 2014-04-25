@@ -44,6 +44,10 @@ define :drupal_module, :action => :install, :dir => nil, :version => nil do
       cwd params[:dir]
       user node['drupal']['system']['user']
       # NB: params[:variable] and params[:value] ARE REQUIRED
+      if params[:variable] == nil or params[:value] == nil then
+        log("drupal_module_drush_php_eval requires arguments for variable and value") { level :fatal }
+        raise "drupal_module_drush_php_eval requires arguments for variable and value"
+      end
       command "#{node['drupal']['drush']['dir']}/drush -y php-eval \"variable_set('#{params[:variable]}', '#{params[:value]}')\""
     end
   when :php_eval_noquote
@@ -51,6 +55,10 @@ define :drupal_module, :action => :install, :dir => nil, :version => nil do
       cwd params[:dir]
       user node['drupal']['system']['user']
       # NB: params[:variable] and params[:value] ARE REQUIRED
+      if params[:variable] == nil or params[:value] == nil then
+        log("drupal_module_drush_php_eval_noquote requires arguments for variable and value") { level :fatal }
+        raise "drupal_module_drush_php_eval_noquote requires arguments for variable and value"
+      end
       command "#{node['drupal']['drush']['dir']}/drush -y php-eval \"variable_set('#{params[:variable]}', #{params[:value]})\""
     end
   when :enable

@@ -143,21 +143,6 @@ execute "apt-get install leptonica" do
   ignore_failure false
 end
 
-# download leptonica from leptonica.org
-#ark 'leptonica' do
-#  url "http://www.leptonica.org/source/leptonica-#{node['leptonica']['version']}.tar.gz"
-#  version  node['leptonica']['version']
-#  checksum node['leptonica']['sha256']
-#  home_dir node['leptonica']['installpath']
-#end
-#
-## build leptonica
-#execute "leptonica make" do
-#  environment ({'DEBIAN_FRONTEND' => 'noninteractive'})
-#  command "sudo cd /usr/share/leptonica && ./configure && ./make && ./make install"
-#  ignore_failure true
-#end
-
 # download tesseract source
 ark 'tesseract-ocr' do
   url "https://tesseract-ocr.googlecode.com/files/tesseract-ocr-#{node['tesseract']['version']}.tar.gz"
