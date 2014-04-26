@@ -1,4 +1,4 @@
-site :opscode
+source "http://api.berkshelf.com"
 
 # server cookbooks
 cookbook 'ubuntu-baseline', :github => 'mjsuhonos/ubuntu-baseline'
