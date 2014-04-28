@@ -25,10 +25,6 @@ Vagrant.configure("2") do |config|
   # Enabling the Berkshelf plugin.
   config.berkshelf.enabled = true
 
-  # Ensure we are using the latest version of Chef on the VM
-  # needed to fix https://tickets.opscode.com/browse/CHEF-5041
-  config.omnibus.chef_version = '11.12.0.alpha.1'
-
   config.vm.provision :chef_solo do |chef|
     # Log the heck out of everything
     chef.log_level = :debug
