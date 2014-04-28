@@ -23,7 +23,8 @@ remote_file "#{node['tomcat']['webapp_dir']}/fedora/WEB-INF/lib/fcrepo-drupalaut
   source "https://raw.github.com/ryersonlibrary/islandora/master/jars/fcrepo-drupalauthfilter-3.7.0.jar"
   checksum node['drupal_filter']['sha256']
   owner node['tomcat']['user']
-  owner node['tomcat']['group']
+  group node['tomcat']['group']
+  mode 0644
 end
 
 # set Drupal auth type in jaas.conf (assumes FESL)
@@ -100,7 +101,9 @@ end
 git "#{node['fedora']['installpath']}/data/islandora" do
   repository "git://github.com/Islandora/islandora.git"
   action :checkout
+
   branch node['islandora']['version']
+
   user node['tomcat']['user']
   group node['tomcat']['group']
 end
@@ -122,12 +125,21 @@ end
 remote_file "#{node['solr']['installpath']}/contrib/iso639/lib/solr-iso639-filter-4.2.0-r20131208.jar" do
   source "https://raw.github.com/ryersonlibrary/islandora/master/jars/solr-iso639-filter-4.2.0-r20131208.jar"
   checksum node['solr-iso639-filter']['sha256']
+  owner node['tomcat']['user']
+  group node['tomcat']['group']
+  mode 0644
+
+  # Force Tomcat to reload when we're done
+  notifies :start, "service[tomcat]"
 end
 
 # get GSearch extensions jars
 remote_file "#{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/lib/gsearch_extensions-0.1.0.jar" do
   source "https://raw.github.com/ryersonlibrary/islandora/master/jars/gsearch_extensions-0.1.0.jar"
   checksum node['gsearch_extensions']['sha256']
+  owner node['tomcat']['user']
+  group node['tomcat']['group']
+  mode 0644
 
   # Force Tomcat to reload when we're done
   notifies :start, "service[tomcat]"
@@ -136,6 +148,9 @@ end
 remote_file "#{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/lib/gsearch_extensions-0.1.0-jar-with-dependencies.jar" do
   source "https://raw.github.com/ryersonlibrary/islandora/master/jars/gsearch_extensions-0.1.0-jar-with-dependencies.jar"
   checksum node['gsearch_extensions-dependencies']['sha256']
+  owner node['tomcat']['user']
+  group node['tomcat']['group']
+  mode 0644
 
   # Force Tomcat to reload when we're done
   notifies :start, "service[tomcat]"
