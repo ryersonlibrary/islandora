@@ -30,13 +30,13 @@ run_list(
 
 override_attributes(
   # Use Java 7
-  'java' => {
-    'jdk_version' => '7',
-  },
-  
-  # Set Drupal servlet filter version
-  'drupal_filter' => {
-    'version' => '3.7.0',
-    'sha256' => '05902a56c81e0db059b51c145dfb245149dbe55f671fa6cda8fc23d2a2b7a194',
+  "java" => {
+    "jdk_version" => "7",
+    
+    # Djatoka requires the Oracle JDK
+    "install_flavor" => "oracle",
+    "oracle" => {
+      "accept_oracle_download_terms" => true
+    }
   }
 )

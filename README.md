@@ -1,6 +1,6 @@
 # Description
 
-This cookbook will install and configure [Islandora](http://islandora.ca).
+This cookbook will install and configure [Islandora](http://islandora.ca). Current version is 7
 
 Included [Vagrant](http://www.vagrantup.com) and [Berkshelf](http://berkshelf.com) files for easy VM creation
 
@@ -8,10 +8,9 @@ Included [Vagrant](http://www.vagrantup.com) and [Berkshelf](http://berkshelf.co
 
 ## Platform
 
-Tested on Ubuntu 12.04 (precise) and CentOS 6.4
+Tested on Ubuntu 12.04 (precise)
 
 ## Cookbooks
-* git
 * [djatoka](http://github.com/ryersonlibrary/djatoka)
 * [fedora](http://github.com/ryersonlibrary/fedora)
 * [solr](http://github.com/ryersonlibrary/solr)
@@ -23,6 +22,8 @@ __TODO__
 
 # Usage
 Vagrant example (assumes Virtualbox & Vagrant are installed)
+
+NB: Vagrant 1.5.2+ and vagrant-berkshelf 2.0.1+ are required
 
 1. `git clone https://github.com/ryersonlibrary/islandora`
 2. `cd islandora`
@@ -37,7 +38,8 @@ Vagrant example (assumes Virtualbox & Vagrant are installed)
 [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 # Author
-Copyright © 2013 MJ Suhonos (<mjsuhonos@ryerson.ca>)
+MJ Suhonos (<mjsuhonos@ryerson.ca>)
+Paul Church (<pchurch@ryerson.ca>)
 
 ### Acknowledgements
 Many thanks to Graham Stewart and others at the University of Toronto Libraries for [LibraryChef](https://github.com/LibraryChef).

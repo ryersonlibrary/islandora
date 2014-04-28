@@ -16,6 +16,7 @@
 default['islandora']['version'] = '7.x-1.3-RC1'
 
 # Checksums for Islandora-specific files
+default['drupal_filter']['version'] = "3.7.0"
 default['drupal_filter']['sha256'] = '05902a56c81e0db059b51c145dfb245149dbe55f671fa6cda8fc23d2a2b7a194'
 default['gsearch_extensions']['sha256'] = '3ac33b024a24851584cc4adaa83410133f9b31d14b32659e8d2872a92eafcf5d'
 default['gsearch_extensions-dependencies']['sha256'] = '60cad9aecad432ca490bcea490b709d4fb65f843f4d6e54014dd984663500bfa'
