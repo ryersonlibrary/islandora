@@ -37,8 +37,7 @@ default['islandora']['libraries'] = [
 
   # OCR
   'poppler-utils',
-  # 'tesseract-ocr', # TODO: needs to be built against a newer version
-
+  
   # media-handling libraries
   'ffmpeg', # TODO: needs to be built against a newer version
   'ffmpeg2theora',
@@ -192,11 +191,6 @@ default['fits']['techmd_dsid'] = "TECHMD"
 # Kakadu specific
 default['kakadu']['binarypath'] = "/usr/local/bin/kdu_compress"
 
-# Leptonic specific
-#default['leptonica']['sha256'] = 'd3d209a1f6d1f7a80119486b5011bc8c6627e582c927ab44ba33c37edb2cfba2'
-#default['leptonica']['version'] = '1.70'
-#default['leptonica']['installpath'] = "/usr/share/leptonica"
-
 # Tesseract specific
 default['tesseract']['sha256'] = '26cd39cb3f2a6f6f1bf4050d1cc0aae35edee49eb49a92df3cb7f9487caa013d'
 default['tesseract']['version'] = '3.02.02'
@@ -215,7 +209,7 @@ default['jwplayer']['arg'] = "array('name' => array('none' => 'none', 'islandora
 # IA bookreader
 default['bookreader']['arg'] = "array('name' => array('none' => 'none', 'islandora_internet_archive_bookreader' => 'islandora_internet_archive_bookreader'), 'default' => 'islandora_internet_archive_bookreader')"
 
-# openseadragon defaults
+# Openseadragon defaults
 default['openseadragon']['arg'] = "array('name' => array('none' => 'none', 'islandora_openseadragon' => 'islandora_openseadragon'), 'default' => 'islandora_openseadragon')"
 default['openseadragon']['tilesize'] = "256"
 default['openseadragon']['tileoverlap'] = "0"
@@ -242,13 +236,17 @@ default['openseadragon']['settings'] = "array('debugMode' => 0,
                                             'zoomPerClick' => '2.0',
                                             'zoomPerScroll' => '1.2',
                                             'zoomPerSecond' => '2.0',
-                                     )"
-        
+                                        )"
+
 # Solrfield
 default['solrfield']['arg'] = "RELS_EXT_isMemberOf_uri_ms"
 
 # ingest derivatives field
-default['ingestderivatives']['arg'] = "array('pdf' => 'pdf', 'image' => 'image', 'ocr' => 'ocr')"  
+default['ingestderivatives']['arg'] = "array('pdf' => 'pdf', 'image' => 'image', 'ocr' => 'ocr')"
+  
+# Islandora PDF collection
+default['pdf_collection']['extract_text_streams'] = 1 # NB: 1 is enabled
+default['pdf_collection']['path_to_pdftotext'] = '/usr/bin/pdftotext'
       
 ## default parameters for islandora configuration
 default['islandora']['default_params'] = [
@@ -360,8 +358,23 @@ default['islandora']['default_params'] = [
     'variable' => "islandora_ocr_tesseract",
     'value'    => default['tesseract']['binarypath'],
   },
+  {
+    'name'     => 'set_default_large_image_viewer',
+    'action'   => :php_eval_noquote,
+    'variable' => 'islandora_large_image_viewers',
+    'value'    => default['openseadragon']['arg'],
+  },
+  {
+    'name'     => 'set_extract_text_streams_from_pdfs',
+    'action'   => :php_eval,
+    'variable' => 'islandora_pdf_create_fulltext',
+    'value'    => default['pdf_collection']['extract_text_streams'],
+  },
+  {
+    'name'     => 'set_path_to_pdftotext',
+    'action'   => :php_eval,
+    'variable' => 'islandora_pdf_path_to_pdftotext',
+    'value'    => default['pdf_collection']['path_to_pdftotext'],
+  },
 ]
-
-
-
 
