@@ -41,7 +41,7 @@ default['islandora']['libraries'] = [
   # 'tesseract-ocr', # TODO: needs to be built against a newer version
 
   # media-handling libraries
-  'ffmpeg', # TODO: needs to be built against a newer version
+  'ffmpeg',
   'ffmpeg2theora',
   'lame',
   'libavcodec-extra-53',

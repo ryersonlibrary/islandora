@@ -17,6 +17,9 @@
 # limitations under the License.
 #
 
+# This has to be included before we start installing packages
+include_recipe 'islandora::ffmpeg'
+
 # Install packaged libraries on the system
 if platform?("ubuntu")
   node['islandora']['libraries'].each do |library|
