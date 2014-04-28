@@ -173,5 +173,3 @@ execute "move-english-language-files" do
   command "cd #{node['tesseract_engdata']['installpath']} && sudo mv tesseract-ocr-english-language-data/* . && sudo rm -rf tesseract-ocr-english-language-data"
   ignore_failure false
 end
-
-
