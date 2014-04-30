@@ -1,0 +1,127 @@
+DEPENDENCIES
+  djatoka
+    git: git://github.com/ryersonlibrary/djatoka.git
+    revision: f04774aa3a0e8e7177d986912ca65dd3c3599d25
+  drupal
+    git: git://github.com/gondoi/drupal-cookbook.git
+    revision: 8046c8cfe06a47e5870fec71e331b363b07b2f6e
+  fedora-commons
+    git: git://github.com/ryersonlibrary/fedora.git
+    revision: 00a56b51b39da2f9dddb814397093248c05777ce
+  gsearch
+    git: git://github.com/ryersonlibrary/gsearch.git
+    revision: ebe0bb9b1c7c72f6773d2fd16a27feef5be66bbc
+  islandora
+    path: .
+    metadata: true
+  java (>= 1.21.2)
+  solr
+    git: git://github.com/ryersonlibrary/solr.git
+    revision: 740aa953ab84dff5fcc85d803b58a9fbfeb6f1d6
+  ubuntu-baseline
+    git: git://github.com/mjsuhonos/ubuntu-baseline.git
+    revision: 3e6b92e6d17c7bfafba28343b897e235c6c24def
+
+GRAPH
+  apache2 (1.10.4)
+    iptables (>= 0.0.0)
+    logrotate (>= 0.0.0)
+    pacman (>= 0.0.0)
+  apt (2.3.10)
+  ark (0.8.2)
+  aws (2.2.0)
+  build-essential (2.0.0)
+  chef_handler (1.1.6)
+  cron (1.3.12)
+  database (2.1.8)
+    aws (>= 0.0.0)
+    mysql (>= 5.0.0)
+    mysql-chef_gem (>= 0.0.0)
+    postgresql (>= 1.0.0)
+    xfs (>= 0.0.0)
+  djatoka (1.1.0)
+    ark (>= 0.0.0)
+    java (>= 0.0.0)
+    tomcat (>= 0.0.0)
+  dmg (2.2.0)
+  drupal (1.3.1)
+    apache2 (>= 0.0.0)
+    build-essential (>= 0.0.0)
+    cron (>= 0.0.0)
+    firewall (>= 0.0.0)
+    lsyncd (>= 0.0.0)
+    mysql (>= 0.0.0)
+    openssl (>= 0.0.0)
+    php (>= 0.0.0)
+    postfix (>= 0.0.0)
+  fedora-commons (3.7.0)
+    database (>= 0.0.0)
+    java (>= 0.0.0)
+    mysql (>= 0.0.0)
+    postgresql (>= 0.0.0)
+    tomcat (>= 0.0.0)
+  firewall (0.11.6)
+  git (4.0.2)
+    build-essential (>= 0.0.0)
+    dmg (>= 0.0.0)
+    runit (>= 1.0.0)
+    windows (>= 0.0.0)
+    yum (~> 3.0)
+    yum-epel (>= 0.0.0)
+  gsearch (2.6.0)
+    ark (>= 0.0.0)
+    java (>= 0.0.0)
+    tomcat (>= 0.0.0)
+  iis (2.1.2)
+    windows (>= 1.2.6)
+  iptables (0.13.2)
+  islandora (7.1.3)
+    ark (>= 0.0.0)
+    drupal (>= 0.0.0)
+    git (>= 0.0.0)
+  java (1.22.0)
+  logrotate (1.5.0)
+  lsyncd (0.2.0)
+    yum (~> 3.0.0)
+  mysql (5.2.2)
+  mysql-chef_gem (0.0.2)
+    build-essential (>= 0.0.0)
+    mysql (>= 0.0.0)
+  openssl (1.1.0)
+  pacman (1.1.1)
+  php (1.4.6)
+    build-essential (>= 0.0.0)
+    iis (>= 0.0.0)
+    mysql (>= 0.0.0)
+    windows (>= 0.0.0)
+    xml (>= 0.0.0)
+    yum-epel (>= 0.0.0)
+  postfix (3.1.8)
+  postgresql (3.3.4)
+    apt (>= 0.0.0)
+    build-essential (>= 0.0.0)
+    openssl (>= 0.0.0)
+  runit (1.5.10)
+    build-essential (>= 0.0.0)
+    yum (~> 3.0)
+    yum-epel (>= 0.0.0)
+  solr (4.5.1)
+    ark (>= 0.0.0)
+    java (>= 0.0.0)
+    tomcat (>= 0.0.0)
+  tomcat (0.15.12)
+    java (>= 0.0.0)
+    openssl (>= 0.0.0)
+  ubuntu-baseline (0.1.0)
+    apt (>= 0.0.0)
+    build-essential (>= 0.0.0)
+    unattended_upgrades (>= 0.0.0)
+  unattended_upgrades (0.0.2)
+  windows (1.30.2)
+    chef_handler (>= 0.0.0)
+  xfs (1.1.0)
+  xml (1.2.4)
+    build-essential (>= 0.0.0)
+  yum (3.0.6)
+  yum-epel (0.3.6)
+    yum (~> 3.0)
