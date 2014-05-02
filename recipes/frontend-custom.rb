@@ -143,21 +143,6 @@ execute "apt-get install leptonica" do
   ignore_failure false
 end
 
-# download leptonica from leptonica.org
-#ark 'leptonica' do
-#  url "http://www.leptonica.org/source/leptonica-#{node['leptonica']['version']}.tar.gz"
-#  version  node['leptonica']['version']
-#  checksum node['leptonica']['sha256']
-#  home_dir node['leptonica']['installpath']
-#end
-#
-## build leptonica
-#execute "leptonica make" do
-#  environment ({'DEBIAN_FRONTEND' => 'noninteractive'})
-#  command "sudo cd /usr/share/leptonica && ./configure && ./make && ./make install"
-#  ignore_failure true
-#end
-
 # download tesseract source
 ark 'tesseract-ocr' do
   url "https://tesseract-ocr.googlecode.com/files/tesseract-ocr-#{node['tesseract']['version']}.tar.gz"
@@ -173,7 +158,7 @@ execute "tesseract build from source" do
   ignore_failure false
 end
 
-# download tesseract language data (english) and place it in the tesseract directory
+# download tesseract language data (english)
 ark 'tesseract-ocr-english-language-data' do
   url "https://tesseract-ocr.googlecode.com/files/tesseract-ocr-#{node['tesseract_engdata']['version']}.eng.tar.gz"
   checksum node['tesseract_engdata']['sha256']
@@ -182,10 +167,9 @@ ark 'tesseract-ocr-english-language-data' do
   action :put
 end
 
+# place it in the tesseract directory
 execute "move-english-language-files" do
   environment ({'DEBIAN_FRONTEND' => 'noninteractive'})
   command "cd #{node['tesseract_engdata']['installpath']} && sudo mv tesseract-ocr-english-language-data/* . && sudo rm -rf tesseract-ocr-english-language-data"
   ignore_failure false
 end
-
-

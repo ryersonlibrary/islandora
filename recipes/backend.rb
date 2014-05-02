@@ -86,6 +86,42 @@ end
 # TODO: modify + symlink / template foxmlToSolr.xslt from repo to transforms dir
 # Needs to have paths updated
 
+# delete foxmlToSolr.xslt file
+file "#{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/basic-solr-config/foxmlToSolr.xslt" do
+  action :delete
+end
+
+# create new foxmlToSolr.xslt with correct paths
+template "#{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/basic-solr-config/foxmlToSolr.xslt" do
+  source "foxmlToSolr.xslt.erb"
+
+  owner node['tomcat']['user']
+  group node['tomcat']['group']
+end
+
+# delete slurp_all_MODS_to_solr.xslt file
+file "#{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/basic-solr-config/islandora_transforms/slurp_all_MODS_to_solr.xslt" do
+  action :delete
+end
+
+# create new slurp_all_MODS_to_solr.xslt with correct paths
+template "#{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/basic-solr-config/islandora_transforms/slurp_all_MODS_to_solr.xslt" do
+  source "slurp_all_MODS_to_solr.xslt.erb"
+
+  owner node['tomcat']['user']
+  group node['tomcat']['group']
+end
+
+# Symlink foxmlToSolr into gsearch
+link "#{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt" do
+  to "#{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/basic-solr-config/foxmlToSolr.xslt"
+  owner node['tomcat']['user']
+  group node['tomcat']['group']
+  
+  # Force Tomcat to reload when we're done
+  notifies :start, "service[tomcat]"
+end
+
 # Symlink XSLT files into gsearch
 link "#{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms" do
   to "#{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/basic-solr-config/islandora_transforms"
