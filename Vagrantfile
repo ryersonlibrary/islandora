@@ -5,11 +5,11 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "islandora-berkshelf"
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "precise64-puppet"
+  config.vm.box = "precise64-cloud"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210.box"
+  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
 
   # Forward port mappings
   config.vm.network :forwarded_port, guest: 8080, host: 8080    # Tomcat
@@ -22,9 +22,13 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--cpus", "2"]
   end
 
-  # Enabling the Berkshelf plugin.
+  # Enabling the Berkshelf plugin
   config.berkshelf.enabled = true
 
+  # Install the latest version of Omnibus
+  # needed to fix https://tickets.opscode.com/browse/CHEF-5041
+  config.omnibus.chef_version = '11.12.0'
+   
   config.vm.provision :chef_solo do |chef|
     # Log the heck out of everything
     chef.log_level = :debug

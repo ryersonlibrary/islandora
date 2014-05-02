@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # Islandora version to install
-default['islandora']['version'] = '7.x-1.3-RC1'
+default['islandora']['version'] = '7.x-1.3'
 
 # Checksums for Islandora-specific files
 default['drupal_filter']['version'] = "3.7.0"
