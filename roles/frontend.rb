@@ -18,13 +18,14 @@ description "Configure a frontend Drupal node"
 run_list(
   'recipe[islandora::frontend]',
   'recipe[islandora::frontend-custom]',
+  'recipe[islandora::islandora-solution-pack-objects]',
 )
 
 override_attributes(
   # Set Drupal & Drush versions
   'drupal' => {
-    'version' => '7.27',
-    'checksum' => '9a04062618acdebdaf8ee1e0291c6f3d6808483b9aec9b315e4f15db080a19e2',
+    'version' => '7.28',
+    'checksum' => '941b6de8978d215c95fe6f8466e3cb212f16647de93b38bbc41df020fd6e5eaa',
     'db' => {
       'password' => 'islandora'
     },

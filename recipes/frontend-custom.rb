@@ -155,6 +155,7 @@ end
 execute "tesseract build from source" do
   environment ({'DEBIAN_FRONTEND' => 'noninteractive'})
   command "cd #{node['tesseract']['installpath']} && sudo ./autogen.sh && sudo ./configure && sudo make && sudo make install && sudo ldconfig"
+  creates "/usr/local/bin/tesseract"
   ignore_failure false
 end
 
@@ -173,3 +174,4 @@ execute "move-english-language-files" do
   command "cd #{node['tesseract_engdata']['installpath']} && sudo mv tesseract-ocr-english-language-data/* . && sudo rm -rf tesseract-ocr-english-language-data"
   ignore_failure false
 end
+

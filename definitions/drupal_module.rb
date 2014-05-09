@@ -69,6 +69,18 @@ define :drupal_module, :action => :install, :dir => nil, :version => nil do
       not_if "#{node['drupal']['drush']['dir']}/drush -r #{params[:dir]} pm-list |grep '(#{params[:name]})' |grep -i 'enabled'"
       retries 3
     end
+  when :ispiro
+    execute "drush_islandora_solution_pack_install_required_objects #{params[:name]}" do
+      cwd params[:dir]
+      user node['drupal']['system']['user']
+      command "#{node['drupal']['drush']['dir']}/drush -u 1 ispiro --module=#{params[:name]}"  
+    end
+  when :ispicm
+    execute "drush_islandora_solution_pack_install_content_models #{params[:name]}" do
+      cwd params[:dir]
+      user node['drupal']['system']['user']
+      command "#{node['drupal']['drush']['dir']}/drush -u 1 ispicm --module=#{params[:name]}"  
+    end  
   else
     log "drupal_source action #{params[:name]} is unrecognized."
   end

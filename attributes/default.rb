@@ -379,3 +379,19 @@ default['islandora']['default_params'] = [
   },
 ]
 
+## islandora solution pack objects
+default['islandora']['solution_pack_objects'] = [  
+  'islandora',
+  'islandora_audio',
+  'islandora_basic_collection',
+  'islandora_basic_image',
+  'islandora_book',
+  'islandora_compound_object',
+  'islandora_image_annotation',
+  'islandora_large_image',
+  'islandora_newspaper',
+  'islandora_pdf',
+  'islandora_scholar',
+  'islandora_video',
+  'islandora_web_archive',
+]
