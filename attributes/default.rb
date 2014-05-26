@@ -188,7 +188,13 @@ default['fits']['sha256'] = '76566872f960115404c98b1bb1f9151a5805fc7384cb254c081
 default['fits']['installpath'] = "/usr/share/fits"
 default['fits']['shellpath'] = "/usr/share/fits/fits.sh"
 default['fits']['techmd_dsid'] = "TECHMD"
-  
+
+# Imagemagick specific 
+default['imagemagick']['convert'] = '/usr/bin/convert'
+default['imagemagick']['toolkit'] = 'imagemagick' # NB: defaults to GD2
+default['imagemagick']['gm'] = 1 # NB: 1 = enable GraphicsMagick support
+default['imagemagick']['quality'] = 100
+
 # Kakadu specific
 default['kakadu']['binarypath'] = "/usr/local/bin/kdu_compress"
 
@@ -377,6 +383,30 @@ default['islandora']['default_params'] = [
     'variable' => 'islandora_pdf_path_to_pdftotext',
     'value'    => default['pdf_collection']['path_to_pdftotext'],
   },
+  {
+    'name'    => 'set_imagemagick_convert',
+    'action'  => :php_eval,
+    'variable'=> 'imagemagick_convert',
+    'value'   => default['imagemagick']['convert']
+  },
+  {
+    'name'    => 'set_imagemagick_toolkit',
+    'action'  => :php_eval,
+    'variable'=> 'image_toolkit',
+    'value'   => default['imagemagick']['toolkit']
+  },
+  {
+    'name'    => 'set_imagemagick_gm',
+    'action'  => :php_eval,
+    'variable'=> 'imagemagick_gm',
+    'value'   => default['imagemagick']['gm']
+  },
+  {
+    'name'    => 'set_imagemagick_quality',
+    'action'  => :php_eval,
+    'variable'=> 'imagemagick_quality',
+    'value'   => default['imagemagick']['quality']
+  }
 ]
 
 ## islandora solution pack objects

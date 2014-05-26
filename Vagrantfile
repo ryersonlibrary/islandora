@@ -26,8 +26,8 @@ Vagrant.configure("2") do |config|
   config.berkshelf.enabled = true
 
   # Install the latest version of Omnibus
-  # needed to fix https://tickets.opscode.com/browse/CHEF-5041
-  config.omnibus.chef_version = '11.12.0'
+  # needed to fix https://tickets.opscode.com/browse/CHEF-5041 ; https://tickets.opscode.com/browse/CHEF-5100
+  config.omnibus.chef_version = '11.6.2'
    
   config.vm.provision :chef_solo do |chef|
     # Log the heck out of everything
