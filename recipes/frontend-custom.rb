@@ -31,9 +31,9 @@ ark 'jwplayer' do
   action :put
 end
 
-# get FITS from Google Code
+# get FITS from Harvard
 ark 'fits' do
-  url "https://fits.googlecode.com/files/fits-#{node[:fits][:version]}.zip"
+  url "http://projects.iq.harvard.edu/files/fits/files/fits-#{node[:fits][:version]}.zip"
   version  node['fits']['version']
   checksum node['fits']['sha256']
   home_dir node['fits']['installpath']
@@ -55,7 +55,7 @@ ark 'openseadragon_js' do
 end
 
 
-#  Download files required for funky dependencies from github
+# Download files required for funky dependencies from github
 node['islandora']['supp_downloads'].each do |resource|
   # create the directory
   directory "#{node['drupal']['dir']}/sites/all/libraries/#{resource['dirname']}" do
@@ -99,6 +99,25 @@ node['islandora']['modulesToEnable'].each do |enableMod|
   drupal_module enableMod do
     dir node['drupal']['dir']
     action :enable
+  end
+end
+
+# Install Additional Functionality modules
+node['islandora']['additionalFunctionalityModules'].each do |afmodule|
+  
+  # Checkout git repositories as Drupal modules
+  git "#{node['drupal']['dir']}/sites/all/modules/#{afmodule['dirname']}" do
+    repository afmodule['repo']
+    action :checkout
+    branch afmodule['branch']
+    user node['drupal']['system']['user']
+    group node['drupal']['system']['group']
+  end
+
+  # Use Drush to install downloaded modules
+  drupal_module afmodule['dirname'] do
+    dir node['drupal']['dir']
+    action :install
   end
 end
 
@@ -175,3 +194,16 @@ execute "move-english-language-files" do
   ignore_failure false
 end
 
+# replace the islandora_solution_pack_pdf template to display usage stats
+# delete islandora-pdf.tpl.php file
+file "#{node['drupal']['dir']}/sites/all/modules/islandora_solution_pack_pdf/theme/islandora-pdf.tpl.php" do
+  action :delete
+end
+
+# create new islandora-pdf.tpl.php with usage stats template code
+template "#{node['drupal']['dir']}/sites/all/modules/islandora_solution_pack_pdf/theme/islandora-pdf.tpl.php" do
+  source "islandora-pdf.tpl.php.erb"
+
+  owner node['drupal']['system']['user']
+  group node['drupal']['system']['group']
+end
