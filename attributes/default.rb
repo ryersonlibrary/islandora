@@ -167,7 +167,8 @@ default['islandora']['modulesToEnable'] = [
 ]
 
 # supplementary downloads for islandora
-default['islandora']['supp_downloads'] = [
+# NB: these end up in the sites/all/libraries/ folder
+default['islandora']['supp_downloads_libraries'] = [
   { 
     'dirname' => 'bookreader',
     'repo'    => 'git://github.com/openlibrary/bookreader.git',
@@ -175,10 +176,6 @@ default['islandora']['supp_downloads'] = [
   { 
     'dirname' => 'BagItPHP',
     'repo'    => 'git://github.com/scholarslab/BagItPHP.git',
-  },
-  {
-    'dirname' => 'islandora_usage_stats',
-    'repo'    => 'git://github.com/ryersonlibrary/islandora_usage_stats.git',
   },
 ]
 

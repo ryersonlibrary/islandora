@@ -55,8 +55,8 @@ ark 'openseadragon_js' do
 end
 
 
-# Download files required for funky dependencies from github
-node['islandora']['supp_downloads'].each do |resource|
+# Download files required for funky library dependencies from github
+node['islandora']['supp_downloads_libraries'].each do |resource|
   # create the directory
   directory "#{node['drupal']['dir']}/sites/all/libraries/#{resource['dirname']}" do
     action :create
