@@ -207,3 +207,11 @@ template "#{node['drupal']['dir']}/sites/all/modules/islandora_solution_pack_pdf
   owner node['drupal']['system']['user']
   group node['drupal']['system']['group']
 end
+
+# use Drush to install Islandora solution pack objects
+node['islandora']['solution_pack_objects'].each do |param|
+  drupal_module param do
+    dir node['drupal']['dir']
+    action :ispiro
+  end
+end

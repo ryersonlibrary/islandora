@@ -18,8 +18,7 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 80,   host: 8181    # Apache
 
   config.vm.provider "virtualbox" do |vb|
-    vb.customize ["modifyvm", :id, "--memory", '3072']
-    vb.customize ["modifyvm", :id, "--cpus", "2"]
+    vb.customize ["modifyvm", :id, "--memory", '2048']
   end
 
   # Enabling the Berkshelf plugin
