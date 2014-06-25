@@ -167,7 +167,8 @@ default['islandora']['modulesToEnable'] = [
 ]
 
 # supplementary downloads for islandora
-default['islandora']['supp_downloads'] = [
+# NB: these end up in the sites/all/libraries/ folder
+default['islandora']['supp_downloads_libraries'] = [
   { 
     'dirname' => 'bookreader',
     'repo'    => 'git://github.com/openlibrary/bookreader.git',
@@ -178,13 +179,22 @@ default['islandora']['supp_downloads'] = [
   },
 ]
 
+# Additional Functionality Modules for Islandora
+default['islandora']['additionalFunctionalityModules'] = [
+  {
+    'dirname' => 'islandora_usage_stats',
+    'repo'    => 'git://github.com/ryersonlibrary/islandora_usage_stats.git',
+    'branch'  => 'master',
+  },
+]
+
 # JWPlayer specific
 default['jwplayer']['version'] = "6.8"
 default['jwplayer']['sha256'] = '87ad00cab2759440bc18487d0afc159c569e1b942abf3b171f80d74549d3139f'
 
 # FITS specific
-default['fits']['version'] = "0.6.2"
-default['fits']['sha256'] = '76566872f960115404c98b1bb1f9151a5805fc7384cb254c08152d11415c1354'
+default['fits']['version'] = "0.8.0"
+default['fits']['sha256'] = '4cb6b3fe226933ee5dba51de038662e60435f72b407a7d7a8758c576649ec131'
 default['fits']['installpath'] = "/usr/share/fits"
 default['fits']['shellpath'] = "/usr/share/fits/fits.sh"
 default['fits']['techmd_dsid'] = "TECHMD"

@@ -112,25 +112,30 @@ template "#{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/basic
   group node['tomcat']['group']
 end
 
-# Symlink foxmlToSolr into gsearch
-link "#{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt" do
-  to "#{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/basic-solr-config/foxmlToSolr.xslt"
-  owner node['tomcat']['user']
-  group node['tomcat']['group']
+# copy the foxmlToSolr file into gsearch directory
+# NB: using symlinks here wasn't working
+# NB: using remote_file here wasn't working
+execute "copy foxmlToSolr file in gsearch" do
+  environment ({'DEBIAN_FRONTEND' => 'noninteractive'})
+  command "cp #{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/basic-solr-config/foxmlToSolr.xslt #{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt"
+  ignore_failure false
   
   # Force Tomcat to reload when we're done
   notifies :start, "service[tomcat]"
 end
 
-# Symlink XSLT files into gsearch
-link "#{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms" do
-  to "#{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/basic-solr-config/islandora_transforms"
-  owner node['tomcat']['user']
-  group node['tomcat']['group']
+# copy xslt files into gsearch
+# NB: using symlinks here wasn't working
+# NB: using remote_directory here wasn't working
+execute "copy xslt files into gsearch" do
+  environment ({'DEBIAN_FRONTEND' => 'noninteractive'})
+  command "cp -r #{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/basic-solr-config/islandora_transforms/ #{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/"
+  ignore_failure false
   
   # Force Tomcat to reload when we're done
   notifies :start, "service[tomcat]"
 end
+
 
 # Checkout islandora module to get XACML policies
 # NB: this will clone the WHOLE repo, even though we only want one folder
