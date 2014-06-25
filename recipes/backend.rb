@@ -41,9 +41,6 @@ template "#{node['fedora']['installpath']}/server/config/filter-drupal.xml" do
 
   owner node['tomcat']['user']
   group node['tomcat']['group']
-
-  # Force Tomcat to reload
-  notifies :start, "service[tomcat]"
 end
 
 include_recipe 'git'
@@ -70,9 +67,6 @@ link "#{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/schema.xm
   to "#{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/basic-solr-config/conf/schema.xml"
   owner node['tomcat']['user']
   group node['tomcat']['group']
-  
-  # Force Tomcat to reload when we're done
-  notifies :start, "service[tomcat]"
 end
 
 # Generate Solr config from template
@@ -119,9 +113,6 @@ execute "copy foxmlToSolr file in gsearch" do
   environment ({'DEBIAN_FRONTEND' => 'noninteractive'})
   command "cp #{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/basic-solr-config/foxmlToSolr.xslt #{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt"
   ignore_failure false
-  
-  # Force Tomcat to reload when we're done
-  notifies :start, "service[tomcat]"
 end
 
 # copy xslt files into gsearch
@@ -131,9 +122,6 @@ execute "copy xslt files into gsearch" do
   environment ({'DEBIAN_FRONTEND' => 'noninteractive'})
   command "cp -r #{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/basic-solr-config/islandora_transforms/ #{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/"
   ignore_failure false
-  
-  # Force Tomcat to reload when we're done
-  notifies :start, "service[tomcat]"
 end
 
 
@@ -153,9 +141,6 @@ link "#{node['fedora']['installpath']}/data/fedora-xacml-policies/repository-pol
   to "#{node['fedora']['installpath']}/data/islandora/policies"
   owner node['tomcat']['user']
   group node['tomcat']['group']
-  
-  # Force Tomcat to reload when we're done
-  notifies :start, "service[tomcat]"
 end
 
 # get Solr ISO-639 filter
@@ -169,9 +154,6 @@ remote_file "#{node['solr']['installpath']}/contrib/iso639/lib/solr-iso639-filte
   owner node['tomcat']['user']
   group node['tomcat']['group']
   mode 0644
-
-  # Force Tomcat to reload when we're done
-  notifies :start, "service[tomcat]"
 end
 
 # get GSearch extensions jars
@@ -181,9 +163,6 @@ remote_file "#{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/lib/gsearch_e
   owner node['tomcat']['user']
   group node['tomcat']['group']
   mode 0644
-
-  # Force Tomcat to reload when we're done
-  notifies :start, "service[tomcat]"
 end
 
 remote_file "#{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/lib/gsearch_extensions-0.1.0-jar-with-dependencies.jar" do
@@ -194,5 +173,5 @@ remote_file "#{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/lib/gsearch_e
   mode 0644
 
   # Force Tomcat to reload when we're done
-  notifies :start, "service[tomcat]"
+  notifies :restart, "service[tomcat]", :immediately
 end

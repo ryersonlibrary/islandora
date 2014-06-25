@@ -18,7 +18,6 @@ description "Configure a frontend Drupal node"
 run_list(
   'recipe[islandora::frontend]',
   'recipe[islandora::frontend-custom]',
-  'recipe[islandora::islandora-solution-pack-objects]',
 )
 
 override_attributes(
