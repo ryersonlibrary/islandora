@@ -190,7 +190,7 @@ default['islandora']['additionalFunctionalityModules'] = [
 
 # JWPlayer specific
 default['jwplayer']['version'] = "6.9"
-default['jwplayer']['sha256'] = '87ad00cab2759440bc18487d0afc159c569e1b942abf3b171f80d74549d3139f'
+default['jwplayer']['sha256'] = '664d68e8306453ee9d68b140e4a75997b201cb365be8f577230959ac50685d54'
 
 # FITS specific
 default['fits']['version'] = "0.8.0"
