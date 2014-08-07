@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Islandora by ryersonlibrary</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Islandora</h1>
+        <p>Chef cookbook for installing Islandora digital collections platform</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/ryersonlibrary/islandora" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/ryersonlibrary/islandora/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/ryersonlibrary/islandora/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>
+<a name="description" class="anchor" href="#description"><span class="octicon octicon-link"></span></a>Description</h1>
+
+<p>This cookbook will install and configure <a href="http://islandora.ca">Islandora</a>. Current version is 7</p>
+
+<p>Included <a href="http://www.vagrantup.com">Vagrant</a> and <a href="http://berkshelf.com">Berkshelf</a> files for easy VM creation</p>
+
+<h1>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h1>
+
+<h2>
+<a name="platform" class="anchor" href="#platform"><span class="octicon octicon-link"></span></a>Platform</h2>
+
+<p>Tested on Ubuntu 12.04 (precise)</p>
+
+<h2>
+<a name="cookbooks" class="anchor" href="#cookbooks"><span class="octicon octicon-link"></span></a>Cookbooks</h2>
+
+<ul>
+<li><a href="http://github.com/ryersonlibrary/djatoka">djatoka</a></li>
+<li><a href="http://github.com/ryersonlibrary/fedora">fedora</a></li>
+<li><a href="http://github.com/ryersonlibrary/solr">solr</a></li>
+<li><a href="http://github.com/ryersonlibrary/gsearch">gsearch</a></li>
+<li><a href="http://github.com/gondoi/drupal-cookbook">drupal</a></li>
+</ul><h1>
+<a name="attributes" class="anchor" href="#attributes"><span class="octicon octicon-link"></span></a>Attributes</h1>
+
+<p><strong>TODO</strong></p>
+
+<h1>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h1>
+
+<p>Vagrant example (assumes Virtualbox &amp; Vagrant are installed)</p>
+
+<p>NB: Vagrant 1.5.2+ and vagrant-berkshelf 2.0.1+ are required</p>
+
+<ol>
+<li><code>git clone https://github.com/ryersonlibrary/islandora</code></li>
+<li><code>cd islandora</code></li>
+<li><code>bundle</code></li>
+<li><code>berks</code></li>
+<li><code>vagrant plugin install vagrant-berkshelf --plugin-version '&gt;= 2.0.1'</code></li>
+<li><code>vagrant plugin install vagrant-omnibus</code></li>
+<li><code>vagrant up</code></li>
+<li>Enjoy your new Islandora instance at http://localhost:8181!</li>
+</ol><h1>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h1>
+
+<p><a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0</a></p>
+
+<h1>
+<a name="author" class="anchor" href="#author"><span class="octicon octicon-link"></span></a>Author</h1>
+
+<p>MJ Suhonos (<a href="mailto:mjsuhonos@ryerson.ca">mjsuhonos@ryerson.ca</a>)
+Paul Church (<a href="mailto:pchurch@ryerson.ca">pchurch@ryerson.ca</a>)</p>
+
+<h3>
+<a name="acknowledgements" class="anchor" href="#acknowledgements"><span class="octicon octicon-link"></span></a>Acknowledgements</h3>
+
+<p>Many thanks to Graham Stewart and others at the University of Toronto Libraries for <a href="https://github.com/LibraryChef">LibraryChef</a>.</p>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/ryersonlibrary">ryersonlibrary</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
