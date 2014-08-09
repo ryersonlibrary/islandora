@@ -29,7 +29,7 @@ NB: Vagrant 1.5.2+ and vagrant-berkshelf 2.0.1+ are required
 2. `cd islandora`
 3. `bundle`
 4. `berks`
-5. `vagrant plugin install vagrant-berkshelf --plugin-version '>= 2.0.1'`
+5. `vagrant plugin install vagrant-berkshelf --plugin-version '= 2.0.1'`
 6. `vagrant plugin install vagrant-omnibus`
 7. `vagrant up`
 8. Enjoy your new Islandora instance at http://localhost:8181!
