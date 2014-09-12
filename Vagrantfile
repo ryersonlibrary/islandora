@@ -68,5 +68,6 @@ Vagrant.configure("2") do |config|
     chef.add_recipe("ubuntu-baseline")
     chef.add_role("backend")
     chef.add_role("frontend")
+    chef.add_role("rosiel-ui")
   end
 end

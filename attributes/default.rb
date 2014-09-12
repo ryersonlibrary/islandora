@@ -67,6 +67,17 @@ default['drupal']['modules'] = [
   'xmlsitemap', # NB dependency for islandora_xmlsitemap
 ]
 
+# Extra Drupal Modules
+default['drupal']['extraModules'] = [
+'admin_menu',
+'module_filter',
+]
+
+# Modules to explicitly disable
+default['drupal']['modulesToDisable'] = [
+'toolbar',
+]
+
 # Islandora modules by github repo name
 # NB: ORDER MATTERS HERE FOR DEPENDENCIES
 default['islandora']['repos'] = [
