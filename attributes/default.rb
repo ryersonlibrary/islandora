@@ -67,6 +67,17 @@ default['drupal']['modules'] = [
   'xmlsitemap', # NB dependency for islandora_xmlsitemap
 ]
 
+# Extra Drupal Modules
+default['drupal']['extraModules'] = [
+'admin_menu',
+'module_filter',
+]
+
+# Modules to explicitly disable
+default['drupal']['modulesToDisable'] = [
+'toolbar',
+]
+
 # Islandora modules by github repo name
 # NB: ORDER MATTERS HERE FOR DEPENDENCIES
 default['islandora']['repos'] = [
@@ -189,8 +200,8 @@ default['islandora']['additionalFunctionalityModules'] = [
 ]
 
 # JWPlayer specific
-default['jwplayer']['version'] = "6.9"
-default['jwplayer']['sha256'] = '664d68e8306453ee9d68b140e4a75997b201cb365be8f577230959ac50685d54'
+default['jwplayer']['version'] = "6.10"
+default['jwplayer']['sha256'] = '83b9b398e999c2c28e54c6a455295388f8ae2861ac4fdf77ed461977b432f63a'
 
 # FITS specific
 default['fits']['version'] = "0.8.0"
