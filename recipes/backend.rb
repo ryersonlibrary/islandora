@@ -171,7 +171,4 @@ remote_file "#{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/lib/gsearch_e
   owner node['tomcat']['user']
   group node['tomcat']['group']
   mode 0644
-
-  # Force Tomcat to reload when we're done
-  notifies :restart, "service[tomcat]", :immediately
 end

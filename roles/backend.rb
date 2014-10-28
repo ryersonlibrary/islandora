@@ -16,27 +16,23 @@ name "backend"
 description "Configure a backend Java node"
 
 run_list(
-  # djatoka modifies tomcat's startup CLASSPATH so it has to be installed first
-  'recipe[djatoka]',
-
+  'recipe[ubuntu-baseline]',
+  'recipe[tomcat]',
+  'recipe[djatoka]', # NB: djatoka modifies tomcat's startup CLASSPATH so it has to be installed first
   'recipe[fedora-commons::mysql]',
   'recipe[solr]',
-
-  # gsearch depends on fedora and solr being installed
-  'recipe[gsearch]',
-
+  'recipe[gsearch]', # NB: gsearch depends on fedora and solr being installed
   'recipe[islandora::backend]',
 )
 
 override_attributes(
+  # Use Tomcat 7
+  "tomcat" => { "base_version" => "7" },
+
   # Use Java 7
   "java" => {
     "jdk_version" => "7",
-    
-    # Djatoka requires the Oracle JDK
-    "install_flavor" => "oracle",
-    "oracle" => {
-      "accept_oracle_download_terms" => true
-    }
+    "install_flavor" => "oracle", # djatoka requires the Oracle JDK
+    "oracle" => { "accept_oracle_download_terms" => true }
   }
 )

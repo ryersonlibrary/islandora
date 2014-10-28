@@ -1,14 +1,13 @@
 source "http://api.berkshelf.com"
 
 # server cookbooks
-cookbook 'ubuntu-baseline', :github => 'mjsuhonos/ubuntu-baseline'
+cookbook 'ubuntu-baseline', :path => './cookbooks/ubuntu-baseline'
 
 # backend cookbooks
-cookbook 'java', '>= 1.21.2'
-cookbook 'djatoka', :github => 'ryersonlibrary/djatoka'
-cookbook 'fedora-commons', :github => 'ryersonlibrary/fedora'
-cookbook 'solr', :github => 'ryersonlibrary/solr'
-cookbook 'gsearch', :github => 'ryersonlibrary/gsearch'
+cookbook 'djatoka', :path => './cookbooks/djatoka'
+cookbook 'fedora-commons', :path => './cookbooks/fedora'
+cookbook 'solr', :path => './cookbooks/solr'
+cookbook 'gsearch', :path => './cookbooks/gsearch'
 
 # frontend cookbooks
 cookbook 'drupal', :github => 'gondoi/drupal-cookbook'

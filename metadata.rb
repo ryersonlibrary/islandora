@@ -20,6 +20,6 @@ description      'Installs/Configures Islandora'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '7.1.3'
 
-depends          'drupal'
+depends          'java', '>= 1.21.2'
+depends          'mysql', '= 5.5.3'
 depends          'git'
-depends          'ark'
