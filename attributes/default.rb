@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Islandora version to install
-default['islandora']['version'] = '7.x-1.3'
+# Islandora version to install; default is HEAD (latest)
+default['islandora']['version'] = 'HEAD'
 
 # Checksums for Islandora-specific files
 default['drupal_filter']['version'] = "3.7.0"
@@ -189,8 +189,8 @@ default['islandora']['additionalFunctionalityModules'] = [
 ]
 
 # JWPlayer specific
-default['jwplayer']['version'] = "6.9"
-default['jwplayer']['sha256'] = '664d68e8306453ee9d68b140e4a75997b201cb365be8f577230959ac50685d54'
+default['jwplayer']['version'] = "6.10"
+default['jwplayer']['sha256'] = '44e12b66319893012b355a960957c95458f6cc1b6124857484434df8284f64bc'
 
 # FITS specific
 default['fits']['version'] = "0.8.0"

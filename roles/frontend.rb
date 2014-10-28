@@ -23,8 +23,8 @@ run_list(
 override_attributes(
   # Set Drupal & Drush versions
   'drupal' => {
-    'version' => '7.28',
-    'checksum' => '941b6de8978d215c95fe6f8466e3cb212f16647de93b38bbc41df020fd6e5eaa',
+    'version' => '7.32',
+    'checksum' => 'f36d5ab0891997bf3c681b76151c6b015b0bb9041610e1c9af7d17e28dc15c39',
     'db' => {
       'password' => 'islandora'
     },
