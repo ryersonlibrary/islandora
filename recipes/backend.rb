@@ -20,7 +20,7 @@
 # Download Drupal filter
 # TODO: rework this to build the filter against the installed version of fedora
 remote_file "#{node['tomcat']['webapp_dir']}/fedora/WEB-INF/lib/fcrepo-drupalauthfilter.jar" do
-  source "https://raw.github.com/ryersonlibrary/islandora/master/jars/fcrepo-drupalauthfilter-3.7.0.jar"
+  source "http://alpha.library.yorku.ca/islandora_cookbook/fcrepo-drupalauthfilter-3.7.0.jar"
   checksum node['drupal_filter']['sha256']
   owner node['tomcat']['user']
   group node['tomcat']['group']
@@ -149,7 +149,7 @@ directory "#{node['solr']['installpath']}/contrib/iso639/lib" do
 end
 
 remote_file "#{node['solr']['installpath']}/contrib/iso639/lib/solr-iso639-filter-4.2.0-r20131208.jar" do
-  source "https://raw.github.com/ryersonlibrary/islandora/master/jars/solr-iso639-filter-4.2.0-r20131208.jar"
+  source "http://alpha.library.yorku.ca/islandora_cookbook/solr-iso639-filter-4.2.0-r20131208.jar"
   checksum node['solr-iso639-filter']['sha256']
   owner node['tomcat']['user']
   group node['tomcat']['group']
@@ -158,7 +158,7 @@ end
 
 # get GSearch extensions jars
 remote_file "#{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/lib/gsearch_extensions-0.1.0.jar" do
-  source "https://raw.github.com/ryersonlibrary/islandora/master/jars/gsearch_extensions-0.1.0.jar"
+  source "http://alpha.library.yorku.ca/islandora_cookbook/gsearch_extensions-0.1.0.jar"
   checksum node['gsearch_extensions']['sha256']
   owner node['tomcat']['user']
   group node['tomcat']['group']
@@ -166,7 +166,7 @@ remote_file "#{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/lib/gsearch_e
 end
 
 remote_file "#{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/lib/gsearch_extensions-0.1.0-jar-with-dependencies.jar" do
-  source "https://raw.github.com/ryersonlibrary/islandora/master/jars/gsearch_extensions-0.1.0-jar-with-dependencies.jar"
+  source "http://alpha.library.yorku.ca/islandora_cookbook/gsearch_extensions-0.1.0-jar-with-dependencies.jar"
   checksum node['gsearch_extensions-dependencies']['sha256']
   owner node['tomcat']['user']
   group node['tomcat']['group']
