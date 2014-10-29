@@ -124,7 +124,6 @@ execute "copy xslt files into gsearch" do
   ignore_failure false
 end
 
-
 # Checkout islandora module to get XACML policies
 # NB: this will clone the WHOLE repo, even though we only want one folder
 git "#{node['fedora']['installpath']}/data/islandora" do

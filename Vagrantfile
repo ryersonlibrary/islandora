@@ -27,30 +27,17 @@ Vagrant.configure("2") do |config|
   # Install the latest version of Omnibus
   # needed to fix https://tickets.opscode.com/browse/CHEF-5041 ; https://tickets.opscode.com/browse/CHEF-5100
   config.omnibus.chef_version = '11.6.2'
-   
+
   config.vm.provision :chef_solo do |chef|
     # Log the heck out of everything
     chef.log_level = :debug
     chef.formatter = :doc
 
     chef.json = {
-      # Defaults for Islandora Sandbox / RC VM
-      "drupal" => {
-        "site" => {
-          "admin" => "admin",
-          "pass" => "islandora",
-          "name" => "Islandora Sandbox",
-        }
-      },
-
       # Defaults for Tomcat JVM memory use etc.
       "tomcat" => { "java_options" => "-Xms1024M -Xmx1024M -Djava.awt.headless=true -XX:MaxPermSize=128m" } 
     }
 
-    chef.roles_path = "roles"
-    
-    # NB: order matters here
-    chef.add_role("backend")
-#    chef.add_role("frontend")
+    chef.add_recipe 'islandora'
   end
 end

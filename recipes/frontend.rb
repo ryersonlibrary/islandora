@@ -17,9 +17,6 @@
 # limitations under the License.
 #
 
-# This has to be included before we start installing packages
-include_recipe 'islandora::ffmpeg'
-
 # Install packaged libraries on the system
 if platform?("ubuntu")
   node['islandora']['libraries'].each do |library|
@@ -29,11 +26,6 @@ end
 
 # TODO: modify apache/php recipes to enable changing php.ini values
 # eg. memory_limit, upload_limit
-
-# Install Drupal, including specified modules
-include_recipe 'drupal::install'
-
-include_recipe 'git'
 
 # Checkout tuque git repository as library
 directory "#{node['drupal']['dir']}/sites/all/libraries/tuque" do
