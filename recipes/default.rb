@@ -17,15 +17,12 @@
 # limitations under the License.
 #
 
-include_recipe 'ubuntu-baseline'
-include_recipe 'git'
-
 # Java Backend
-include_recipe 'tomcat'
 include_recipe 'djatoka' # NB: djatoka modifies tomcat's startup CLASSPATH so it has to be installed first
 include_recipe 'fedora-commons::mysql'
 include_recipe 'solr'
 include_recipe 'gsearch' # NB: gsearch depends on fedora and solr being installed first
+include_recipe 'git'
 include_recipe 'islandora::backend'
 
 # Drupal Frontend

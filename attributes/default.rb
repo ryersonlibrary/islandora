@@ -19,12 +19,17 @@ default['islandora']['version'] = 'HEAD'
 default['drupal']['site']['pass'] = 'islandora'
 default['drupal']['site']['name'] = 'Islandora Sandbox'
 
-# Java/Tomcat defaults
+# Java defaults
 default['java']['jdk_version'] = '7'
 default['java']['install_flavor'] = 'oracle' # djatoka requires the Oracle JDK
 default['java']['oracle']['accept_oracle_download_terms'] = true
-default['tomcat']['base_version'] = '7'
-default['tomcat']['java_options'] = '-Djava.awt.headless=true'
+
+# Tomcat defaults
+# NB: these are required due to bugs in the Tomcat recipe
+#default['tomcat']['base_version'] = '7'
+#default['tomcat']['config_dir'] = '/etc/tomcat7'
+#default['tomcat']['user'] = 'tomcat7'
+#default['tomcat']['group'] = 'tomcat7'
 
 # Required MySQL defaults
 default['mysql']['server_root_password'] = 'rootpass'
