@@ -22,4 +22,10 @@ version          '7.1.3'
 
 depends          'java', '>= 1.21.2'
 depends          'mysql', '= 5.5.3'
+
+depends          'tomcat'
+depends          'djatoka'
+depends          'fedora-commons'
+depends          'solr'
+depends          'gsearch'
 depends          'git'
