@@ -34,6 +34,14 @@ Vagrant.configure("2") do |config|
     chef.formatter = :doc
 
     chef.json = {
+      "drupal" => {
+        "site" => {
+          "pass" => "islandora",
+          "name" => "Islandora Sandbox",
+        },
+        "db" => { "password" => 'islandora' }
+      },
+              
       # Defaults for Tomcat JVM memory use etc.
       "tomcat" => {
         "base_version" => '7',
