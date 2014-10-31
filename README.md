@@ -11,11 +11,12 @@ Included [Vagrant](http://www.vagrantup.com) and [Berkshelf](http://berkshelf.co
 Tested on Ubuntu 12.04 (precise)
 
 ## Cookbooks
-* [djatoka](http://github.com/ryersonlibrary/djatoka)
-* [fedora](http://github.com/ryersonlibrary/fedora)
-* [solr](http://github.com/ryersonlibrary/solr)
-* [gsearch](http://github.com/ryersonlibrary/gsearch)
 * [drupal](http://github.com/gondoi/drupal-cookbook)
+* ubuntu-baseline
+* djatoka
+* fedora
+* solr
+* gsearch
 
 # Attributes
 __TODO__
