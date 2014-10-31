@@ -31,7 +31,7 @@ default['java']['oracle']['accept_oracle_download_terms'] = true
 #default['tomcat']['user'] = 'tomcat7'
 #default['tomcat']['group'] = 'tomcat7'
 
-# Required MySQL defaults
+# Required defaults for chef-solo for MySQL
 default['mysql']['server_root_password'] = 'rootpass'
 default['mysql']['server_repl_password'] = 'replpass'
 default['mysql']['server_debian_password'] = 'debpass'
