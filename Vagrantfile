@@ -24,8 +24,8 @@ Vagrant.configure("2") do |config|
   # Enabling the Berkshelf plugin
   config.berkshelf.enabled = true
 
-  # Install the latest version of Chef on the node
-  # FIXME: needed to fix https://tickets.opscode.com/browse/CHEF-5041 ; https://tickets.opscode.com/browse/CHEF-5100
+  # Install a specific version of Chef on the node
+  # Needed to workaround https://tickets.opscode.com/browse/CHEF-5041 ; https://tickets.opscode.com/browse/CHEF-5100
   config.omnibus.chef_version = '11.6.2'
 
   config.vm.provision :chef_solo do |chef|
@@ -43,6 +43,7 @@ Vagrant.configure("2") do |config|
       },
               
       # Defaults for Tomcat JVM memory use etc.
+      # Needed to workaround http://stackoverflow.com/questions/19502173/
       "tomcat" => {
         "base_version" => '7',
         "java_options" => "-Xms1024M -Xmx1024M -Djava.awt.headless=true -XX:MaxPermSize=128m"
@@ -50,7 +51,6 @@ Vagrant.configure("2") do |config|
     }
 
     chef.add_recipe 'ubuntu-baseline'
-    chef.add_recipe 'tomcat'
     chef.add_recipe 'islandora'
   end
 end

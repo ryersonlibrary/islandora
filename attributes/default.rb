@@ -25,11 +25,7 @@ default['java']['install_flavor'] = 'oracle' # djatoka requires the Oracle JDK
 default['java']['oracle']['accept_oracle_download_terms'] = true
 
 # Tomcat defaults
-# NB: these are required due to bugs in the Tomcat recipe
-#default['tomcat']['base_version'] = '7'
-#default['tomcat']['config_dir'] = '/etc/tomcat7'
-#default['tomcat']['user'] = 'tomcat7'
-#default['tomcat']['group'] = 'tomcat7'
+default['tomcat']['base_version'] = '7'
 
 # Required defaults for chef-solo for MySQL
 default['mysql']['server_root_password'] = 'rootpass'
