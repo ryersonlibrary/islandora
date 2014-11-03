@@ -34,6 +34,9 @@ Vagrant.configure("2") do |config|
     chef.formatter = :doc
 
     chef.json = {
+      # For installing a particular Islandora release
+#      "islandora" => { "version" => "7.x-1.4"},
+
       # Defaults for Tomcat JVM memory use etc.
       # Needed to workaround http://stackoverflow.com/questions/19502173/
       "tomcat" => {
