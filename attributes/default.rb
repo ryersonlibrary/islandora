@@ -16,6 +16,7 @@
 default['islandora']['version'] = 'HEAD'
 
 # Defaults for Islandora Sandbox / RC VM
+#default['drupal']['site']['admin'] = 'admin'
 default['drupal']['site']['pass'] = 'islandora'
 default['drupal']['site']['name'] = 'Islandora Sandbox'
 
