@@ -12,8 +12,38 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Islandora version to install
-default['islandora']['version'] = '7.x-1.3'
+# Islandora version to install; default is HEAD (latest)
+default['islandora']['version'] = 'HEAD'
+
+# Defaults for Islandora Sandbox / RC VM
+#default['drupal']['site']['admin'] = 'admin'
+default['drupal']['site']['pass'] = 'islandora'
+default['drupal']['site']['name'] = 'Islandora Sandbox'
+
+# Java defaults
+default['java']['jdk_version'] = '7'
+default['java']['install_flavor'] = 'oracle' # djatoka requires the Oracle JDK
+default['java']['oracle']['accept_oracle_download_terms'] = true
+
+# Tomcat defaults
+default['tomcat']['base_version'] = '7'
+
+# Required defaults for chef-solo for MySQL
+default['mysql']['server_root_password'] = 'rootpass'
+default['mysql']['server_repl_password'] = 'replpass'
+default['mysql']['server_debian_password'] = 'debpass'
+default['mysql']['bind_address'] = 'localhost'
+
+# Set Drupal & Drush versions
+default['drupal']['version'] = '7.32'
+default['drupal']['checksum'] = 'f36d5ab0891997bf3c681b76151c6b015b0bb9041610e1c9af7d17e28dc15c39'
+default['drupal']['drush']['version'] = '7.x-5.9'
+default['drupal']['drush']['checksum'] = '3acc2a2491fef987c17e85122f7d3cd0bc99cefd1bc70891ec3a1c4fd51dccee'
+
+# Drupal DB defaults: required for Fedora filter
+default['drupal']['db']['database'] = "drupal"
+default['drupal']['db']['user'] = "drupal"
+default['drupal']['db']['password'] = "islandora"
 
 # Checksums for Islandora-specific files
 default['drupal_filter']['version'] = "3.7.0"
@@ -189,8 +219,8 @@ default['islandora']['additionalFunctionalityModules'] = [
 ]
 
 # JWPlayer specific
-default['jwplayer']['version'] = "6.9"
-default['jwplayer']['sha256'] = '664d68e8306453ee9d68b140e4a75997b201cb365be8f577230959ac50685d54'
+default['jwplayer']['version'] = "6.10"
+default['jwplayer']['sha256'] = '44e12b66319893012b355a960957c95458f6cc1b6124857484434df8284f64bc'
 
 # FITS specific
 default['fits']['version'] = "0.8.0"

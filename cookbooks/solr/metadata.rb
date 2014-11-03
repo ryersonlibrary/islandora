@@ -1,4 +1,4 @@
-# Copyright 2014, University of Toronto Libraries, Ryerson University Library and Archives
+# Copyright 2013, University of Toronto Libraries, Ryerson University Library and Archives
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,21 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name             'islandora'
-maintainer       'MJ Suhonos'
-maintainer_email 'mjsuhonos@ryerson.ca'
+name             "solr"
+maintainer       "MJ Suhonos"
+maintainer_email "mjsuhonos@ryerson.ca"
 license          "Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>"
-description      'Installs/Configures Islandora'
+description      "Installs/Configures solr for tomcat"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '7.1.3'
+version          "4.5.1"
 
-# Use specific versions of recipes because upstream versions have bugs
-depends          'mysql', '= 5.5.3'
-depends          'tomcat', '= 0.15.12'
+depends          'java'
+depends          'tomcat'
 
-depends          'djatoka'
-depends          'fedora-commons'
-depends          'solr'
-depends          'gsearch'
-depends          'git'
-depends          'drupal'
+depends          'ark'

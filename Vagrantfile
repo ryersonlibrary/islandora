@@ -24,49 +24,28 @@ Vagrant.configure("2") do |config|
   # Enabling the Berkshelf plugin
   config.berkshelf.enabled = true
 
-  # Install the latest version of Omnibus
-  # needed to fix https://tickets.opscode.com/browse/CHEF-5041 ; https://tickets.opscode.com/browse/CHEF-5100
+  # Install a specific version of Chef on the node
+  # Needed to workaround https://tickets.opscode.com/browse/CHEF-5041 ; https://tickets.opscode.com/browse/CHEF-5100
   config.omnibus.chef_version = '11.6.2'
-   
+
   config.vm.provision :chef_solo do |chef|
     # Log the heck out of everything
     chef.log_level = :debug
     chef.formatter = :doc
 
     chef.json = {
-      # Defaults for Islandora Sandbox / RC VM
-      "drupal" => {
-        "site" => {
-          "admin" => "admin",
-          "pass" => "islandora",
-          "name" => "Islandora Sandbox",
-        },
-        "db" => {
-          "password" => 'islandora'
-        }
-      },
+      # For installing a particular Islandora release
+#      "islandora" => { "version" => "7.x-1.4"},
 
-      # FIXME: this has to be here due to an override problem; see: http://serverfault.com/questions/541155/
-      "java" => {
-        "jdk_version" => "7",
-        
-        # Djatoka requires the Oracle JDK
-        "install_flavor" => "oracle",
-        "oracle" => {
-          "accept_oracle_download_terms" => true
-        }
-      },
-
+      # Defaults for Tomcat JVM memory use etc.
+      # Needed to workaround http://stackoverflow.com/questions/19502173/
       "tomcat" => {
+        "base_version" => '7',
         "java_options" => "-Xms1024M -Xmx1024M -Djava.awt.headless=true -XX:MaxPermSize=128m"
-      }, 
+      }
     }
 
-    chef.roles_path = "roles"
-    
-    # NB: order matters here
-    chef.add_recipe("ubuntu-baseline")
-    chef.add_role("backend")
-    chef.add_role("frontend")
+    chef.add_recipe 'ubuntu-baseline'
+    chef.add_recipe 'islandora'
   end
 end

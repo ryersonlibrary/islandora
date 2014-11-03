@@ -70,16 +70,16 @@ define :drupal_module, :action => :install, :dir => nil, :version => nil do
       retries 3
     end
   when :ispiro
-    execute "drush_islandora_solution_pack_install_required_objects #{params[:name]}" do
+    execute "drush_islandora_solution_pack_install_required_objects #{params[:name]} --user=#{node['drupal']['site']['admin']}" do
       cwd params[:dir]
       user node['drupal']['system']['user']
-      command "#{node['drupal']['drush']['dir']}/drush -u 1 ispiro --module=#{params[:name]}"  
+      command "#{node['drupal']['drush']['dir']}/drush -u 1 ispiro --module=#{params[:name]} --user=#{node['drupal']['site']['admin']}"
     end
   when :ispicm
     execute "drush_islandora_solution_pack_install_content_models #{params[:name]}" do
       cwd params[:dir]
       user node['drupal']['system']['user']
-      command "#{node['drupal']['drush']['dir']}/drush -u 1 ispicm --module=#{params[:name]}"  
+      command "#{node['drupal']['drush']['dir']}/drush -u 1 ispicm --module=#{params[:name]} --user=#{node['drupal']['site']['admin']}"  
     end  
   else
     log "drupal_source action #{params[:name]} is unrecognized."
