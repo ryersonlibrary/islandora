@@ -21,9 +21,10 @@ long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '7.1.3'
 
 depends          'java', '>= 1.21.2'
+# Use specific versions of recipes because upstream versions have bugs
 depends          'mysql', '= 5.5.3'
+depends          'tomcat', '= 0.15.12'
 
-depends          'tomcat'
 depends          'djatoka'
 depends          'fedora-commons'
 depends          'solr'

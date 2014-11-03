@@ -171,3 +171,9 @@ remote_file "#{node['tomcat']['webapp_dir']}/fedoragsearch/WEB-INF/lib/gsearch_e
   group node['tomcat']['group']
   mode 0644
 end
+
+# Force Tomcat to restart to pick up new jars, config changes, etc.
+execute "restart tomcat" do
+  action :nothing
+  notifies :restart, "service[tomcat]", :immediately
+end
