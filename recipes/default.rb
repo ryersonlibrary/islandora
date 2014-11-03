@@ -18,6 +18,7 @@
 #
 
 # Java Backend
+include_recipe 'tomcat'
 include_recipe 'djatoka' # NB: djatoka modifies tomcat's startup CLASSPATH so it has to be installed first
 include_recipe 'fedora-commons::mysql'
 include_recipe 'solr'
