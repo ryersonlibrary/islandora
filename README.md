@@ -16,7 +16,7 @@ Included [Vagrant](http://www.vagrantup.com) and [Berkshelf](http://berkshelf.co
 * Fedora 3.7.0
 * GSearch 2.6.2
 * Solr 4.2.0
-* Drupal 7.32
+* Drupal 7.33
 * PHP 5.3.10
 * Java 7 (Oracle)
 * Djatoka 1.1

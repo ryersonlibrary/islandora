@@ -35,8 +35,8 @@ default['mysql']['server_debian_password'] = 'debpass'
 default['mysql']['bind_address'] = 'localhost'
 
 # Set Drupal & Drush versions
-default['drupal']['version'] = '7.32'
-default['drupal']['checksum'] = 'f36d5ab0891997bf3c681b76151c6b015b0bb9041610e1c9af7d17e28dc15c39'
+default['drupal']['version'] = '7.33'
+default['drupal']['checksum'] = '5a8f66cac572373536722d8464832de7be50866fe177035e74b300ffda007485'
 default['drupal']['drush']['version'] = '7.x-5.9'
 default['drupal']['drush']['checksum'] = '3acc2a2491fef987c17e85122f7d3cd0bc99cefd1bc70891ec3a1c4fd51dccee'
 
