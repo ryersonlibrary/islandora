@@ -103,7 +103,7 @@ GRAPH
     xml (>= 0.0.0)
     yum-epel (>= 0.0.0)
   postfix (3.6.2)
-  postgresql (3.4.10)
+  postgresql (3.4.12)
     apt (>= 1.9.0)
     build-essential (>= 0.0.0)
     openssl (>= 0.0.0)
