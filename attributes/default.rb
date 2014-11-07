@@ -107,7 +107,7 @@ default['islandora']['repos'] = [
   'islandora_solr_search',
   'islandora_solr_metadata',
   'islandora_solr_facet_pages',
-#  'islandora_solr_views', # Solr Views is not part of foundation yet
+  'islandora_solr_views',
 
   # core/dependency modules
   'islandora_xml_forms',
@@ -119,9 +119,9 @@ default['islandora']['repos'] = [
   'islandora_fits',
   'islandora_importer',
   'islandora_jwplayer',
+  'islandora_videojs',
   'islandora_scholar',
   'islandora_paged_content',
-
   'islandora_simple_workflow',
   'islandora_xacml_editor',
 
@@ -202,6 +202,10 @@ default['islandora']['supp_downloads_libraries'] = [
 default['jwplayer']['version'] = "6.10"
 default['jwplayer']['sha256'] = '44e12b66319893012b355a960957c95458f6cc1b6124857484434df8284f64bc'
 
+# Video.js specific
+default['videojs']['version'] = "4.0.0"
+default['videojs']['sha256'] = "bc55e6666078627879f1cd702186242210a88f39ebf955782dc8858bcf7fdaf9"
+
 # FITS specific
 default['fits']['version'] = "0.8.3"
 default['fits']['sha256'] = '150835de99e353dae0b39893a4ef7e47438f1446fef98c62f0c1731e3bbabdf0'
@@ -232,6 +236,7 @@ default['audio']['lamearg'] = "/usr/bin/lame"
   
 # Video and audio player specific
 default['jwplayer']['arg'] = "array('name' => array('none' => 'none', 'islandora_jwplayer' => 'islandora_jwplayer'), 'default' => 'islandora_jwplayer')"
+default['videojs']['arg'] = "array('name' => array('none' => 'none', 'islandora_videojs' => 'islandora_videojs'), 'default' => 'islandora_videojs')"
 
 # IA bookreader
 default['bookreader']['arg'] = "array('name' => array('none' => 'none', 'islandora_internet_archive_bookreader' => 'islandora_internet_archive_bookreader'), 'default' => 'islandora_internet_archive_bookreader')"

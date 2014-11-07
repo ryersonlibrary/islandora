@@ -31,6 +31,15 @@ ark 'jwplayer' do
   action :put
 end
 
+# get video.js from videojs
+ark 'videojs' do
+  url "http://www.videojs.com/downloads/video-js-#{node['videojs']['version']}.zip"
+  checksum node['videojs'['sha256']
+
+  path "#{node['drupal']['dir']}/sites/all/libraries/video-js"
+  action :put
+end
+
 # get FITS from Harvard
 ark 'fits' do
   url "http://projects.iq.harvard.edu/files/fits/files/fits-#{node[:fits][:version]}.zip"
