@@ -184,6 +184,9 @@ default['islandora']['funkymodules'] = [
   'islandora_bagit',
 ]
 
+# Islandora supplemental funky modules to explicitly enable
+default['islandora']['modulesToEnable'] = []
+
 # supplementary downloads for islandora
 # NB: these end up in the sites/all/libraries/ folder
 default['islandora']['supp_downloads_libraries'] = [
@@ -197,6 +200,8 @@ default['islandora']['supp_downloads_libraries'] = [
   },
 ]
 
+# Additional Functionality Modules for Islandora
+default['islandora']['additionalFunctionalityModules'] = []
 
 # JWPlayer specific
 default['jwplayer']['version'] = "6.10"
