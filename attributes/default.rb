@@ -91,8 +91,6 @@ default['drupal']['modules'] = [
   'token',
   'views',
   'jquery_update-7.x-2.x', # use latest dev version for compatibility with JQuery 1.10
-  'relation', # NB dependency for islandora_sync 
-  'field_collection', # NB dependency for islandora_sync
   'views_ui',
   'xmlsitemap', # NB dependency for islandora_xmlsitemap
 ]
@@ -109,7 +107,7 @@ default['islandora']['repos'] = [
   'islandora_solr_search',
   'islandora_solr_metadata',
   'islandora_solr_facet_pages',
-#  'islandora_solr_views', # Solr Views is not part of foundation yet
+  'islandora_solr_views',
 
   # core/dependency modules
   'islandora_xml_forms',
@@ -121,9 +119,9 @@ default['islandora']['repos'] = [
   'islandora_fits',
   'islandora_importer',
   'islandora_jwplayer',
+  'islandora_videojs',
   'islandora_scholar',
   'islandora_paged_content',
-
   'islandora_simple_workflow',
   'islandora_xacml_editor',
 
@@ -168,9 +166,7 @@ default['islandora']['modules'] = [
   'islandora_compound_object',
   'islandora_google_scholar',
   'islandora_scholar_embargo',
-
   'islandora_solr_config',
-#  'islandora_solr_geo',
 
   # scholar citation modules
   'citation_exporter',
@@ -183,17 +179,9 @@ default['islandora']['modules'] = [
 # Islandora modules with funky dependencies
 default['islandora']['funkymodules'] = [
   'islandora_internet_archive_bookreader',
-  'islandora_sync',
   'islandora_openseadragon',
   'islandora_xmlsitemap',
   'islandora_bagit',
-]
-
-# Islandora supplemental funky modules to explicitly enable
-default['islandora']['modulesToEnable'] = [
-  'islandora_sync_field_collection',
-  'islandora_sync_relation',
-  'relation_ui',
 ]
 
 # supplementary downloads for islandora
@@ -209,22 +197,18 @@ default['islandora']['supp_downloads_libraries'] = [
   },
 ]
 
-# Additional Functionality Modules for Islandora
-default['islandora']['additionalFunctionalityModules'] = [
-  {
-    'dirname' => 'islandora_usage_stats',
-    'repo'    => 'git://github.com/ryersonlibrary/islandora_usage_stats.git',
-    'branch'  => 'master',
-  },
-]
 
 # JWPlayer specific
 default['jwplayer']['version'] = "6.10"
 default['jwplayer']['sha256'] = '44e12b66319893012b355a960957c95458f6cc1b6124857484434df8284f64bc'
 
+# Video.js specific
+default['videojs']['version'] = "4.0.0"
+default['videojs']['sha256'] = "bc55e6666078627879f1cd702186242210a88f39ebf955782dc8858bcf7fdaf9"
+
 # FITS specific
-default['fits']['version'] = "0.8.0"
-default['fits']['sha256'] = '4cb6b3fe226933ee5dba51de038662e60435f72b407a7d7a8758c576649ec131'
+default['fits']['version'] = "0.8.3"
+default['fits']['sha256'] = '150835de99e353dae0b39893a4ef7e47438f1446fef98c62f0c1731e3bbabdf0'
 default['fits']['installpath'] = "/usr/share/fits"
 default['fits']['shellpath'] = "/usr/share/fits/fits.sh"
 default['fits']['techmd_dsid'] = "TECHMD"
@@ -252,6 +236,7 @@ default['audio']['lamearg'] = "/usr/bin/lame"
   
 # Video and audio player specific
 default['jwplayer']['arg'] = "array('name' => array('none' => 'none', 'islandora_jwplayer' => 'islandora_jwplayer'), 'default' => 'islandora_jwplayer')"
+default['videojs']['arg'] = "array('name' => array('none' => 'none', 'islandora_videojs' => 'islandora_videojs'), 'default' => 'islandora_videojs')"
 
 # IA bookreader
 default['bookreader']['arg'] = "array('name' => array('none' => 'none', 'islandora_internet_archive_bookreader' => 'islandora_internet_archive_bookreader'), 'default' => 'islandora_internet_archive_bookreader')"

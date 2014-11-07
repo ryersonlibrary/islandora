@@ -6,9 +6,20 @@ Included [Vagrant](http://www.vagrantup.com) and [Berkshelf](http://berkshelf.co
 
 # Requirements
 
+* [VirtualBox](https://www.virtualbox.org/)
+* [Vagrant](http://localhost:8181) 1.5.2+
+* vagrant-berkshelf 2.0.1
+
 ## Platform
 
-Tested on Ubuntu 12.04 (precise)
+* Ubuntu 12.04
+* Fedora 3.7.0
+* GSearch 2.6.2
+* Solr 4.2.0
+* Drupal 7.32
+* PHP 5.3.10
+* Java 7 (Oracle)
+* Djatoka 1.1
 
 ## Cookbooks
 * [drupal](http://github.com/gondoi/drupal-cookbook)
@@ -22,9 +33,6 @@ Tested on Ubuntu 12.04 (precise)
 __TODO__
 
 # Usage
-Vagrant example (assumes Virtualbox & Vagrant are installed)
-
-NB: Vagrant 1.5.2+ and vagrant-berkshelf 2.0.1+ are required
 
 1. `git clone https://github.com/ryersonlibrary/islandora`
 2. `cd islandora`
@@ -33,7 +41,7 @@ NB: Vagrant 1.5.2+ and vagrant-berkshelf 2.0.1+ are required
 5. `vagrant plugin install vagrant-berkshelf --plugin-version '= 2.0.1'`
 6. `vagrant plugin install vagrant-omnibus`
 7. `vagrant up`
-8. Enjoy your new Islandora instance at http://localhost:8181!
+8. Enjoy your new Islandora instance at [http://localhost:8181](http://localhost:8181)!
 
 # License
 [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)

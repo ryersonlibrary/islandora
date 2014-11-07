@@ -18,7 +18,7 @@ maintainer_email 'mjsuhonos@ryerson.ca'
 license          "Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>"
 description      'Installs/Configures Islandora'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '7.1.3'
+version          '7.1.4'
 
 # Use specific versions of recipes because upstream versions have bugs
 depends          'mysql', '= 5.5.3'

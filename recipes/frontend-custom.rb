@@ -26,8 +26,15 @@ end
 ark 'jwplayer' do
   url "https://account.jwplayer.com/static/download/jwplayer-#{node['jwplayer']['version']}.zip"
   checksum node['jwplayer']['sha256']
-  
   path "#{node['drupal']['dir']}/sites/all/libraries/jwplayer"
+  action :put
+end
+
+# get video.js from videojs
+ark 'videojs' do
+  url "http://www.videojs.com/downloads/video-js-#{node['videojs']['version']}.zip"
+  checksum node['videojs']['sha256']
+  path "#{node['drupal']['dir']}/sites/all/libraries/video-js"
   action :put
 end
 
