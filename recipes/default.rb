@@ -28,6 +28,5 @@ include_recipe 'islandora::backend'
 
 # Drupal Frontend
 include_recipe 'drupal::install'
-include_recipe 'islandora::ffmpeg' # This has to be included before we start installing Islandora packages
 include_recipe 'islandora::frontend'
 include_recipe 'islandora::frontend-custom'

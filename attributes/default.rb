@@ -70,7 +70,6 @@ default['islandora']['libraries'] = [
   'poppler-utils',
   
   # media-handling libraries
-  'ffmpeg',
   'ffmpeg2theora',
   'lame',
   'libavcodec-extra-53',
@@ -235,7 +234,13 @@ default['tesseract']['binarypath'] = '/usr/local/bin/tesseract'
 default['tesseract_engdata']['sha256'] = 'c110029560e7f6d41cb852ca23b66899daa4456d9afeeae9d062204bd271bdf8'
 default['tesseract_engdata']['version'] = '3.02'
 default['tesseract_engdata']['installpath'] = '/usr/local/share/tessdata'
-         
+
+# FFmpeg specific
+default['ffmpeg']['sha256'] = '3385f7e0d2aa1f57049ecf8a2f6f88f302141b442d895c89b7565b16b8835969'
+default['ffmpeg']['version'] = '1.1.4'
+default['ffmpeg']['installpath'] = '/usr/local/ffmpeg-1.1.4'
+default['ffmpeg']['binarypath'] = '/usr/local/bin/ffmpeg'
+
 # Audio collection specific
 default['audio']['lamearg'] = "/usr/bin/lame"
   
@@ -394,6 +399,12 @@ default['islandora']['default_params'] = [
     'action'   => :php_eval,
     'variable' => "islandora_ocr_tesseract",
     'value'    => default['tesseract']['binarypath'],
+  },
+  {
+    'name'     => 'set_default_ffmpeg_path',
+    'action'   => :php_eval,
+    'variable' => 'islandora_video_ffmpeg_path',
+    'value'    => default['ffmpeg']['binarypath'],
   },
   {
     'name'     => 'set_default_large_image_viewer',
