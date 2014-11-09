@@ -221,7 +221,7 @@ default['fits']['techmd_dsid'] = "TECHMD"
 # Imagemagick specific
 default['imagemagick']['convert'] = '/usr/bin/convert'
 default['imagemagick']['toolkit'] = 'imagemagick' # NB: defaults to GD2
-default['imagemagick']['gm'] = 1 # NB: 1 = enable GraphicsMagick support
+default['imagemagick']['gm'] = 0 # NB: 1 = enable GraphicsMagick support
 default['imagemagick']['quality'] = 100
 
 # Kakadu specific
