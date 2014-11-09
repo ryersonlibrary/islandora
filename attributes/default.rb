@@ -66,6 +66,9 @@ default['islandora']['libraries'] = [
   'imagemagick',
   'graphicsmagick-imagemagick-compat',
 
+  # htop
+  'htop',
+
   # OCR
   'poppler-utils',
 
