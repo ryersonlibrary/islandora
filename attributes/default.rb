@@ -53,7 +53,7 @@ default['gsearch_extensions-dependencies']['sha256'] = '60cad9aecad432ca490bcea4
 default['openseadragon_js']['sha256'] = '9059b3b7d62b4d9891f59cb0cc37317c766ca32c6160727159198da18bfe86be'
 default['solr-iso639-filter']['sha256'] = 'd5533a2f22b2a99f1a0e2105388bea02a9f2c3c24bfc0bf3a5549eedf85608a9'
 default['solr-php-client']['sha256'] = 'dfb74b2cb496a9669b115a4bc32a00b2bb5cc0505026167c486c437799bb4ce7'
-  
+
 # Islandora-specific libraries / packages
 default['islandora']['libraries'] = [
   # core libraries
@@ -68,7 +68,7 @@ default['islandora']['libraries'] = [
 
   # OCR
   'poppler-utils',
-  
+
   # media-handling libraries
   'ffmpeg2theora',
   'lame',
@@ -88,6 +88,7 @@ default['drupal']['modules'] = [
   'imagemagick',
   'ctools',
   'token',
+  'colorbox',
   'views',
   'jquery_update-7.x-2.x', # use latest dev version for compatibility with JQuery 1.10
   'views_ui',
@@ -101,7 +102,7 @@ default['islandora']['repos'] = [
   'php_lib',
   'islandora',
   'objective_forms',
-  
+
   # solr indexing
   'islandora_solr_search',
   'islandora_solr_metadata',
@@ -142,7 +143,7 @@ default['islandora']['repos'] = [
   'islandora_solution_pack_web_archive',
 
   # these have to go at the end
-  'islandora_book_batch',  
+  'islandora_book_batch',
   'islandora_image_annotation',
 
 ]
@@ -189,11 +190,11 @@ default['islandora']['modulesToEnable'] = []
 # supplementary downloads for islandora
 # NB: these end up in the sites/all/libraries/ folder
 default['islandora']['supp_downloads_libraries'] = [
-  { 
+  {
     'dirname' => 'bookreader',
     'repo'    => 'git://github.com/openlibrary/bookreader.git',
   },
-  { 
+  {
     'dirname' => 'BagItPHP',
     'repo'    => 'git://github.com/scholarslab/BagItPHP.git',
   },
@@ -217,7 +218,7 @@ default['fits']['installpath'] = "/usr/share/fits"
 default['fits']['shellpath'] = "/usr/share/fits/fits.sh"
 default['fits']['techmd_dsid'] = "TECHMD"
 
-# Imagemagick specific 
+# Imagemagick specific
 default['imagemagick']['convert'] = '/usr/bin/convert'
 default['imagemagick']['toolkit'] = 'imagemagick' # NB: defaults to GD2
 default['imagemagick']['gm'] = 1 # NB: 1 = enable GraphicsMagick support
@@ -243,7 +244,7 @@ default['ffmpeg']['binarypath'] = '/usr/local/bin/ffmpeg'
 
 # Audio collection specific
 default['audio']['lamearg'] = "/usr/bin/lame"
-  
+
 # Video and audio player specific
 default['jwplayer']['arg'] = "array('name' => array('none' => 'none', 'islandora_jwplayer' => 'islandora_jwplayer'), 'default' => 'islandora_jwplayer')"
 default['videojs']['arg'] = "array('name' => array('none' => 'none', 'islandora_videojs' => 'islandora_videojs'), 'default' => 'islandora_videojs')"
@@ -255,7 +256,7 @@ default['bookreader']['arg'] = "array('name' => array('none' => 'none', 'islando
 default['openseadragon']['arg'] = "array('name' => array('none' => 'none', 'islandora_openseadragon' => 'islandora_openseadragon'), 'default' => 'islandora_openseadragon')"
 default['openseadragon']['tilesize'] = "256"
 default['openseadragon']['tileoverlap'] = "0"
-default['openseadragon']['settings'] = "array('debugMode' => 0, 
+default['openseadragon']['settings'] = "array('debugMode' => 0,
                                             'djatokaServerBaseURL' => 'http\:\/\/localhost\:8080\/adore-djatoka\/resolver',
                                             'animationTime' => '1.5',
                                             'blendTime' => '0.1',
@@ -285,11 +286,11 @@ default['solrfield']['arg'] = "RELS_EXT_isMemberOf_uri_ms"
 
 # ingest derivatives field
 default['ingestderivatives']['arg'] = "array('pdf' => 'pdf', 'image' => 'image', 'ocr' => 'ocr')"
-  
+
 # Islandora PDF collection
 default['pdf_collection']['extract_text_streams'] = 1 # NB: 1 is enabled
 default['pdf_collection']['path_to_pdftotext'] = '/usr/bin/pdftotext'
-      
+
 ## default parameters for islandora configuration
 default['islandora']['default_params'] = [
   {
@@ -451,7 +452,7 @@ default['islandora']['default_params'] = [
 ]
 
 ## islandora solution pack objects
-default['islandora']['solution_pack_objects'] = [  
+default['islandora']['solution_pack_objects'] = [
   'islandora',
   'islandora_audio',
   'islandora_basic_collection',

@@ -230,6 +230,14 @@ execute "ffmpeg build from source" do
   ignore_failure false
 end
 
+# install colorbox library
+execute "install colorbox library" do
+  environment ({'DEBIAN_FRONTEND' => 'noninteractive'})
+  command "cd /var/www/drupal/htdocs/sites/all/libraries && drush colorbox-plugin"
+  creates "/var/www/drupal/htdocs/sites/all/libraries/colorbox"
+  ignore_failure false
+end
+
 # use Drush to install Islandora solution pack objects
 node['islandora']['solution_pack_objects'].each do |param|
   drupal_module param do

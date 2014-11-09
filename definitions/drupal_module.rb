@@ -79,8 +79,8 @@ define :drupal_module, :action => :install, :dir => nil, :version => nil do
     execute "drush_islandora_solution_pack_install_content_models #{params[:name]}" do
       cwd params[:dir]
       user node['drupal']['system']['user']
-      command "#{node['drupal']['drush']['dir']}/drush -u 1 ispicm --module=#{params[:name]} --user=#{node['drupal']['site']['admin']}"  
-    end  
+      command "#{node['drupal']['drush']['dir']}/drush -u 1 ispicm --module=#{params[:name]} --user=#{node['drupal']['site']['admin']}"
+    end
   else
     log "drupal_source action #{params[:name]} is unrecognized."
   end
