@@ -53,12 +53,11 @@ file "/usr/share/fits/fits.sh" do
 end
 
 # download openseadragon javascript
+# TODO: figure out a cleaner way of doing this (openseadragon exract directory is not openseadragon)
 ark 'openseadragon_js' do
-  url "http://openseadragon.github.io/releases/openseadragon-bin-0.9.129.zip"
+  url "https://github.com/openseadragon/openseadragon/releases/download/v1.1.1/openseadragon-bin-1.1.1.tar.gz"
   checksum node['openseadragon_js']['sha256']
- 
-  path "#{node['drupal']['dir']}/sites/all/libraries/openseadragon"
-  action :put
+  home_dir node['openseadragon_js']['installpath']
 end
 
 

@@ -50,7 +50,8 @@ default['drupal_filter']['version'] = "3.7.0"
 default['drupal_filter']['sha256'] = '05902a56c81e0db059b51c145dfb245149dbe55f671fa6cda8fc23d2a2b7a194'
 default['gsearch_extensions']['sha256'] = '3ac33b024a24851584cc4adaa83410133f9b31d14b32659e8d2872a92eafcf5d'
 default['gsearch_extensions-dependencies']['sha256'] = '60cad9aecad432ca490bcea490b709d4fb65f843f4d6e54014dd984663500bfa'
-default['openseadragon_js']['sha256'] = '9059b3b7d62b4d9891f59cb0cc37317c766ca32c6160727159198da18bfe86be'
+default['openseadragon_js']['sha256'] = '3af01c58ee3bfedda46a40b87ff18e719f1d1ab56aa7599c42d484a88607fd46'
+default['openseadragon_js']['installpath'] = '/var/www/drupal/htdocs/sites/all/libraries/openseadragon'
 default['solr-iso639-filter']['sha256'] = 'd5533a2f22b2a99f1a0e2105388bea02a9f2c3c24bfc0bf3a5549eedf85608a9'
 default['solr-php-client']['sha256'] = 'dfb74b2cb496a9669b115a4bc32a00b2bb5cc0505026167c486c437799bb4ce7'
 
