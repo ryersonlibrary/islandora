@@ -1,10 +1,12 @@
-# Description
+# Islandora Chef
 
-This cookbook will install and configure [Islandora](http://islandora.ca). Current version is 7
+## Description
+
+This cookbook will install and configure [Islandora](http://islandora.ca). Current version is 7.1.4.
 
 Included [Vagrant](http://www.vagrantup.com) and [Berkshelf](http://berkshelf.com) files for easy VM creation
 
-# Requirements
+## Requirements
 
 * [VirtualBox](https://www.virtualbox.org/)
 * [Vagrant](http://localhost:8181) 1.5.2+
@@ -22,6 +24,7 @@ Included [Vagrant](http://www.vagrantup.com) and [Berkshelf](http://berkshelf.co
 * Djatoka 1.1
 
 ## Cookbooks
+
 * [drupal](http://github.com/gondoi/drupal-cookbook)
 * ubuntu-baseline
 * djatoka
@@ -29,10 +32,10 @@ Included [Vagrant](http://www.vagrantup.com) and [Berkshelf](http://berkshelf.co
 * solr
 * gsearch
 
-# Attributes
+## Attributes
 __TODO__
 
-# Usage
+## Usage
 
 1. `git clone https://github.com/ryersonlibrary/islandora`
 2. `cd islandora`
@@ -43,12 +46,18 @@ __TODO__
 7. `vagrant up`
 8. Enjoy your new Islandora instance at [http://localhost:8181](http://localhost:8181)!
 
-# License
+## Known Issues
+
+If you get an error like [this](https://gist.github.com/ruebot/439c6a23992e6660edcd) after step 7, you will need to edit the vagrant-berkshelf config as described [here](https://github.com/berkshelf/vagrant-berkshelf/issues/228#issue-47313643) or [here](https://github.com/berkshelf/vagrant-berkshelf/issues/228#issuecomment-62207197).
+
+## License
 [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
 
-# Author
-MJ Suhonos (<mjsuhonos@ryerson.ca>)
-Paul Church (<pchurch@ryerson.ca>)
+## Author
 
-### Acknowledgements
+* MJ Suhonos (<mjsuhonos@ryerson.ca>)
+* Paul Church (<pchurch@ryerson.ca>)
+
+## Acknowledgements
+
 Many thanks to Graham Stewart and others at the University of Toronto Libraries for [LibraryChef](https://github.com/LibraryChef).
