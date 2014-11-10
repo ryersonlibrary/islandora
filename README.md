@@ -57,6 +57,7 @@ If you get an error like [this](https://gist.github.com/ruebot/439c6a23992e6660e
 
 * MJ Suhonos (<mjsuhonos@ryerson.ca>)
 * Paul Church (<pchurch@ryerson.ca>)
+* Nick Ruest (<ruestn@yorku.ca>)
 
 ## Acknowledgements
 
