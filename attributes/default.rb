@@ -35,8 +35,8 @@ default['mysql']['server_debian_password'] = 'debpass'
 default['mysql']['bind_address'] = 'localhost'
 
 # Set Drupal & Drush versions
-default['drupal']['version'] = '7.32'
-default['drupal']['checksum'] = 'f36d5ab0891997bf3c681b76151c6b015b0bb9041610e1c9af7d17e28dc15c39'
+default['drupal']['version'] = '7.33'
+default['drupal']['checksum'] = '5a8f66cac572373536722d8464832de7be50866fe177035e74b300ffda007485'
 default['drupal']['drush']['version'] = '7.x-5.9'
 default['drupal']['drush']['checksum'] = '3acc2a2491fef987c17e85122f7d3cd0bc99cefd1bc70891ec3a1c4fd51dccee'
 
@@ -50,10 +50,11 @@ default['drupal_filter']['version'] = "3.7.0"
 default['drupal_filter']['sha256'] = '05902a56c81e0db059b51c145dfb245149dbe55f671fa6cda8fc23d2a2b7a194'
 default['gsearch_extensions']['sha256'] = '3ac33b024a24851584cc4adaa83410133f9b31d14b32659e8d2872a92eafcf5d'
 default['gsearch_extensions-dependencies']['sha256'] = '60cad9aecad432ca490bcea490b709d4fb65f843f4d6e54014dd984663500bfa'
-default['openseadragon_js']['sha256'] = '9059b3b7d62b4d9891f59cb0cc37317c766ca32c6160727159198da18bfe86be'
+default['openseadragon_js']['sha256'] = '3af01c58ee3bfedda46a40b87ff18e719f1d1ab56aa7599c42d484a88607fd46'
+default['openseadragon_js']['installpath'] = '/var/www/drupal/htdocs/sites/all/libraries/openseadragon'
 default['solr-iso639-filter']['sha256'] = 'd5533a2f22b2a99f1a0e2105388bea02a9f2c3c24bfc0bf3a5549eedf85608a9'
 default['solr-php-client']['sha256'] = 'dfb74b2cb496a9669b115a4bc32a00b2bb5cc0505026167c486c437799bb4ce7'
-  
+
 # Islandora-specific libraries / packages
 default['islandora']['libraries'] = [
   # core libraries
@@ -68,9 +69,8 @@ default['islandora']['libraries'] = [
 
   # OCR
   'poppler-utils',
-  
+
   # media-handling libraries
-  'ffmpeg',
   'ffmpeg2theora',
   'lame',
   'libavcodec-extra-53',
@@ -89,6 +89,7 @@ default['drupal']['modules'] = [
   'imagemagick',
   'ctools',
   'token',
+  'colorbox',
   'views',
   'jquery_update-7.x-2.x', # use latest dev version for compatibility with JQuery 1.10
   'views_ui',
@@ -102,7 +103,7 @@ default['islandora']['repos'] = [
   'php_lib',
   'islandora',
   'objective_forms',
-  
+
   # solr indexing
   'islandora_solr_search',
   'islandora_solr_metadata',
@@ -143,7 +144,7 @@ default['islandora']['repos'] = [
   'islandora_solution_pack_web_archive',
 
   # these have to go at the end
-  'islandora_book_batch',  
+  'islandora_book_batch',
   'islandora_image_annotation',
 
 ]
@@ -184,19 +185,24 @@ default['islandora']['funkymodules'] = [
   'islandora_bagit',
 ]
 
+# Islandora supplemental funky modules to explicitly enable
+default['islandora']['modulesToEnable'] = []
+
 # supplementary downloads for islandora
 # NB: these end up in the sites/all/libraries/ folder
 default['islandora']['supp_downloads_libraries'] = [
-  { 
+  {
     'dirname' => 'bookreader',
     'repo'    => 'git://github.com/openlibrary/bookreader.git',
   },
-  { 
+  {
     'dirname' => 'BagItPHP',
     'repo'    => 'git://github.com/scholarslab/BagItPHP.git',
   },
 ]
 
+# Additional Functionality Modules for Islandora
+default['islandora']['additionalFunctionalityModules'] = []
 
 # JWPlayer specific
 default['jwplayer']['version'] = "6.10"
@@ -205,6 +211,7 @@ default['jwplayer']['sha256'] = '44e12b66319893012b355a960957c95458f6cc1b6124857
 # Video.js specific
 default['videojs']['version'] = "4.0.0"
 default['videojs']['sha256'] = "bc55e6666078627879f1cd702186242210a88f39ebf955782dc8858bcf7fdaf9"
+default['videojs']['installpath'] = '/var/www/drupal/htdocs/sites/all/libraries/video-js'
 
 # FITS specific
 default['fits']['version'] = "0.8.3"
@@ -213,10 +220,10 @@ default['fits']['installpath'] = "/usr/share/fits"
 default['fits']['shellpath'] = "/usr/share/fits/fits.sh"
 default['fits']['techmd_dsid'] = "TECHMD"
 
-# Imagemagick specific 
+# Imagemagick specific
 default['imagemagick']['convert'] = '/usr/bin/convert'
 default['imagemagick']['toolkit'] = 'imagemagick' # NB: defaults to GD2
-default['imagemagick']['gm'] = 1 # NB: 1 = enable GraphicsMagick support
+default['imagemagick']['gm'] = 0 # NB: 1 = enable GraphicsMagick support
 default['imagemagick']['quality'] = 100
 
 # Kakadu specific
@@ -230,10 +237,16 @@ default['tesseract']['binarypath'] = '/usr/local/bin/tesseract'
 default['tesseract_engdata']['sha256'] = 'c110029560e7f6d41cb852ca23b66899daa4456d9afeeae9d062204bd271bdf8'
 default['tesseract_engdata']['version'] = '3.02'
 default['tesseract_engdata']['installpath'] = '/usr/local/share/tessdata'
-         
+
+# FFmpeg specific
+default['ffmpeg']['sha256'] = '3385f7e0d2aa1f57049ecf8a2f6f88f302141b442d895c89b7565b16b8835969'
+default['ffmpeg']['version'] = '1.1.4'
+default['ffmpeg']['installpath'] = '/usr/local/ffmpeg-1.1.4'
+default['ffmpeg']['binarypath'] = '/usr/local/bin/ffmpeg'
+
 # Audio collection specific
 default['audio']['lamearg'] = "/usr/bin/lame"
-  
+
 # Video and audio player specific
 default['jwplayer']['arg'] = "array('name' => array('none' => 'none', 'islandora_jwplayer' => 'islandora_jwplayer'), 'default' => 'islandora_jwplayer')"
 default['videojs']['arg'] = "array('name' => array('none' => 'none', 'islandora_videojs' => 'islandora_videojs'), 'default' => 'islandora_videojs')"
@@ -245,7 +258,7 @@ default['bookreader']['arg'] = "array('name' => array('none' => 'none', 'islando
 default['openseadragon']['arg'] = "array('name' => array('none' => 'none', 'islandora_openseadragon' => 'islandora_openseadragon'), 'default' => 'islandora_openseadragon')"
 default['openseadragon']['tilesize'] = "256"
 default['openseadragon']['tileoverlap'] = "0"
-default['openseadragon']['settings'] = "array('debugMode' => 0, 
+default['openseadragon']['settings'] = "array('debugMode' => 0,
                                             'djatokaServerBaseURL' => 'http\:\/\/localhost\:8080\/adore-djatoka\/resolver',
                                             'animationTime' => '1.5',
                                             'blendTime' => '0.1',
@@ -275,11 +288,11 @@ default['solrfield']['arg'] = "RELS_EXT_isMemberOf_uri_ms"
 
 # ingest derivatives field
 default['ingestderivatives']['arg'] = "array('pdf' => 'pdf', 'image' => 'image', 'ocr' => 'ocr')"
-  
+
 # Islandora PDF collection
 default['pdf_collection']['extract_text_streams'] = 1 # NB: 1 is enabled
 default['pdf_collection']['path_to_pdftotext'] = '/usr/bin/pdftotext'
-      
+
 ## default parameters for islandora configuration
 default['islandora']['default_params'] = [
   {
@@ -391,6 +404,12 @@ default['islandora']['default_params'] = [
     'value'    => default['tesseract']['binarypath'],
   },
   {
+    'name'     => 'set_default_ffmpeg_path',
+    'action'   => :php_eval,
+    'variable' => 'islandora_video_ffmpeg_path',
+    'value'    => default['ffmpeg']['binarypath'],
+  },
+  {
     'name'     => 'set_default_large_image_viewer',
     'action'   => :php_eval_noquote,
     'variable' => 'islandora_large_image_viewers',
@@ -435,7 +454,7 @@ default['islandora']['default_params'] = [
 ]
 
 ## islandora solution pack objects
-default['islandora']['solution_pack_objects'] = [  
+default['islandora']['solution_pack_objects'] = [
   'islandora',
   'islandora_audio',
   'islandora_basic_collection',

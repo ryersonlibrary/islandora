@@ -26,7 +26,7 @@ end
 ark 'jwplayer' do
   url "https://account.jwplayer.com/static/download/jwplayer-#{node['jwplayer']['version']}.zip"
   checksum node['jwplayer']['sha256']
-  path "#{node['drupal']['dir']}/sites/all/libraries/jwplayer"
+  path "#{node['drupal']['dir']}/sites/all/libraries"
   action :put
 end
 
@@ -34,8 +34,7 @@ end
 ark 'videojs' do
   url "http://www.videojs.com/downloads/video-js-#{node['videojs']['version']}.zip"
   checksum node['videojs']['sha256']
-  path "#{node['drupal']['dir']}/sites/all/libraries/video-js"
-  action :put
+  home_dir node['videojs']['installpath']
 end
 
 # get FITS from Harvard
@@ -53,12 +52,11 @@ file "/usr/share/fits/fits.sh" do
 end
 
 # download openseadragon javascript
+# TODO: figure out a cleaner way of doing this (openseadragon exract directory is not openseadragon)
 ark 'openseadragon_js' do
-  url "http://openseadragon.github.io/releases/openseadragon-bin-0.9.129.zip"
+  url "https://github.com/openseadragon/openseadragon/releases/download/v1.1.1/openseadragon-bin-1.1.1.tar.gz"
   checksum node['openseadragon_js']['sha256']
- 
-  path "#{node['drupal']['dir']}/sites/all/libraries/openseadragon"
-  action :put
+  home_dir node['openseadragon_js']['installpath']
 end
 
 
@@ -201,18 +199,41 @@ execute "move-english-language-files" do
   ignore_failure false
 end
 
-# replace the islandora_solution_pack_pdf template to display usage stats
-# delete islandora-pdf.tpl.php file
-file "#{node['drupal']['dir']}/sites/all/modules/islandora_solution_pack_pdf/theme/islandora-pdf.tpl.php" do
-  action :delete
+# FFmpeg
+#install libfaac (this is non-free, but required for MP4 streaming derivatives)
+execute "sudo sed -i '/^# deb.*multiverse/ s/^# //' /etc/apt/sources.list && sudo apt-get update && sudo apt-get install libfaac-dev -y --force-yes" do
+  environment ({'DEBIAN_FRONTEND' => 'noninteractive'})
+  ignore_failure false
 end
 
-# create new islandora-pdf.tpl.php with usage stats template code
-template "#{node['drupal']['dir']}/sites/all/modules/islandora_solution_pack_pdf/theme/islandora-pdf.tpl.php" do
-  source "islandora-pdf.tpl.php.erb"
+# install requirements
+execute "sudo apt-get install autoconf automake build-essential libass-dev libfreetype6-dev libgpac-dev libsdl1.2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev libx11-dev libxext-dev libxfixes-dev pkg-config texi2html zlib1g-dev yasm libx264-dev libmp3lame-dev unzip x264 libgsm1-dev libopencore-amrnb-dev libopencore-amrwb-dev libopenjpeg-dev libschroedinger-dev libspeex-dev libvpx-dev libxvidcore-dev libdc1394-22-dev -y --force-yes" do
+  environment ({'DEBIAN_FRONTEND' => 'noninteractive'})
+  ignore_failure false
+end
 
-  owner node['drupal']['system']['user']
-  group node['drupal']['system']['group']
+# download FFmpeg source
+ark 'ffmpeg' do
+  url "http://www.ffmpeg.org/releases/ffmpeg-#{node['ffmpeg']['version']}.tar.gz"
+  version node['ffmpeg']['version']
+  checksum node['ffmpeg']['sha256']
+  home_dir node['ffmpeg']['install_path']
+end
+
+# run make commands on FFmpeg source to build it
+execute "ffmpeg build from source" do
+  environment ({'DEBIAN_FRONTEND' => 'noninteractive'})
+  command "cd #{node['ffmpeg']['installpath']} && sudo ./configure --enable-gpl --enable-version3 --enable-nonfree --enable-postproc --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libdc1394 --enable-libfaac --enable-libgsm --enable-libmp3lame --enable-libopenjpeg --enable-libschroedinger --enable-libspeex --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-libxvid && sudo make && sudo make install && sudo ldconfig"
+  creates "/usr/local/bin/ffmpeg"
+  ignore_failure false
+end
+
+# install colorbox library
+execute "install colorbox library" do
+  environment ({'DEBIAN_FRONTEND' => 'noninteractive'})
+  command "cd /var/www/drupal/htdocs/sites/all/libraries && drush colorbox-plugin"
+  creates "/var/www/drupal/htdocs/sites/all/libraries/colorbox"
+  ignore_failure false
 end
 
 # use Drush to install Islandora solution pack objects
