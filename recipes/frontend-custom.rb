@@ -34,8 +34,7 @@ end
 ark 'videojs' do
   url "http://www.videojs.com/downloads/video-js-#{node['videojs']['version']}.zip"
   checksum node['videojs']['sha256']
-  path "#{node['drupal']['dir']}/sites/all/libraries"
-  action :put
+  home_dir node['videojs']['installpath']
 end
 
 # get FITS from Harvard
