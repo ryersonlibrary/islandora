@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 80,   host: 8181    # Apache
 
   config.vm.provider "virtualbox" do |vb|
-    vb.customize ["modifyvm", :id, "--memory", '2048']
+    vb.customize ["modifyvm", :id, "--memory", '3000']
   end
 
   # Enabling the Berkshelf plugin
@@ -41,7 +41,7 @@ Vagrant.configure("2") do |config|
       # Needed to workaround http://stackoverflow.com/questions/19502173/
       "tomcat" => {
         "base_version" => '7',
-        "java_options" => "-Xms1024M -Xmx1024M -Djava.awt.headless=true -XX:MaxPermSize=128m"
+        "java_options" => "-Xms2056M -Xmx2056M -Djava.awt.headless=true -XX:MaxPermSize=256m"
       }
     }
 

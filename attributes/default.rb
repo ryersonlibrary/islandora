@@ -55,6 +55,10 @@ default['openseadragon_js']['installpath'] = '/var/www/drupal/htdocs/sites/all/l
 default['solr-iso639-filter']['sha256'] = 'd5533a2f22b2a99f1a0e2105388bea02a9f2c3c24bfc0bf3a5549eedf85608a9'
 default['solr-php-client']['sha256'] = 'dfb74b2cb496a9669b115a4bc32a00b2bb5cc0505026167c486c437799bb4ce7'
 
+# set some php.ini config options
+default['php']['upload_max_filesize'] = '200M'
+default['php']['post_max_size'] = '200M'
+
 # Islandora-specific libraries / packages
 default['islandora']['libraries'] = [
   # core libraries
@@ -66,6 +70,9 @@ default['islandora']['libraries'] = [
   'php5-imagick',
   'imagemagick',
   'graphicsmagick-imagemagick-compat',
+
+  # htop
+  'htop',
 
   # OCR
   'poppler-utils',

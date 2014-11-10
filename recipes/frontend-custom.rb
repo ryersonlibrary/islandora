@@ -243,3 +243,16 @@ node['islandora']['solution_pack_objects'].each do |param|
     action :ispiro
   end
 end
+
+# template php.ini
+template "/etc/php5/apache2/php.ini" do
+  source "php.ini.erb"
+end
+
+# restart apache2
+execute "restart apache2 php.ini" do
+  environment ({'DEBIAN_FRONTEND' => 'noninteractive'})
+  command "sudo service apache2 restart"
+  ignore_failure false
+end
+

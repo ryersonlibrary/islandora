@@ -24,9 +24,6 @@ if platform?("ubuntu")
   end
 end
 
-# TODO: modify apache/php recipes to enable changing php.ini values
-# eg. memory_limit, upload_limit
-
 # Checkout tuque git repository as library
 directory "#{node['drupal']['dir']}/sites/all/libraries/tuque" do
   action :create
@@ -72,12 +69,11 @@ node['islandora']['modules'].each do |mod|
   end
 end
 
-# get Solr PHP client from Google Code
-ark 'solr-php-client' do
-  url "https://solr-php-client.googlecode.com/files/SolrPhpClient.r22.2009-11-09.tgz"
-  checksum node['solr-php-client']['sha256']
-
-  path "#{node['drupal']['dir']}/sites/all/modules/islandora_solr_search"
-  action :put
-end
+#ark 'solr-php-client' do
+#  url "https://solr-php-client.googlecode.com/files/SolrPhpClient.r22.2009-11-09.tgz"
+#  checksum node['solr-php-client']['sha256']
+#
+#  path "#{node['drupal']['dir']}/sites/all/modules/islandora_solr_search"
+#  action :put
+#end
 
