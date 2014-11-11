@@ -225,7 +225,7 @@ default['fits']['version'] = "0.8.3"
 default['fits']['sha256'] = '150835de99e353dae0b39893a4ef7e47438f1446fef98c62f0c1731e3bbabdf0'
 default['fits']['installpath'] = "/usr/share/fits"
 default['fits']['shellpath'] = "/usr/share/fits/fits.sh"
-default['fits']['techmd_dsid'] = "TECHMD"
+default['fits']['techmd_dsid'] = "TECHMD_FITS"
 
 # Imagemagick specific
 default['imagemagick']['convert'] = '/usr/bin/convert'

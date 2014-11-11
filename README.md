@@ -33,6 +33,7 @@ Included [Vagrant](http://www.vagrantup.com) and [Berkshelf](http://berkshelf.co
 * gsearch
 
 ## Attributes
+
 * `node["islandora"]["version"]` - The version of Islandora to install, in the format `7.x-1.4`. Default is `HEAD`.
 * `node["drupal"]["site"]["name"]` - The Drupal website name, default is `Islandora Sandbox`.
 * `node["drupal"]["site"]["admin"]` - The Drupal administrator username, default is `admin`.
@@ -49,11 +50,17 @@ Included [Vagrant](http://www.vagrantup.com) and [Berkshelf](http://berkshelf.co
 	* [complete list of PHP attributes](https://github.com/opscode-cookbooks/php#attributes)
 * `node['mysql']['server_root_password']` - Root password for the mysql database, default is `rootpass`.
 	* [complete list of MySQL attributes](https://github.com/opscode-cookbooks/mysql#attributes)
+* `node['fits']['techmd_version']` - Version of FITS to install, default is `0.8.3`.
+* `node['fits']['techmd_dsid']` - The default datastream ID for FITS, default is `TECHMD_FITS`.
+* `node['tesseract']['version']` - Version of Tesseract to install, default is `3.02.02`.
+* `node['ffmpeg']['version']` - Version of FFmpeg to install, default is `1.1.4`.
+* `node['jwplayer']['version']` - Version of JWPlayer to install, default is `6.10`.
+* `node['videojs']['version']` - Version of video.js to install, default is `4.0.0`.
 
 ## Usage
 
-1. `git clone https://github.com/ryersonlibrary/islandora`
-2. `cd islandora`
+1. `git clone https://github.com/ryersonlibrary/islandora_chef
+2. `cd islandora_chef`
 3. `bundle`
 4. `berks`
 5. `vagrant plugin install vagrant-berkshelf --plugin-version '= 2.0.1'`
@@ -66,6 +73,7 @@ Included [Vagrant](http://www.vagrantup.com) and [Berkshelf](http://berkshelf.co
 If you get an error like [this](https://gist.github.com/ruebot/439c6a23992e6660edcd) after step 7, you will need to edit the vagrant-berkshelf config as described [here](https://github.com/berkshelf/vagrant-berkshelf/issues/228#issue-47313643) or [here](https://github.com/berkshelf/vagrant-berkshelf/issues/228#issuecomment-62207197).
 
 ## License
+
 [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 ## Author
