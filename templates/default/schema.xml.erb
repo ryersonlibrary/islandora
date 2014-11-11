@@ -45,7 +45,7 @@
     that avoids logging every request
 -->
 
-<schema name="YUDL" version="1.5">
+<schema name="Islandora" version="1.5">
   <!-- attribute "name" is the name of this schema and is only used for display purposes.
        version="x.y" is Solr's version number for the schema syntax and 
        semantics.  It should not normally be changed by applications.
@@ -270,6 +270,8 @@
    <copyField source="mods_language_languageTerm_code_ms" dest="iso639"/>
    <field name="iso639" type="iso639Code" indexed="true" multiValued="true" />
 
+   <field name="fgs_label_s" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
+
    <copyField source="*" dest="catch_all_fields_mt"/>
 
 </fields>
@@ -293,8 +295,8 @@
   when parsing a query string to determine if a clause of the query should be marked as
   required or optional, assuming the clause isn't already marked by some operator.
   The default is OR, which is generally assumed so it is not a good idea to change it
-  globally here.  The "q.op" request parameter takes precedence over this.
- <solrQueryParser defaultOperator="OR"/> -->
+  globally here.  The "q.op" request parameter takes precedence over this.-->
+ <solrQueryParser defaultOperator="AND"/>
 
   <!-- copyField commands copy one field to another at the time a document
         is added to the index.  It's used either to index the same field differently,
