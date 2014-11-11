@@ -59,7 +59,7 @@ Included [Vagrant](http://www.vagrantup.com) and [Berkshelf](http://berkshelf.co
 
 ## Usage
 
-1. `git clone https://github.com/ryersonlibrary/islandora_chef
+1. `git clone https://github.com/ryersonlibrary/islandora_chef`
 2. `cd islandora_chef`
 3. `bundle`
 4. `berks`
