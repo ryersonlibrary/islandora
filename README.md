@@ -42,7 +42,7 @@ Included [Vagrant](http://www.vagrantup.com) and [Berkshelf](http://berkshelf.co
 * `node["tomcat"]["base_version"]` - The version of Tomcat to install, default is `7`.
 	* [complete list of Tomcat attributes](https://github.com/opscode-cookbooks/tomcat#attributes)
 * `node["java"]["jdk_version"]` - JDK version to install, default is `7`.
-* `node["java"]["install_flavour"]` - Flavor of JVM you would like installed, default is `oracle` to support Djatoka.
+* `node["java"]["install_flavor"]` - Flavor of JVM you would like installed, default is `oracle` to support Djatoka.
 	* [complete list of Java attributes](https://github.com/agileorbit-cookbooks/java#attributes)
 * `node["php"]["upload_max_filesize"]` - The maximum size of an uploaded file, default is `200M`.
 * `node["php"]["post_max_size"]` - The maximum size of POST data allowed, default is `200M`.
