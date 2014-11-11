@@ -33,7 +33,28 @@ Included [Vagrant](http://www.vagrantup.com) and [Berkshelf](http://berkshelf.co
 * gsearch
 
 ## Attributes
-__TODO__
+* `node["islandora"]["version"]` - The version of Islandora to install, in the format `7.x-1.4`. Default is `HEAD`.
+
+* `node["drupal"]["site"]["name"]` - The Drupal website name, default is `Islandora Sandbox`.
+* `node["drupal"]["site"]["admin"]` - The Drupal administrator username, default is `admin`.
+* `node["drupal"]["site"]["pass"]` - The Drupal administrator password, default is `islandora`.
+* `node["drupal"]["db"]["password"]` - The Drupal database password, default is `islandora`.
+	* [complete list of Drupal attributes](https://github.com/gondoi/drupal-cookbook#attributes)
+
+* `node["tomcat"]["base_version"]` - The version of Tomcat to install, default is `7`.
+	* [complete list of Tomcat attributes](https://github.com/opscode-cookbooks/tomcat#attributes)
+
+* `node["java"]["jdk_version"]` - JDK version to install, default is `7`.
+* `node["java"]["install_flavour"]` - Flavor of JVM you would like installed, default is `oracle` to support Djatoka.
+	* [complete list of Java attributes](https://github.com/agileorbit-cookbooks/java#attributes)
+
+* `node["php"]["upload_max_filesize"]` - The maximum size of an uploaded file, default is `200M`.
+* `node["php"]["post_max_size"]` - The maximum size of POST data allowed, default is `200M`.
+	* [complete list of PHP attributes](https://github.com/opscode-cookbooks/php#attributes)
+
+* `node['mysql']['server_root_password']` - Root password for the mysql database, default is `rootpass`.
+	* [complete list of MySQL attributes](https://github.com/opscode-cookbooks/mysql#attributes)
+
 
 ## Usage
 
