@@ -24,6 +24,8 @@ Included [Vagrant](http://www.vagrantup.com) and [Berkshelf](http://berkshelf.co
 * Djatoka 1.1
 * Tomcat 7
 * Apache 2.2.22
+* PHP 5.3.10
+* MySQL 5.5.40
 
 ## Cookbooks
 
