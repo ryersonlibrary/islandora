@@ -199,6 +199,13 @@ execute "move-english-language-files" do
   ignore_failure false
 end
 
+# set the permissions on tessdata so that Islandora can use it
+directory "/usr/local/share/tessdata" do
+  owner 'drupal'
+  group 'drupal'
+  mode '0775'
+end
+
 # FFmpeg
 #install libfaac (this is non-free, but required for MP4 streaming derivatives)
 execute "sudo sed -i '/^# deb.*multiverse/ s/^# //' /etc/apt/sources.list && sudo apt-get update && sudo apt-get install libfaac-dev -y --force-yes" do
