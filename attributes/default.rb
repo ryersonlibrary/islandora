@@ -244,6 +244,7 @@ default['tesseract']['binarypath'] = '/usr/local/bin/tesseract'
 default['tesseract_engdata']['sha256'] = 'c110029560e7f6d41cb852ca23b66899daa4456d9afeeae9d062204bd271bdf8'
 default['tesseract_engdata']['version'] = '3.02'
 default['tesseract_engdata']['installpath'] = '/usr/local/share/tessdata'
+default['tesseract_engdata']['submit'] = 1
 
 # FFmpeg specific
 default['ffmpeg']['sha256'] = '3385f7e0d2aa1f57049ecf8a2f6f88f302141b442d895c89b7565b16b8835969'
@@ -409,6 +410,18 @@ default['islandora']['default_params'] = [
     'action'   => :php_eval,
     'variable' => "islandora_ocr_tesseract",
     'value'    => default['tesseract']['binarypath'],
+  },
+  {
+    'name'     => 'select_tesseract_language',
+    'action'   => :php_eval,
+    'variable' => 'islandora_ocr_tesseract_enabled_languages[eng]',
+    'value'    => default['tesseract_engdata']['enable'],
+  },
+  {
+    'name'     => 'select_tesseract_admin_form_submit',
+    'action'   => :php_eval,
+    'variable' => 'islandora_ocr_tesseract_op',
+    'value'    => default['tesseract_engdata']['submit'],
   },
   {
     'name'     => 'set_default_ffmpeg_path',

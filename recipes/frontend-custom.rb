@@ -200,10 +200,14 @@ execute "move-english-language-files" do
 end
 
 # set the permissions on tessdata so that Islandora can use it
-directory "/usr/local/share/tessdata" do
-  owner 'drupal'
-  group 'drupal'
-  mode '0775'
+execute "tessdata permissions" do
+  command "chmod -R 775 #{node['tesseract_engdata']['installpath']}"
+  action :run
+end
+
+execute "tessdata permissions" do
+  command "chown -hR drupal:drupal #{node['tesseract_engdata']['installpath']}"
+  action :run
 end
 
 # FFmpeg
