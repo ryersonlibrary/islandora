@@ -3,7 +3,7 @@
 # Recipe:: apt_get_upgrade
 #
 # Copyright (C) 2013 MJ Suhonos
-# 
+#
 # MIT License <http://mit-license.org>
 #
 # Do a system wide apt-get upgrade

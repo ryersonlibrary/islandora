@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: solr 
-# Attributes:: default 
+# Cookbook Name:: solr
+# Attributes:: default
 #
 # Copyright 2013, University of Toronto Libraries, Ryerson University Library and Archives
 #

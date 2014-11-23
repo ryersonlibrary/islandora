@@ -1,6 +1,6 @@
 # Description
 
-This cookbook will install and configure [Adore Djatoka](http://sourceforge.net/apps/mediawiki/djatoka/index.php?title=Main_Page) for use with [Fedora Commons](http://www.fedora-commons.org/) and [Islandora](http://islandora.ca). 
+This cookbook will install and configure [Adore Djatoka](http://sourceforge.net/apps/mediawiki/djatoka/index.php?title=Main_Page) for use with [Fedora Commons](http://www.fedora-commons.org/) and [Islandora](http://islandora.ca).
 
 Included [Vagrant](http://www.vagrantup.com) and [Berkshelf](http://berkshelf.com) files for easy VM creation
 

@@ -69,7 +69,7 @@ node['islandora']['supp_downloads_libraries'].each do |resource|
     user node['drupal']['system']['user']
     group node['drupal']['system']['group']
   end
-  
+
   # download from github
   git "#{node['drupal']['dir']}/sites/all/libraries/#{resource['dirname']}" do
     repository "#{resource['repo']}"
@@ -82,7 +82,7 @@ end
 
 # Install Islandora modules with funky dependencies
 node['islandora']['funkymodules'].each do |funkymodule|
-  
+
   # Checkout git repositories as Drupal modules
   git "#{node['drupal']['dir']}/sites/all/modules/#{funkymodule}" do
     repository "git://github.com/Islandora/#{funkymodule}.git"
@@ -109,7 +109,7 @@ end
 
 # Install Additional Functionality modules
 node['islandora']['additionalFunctionalityModules'].each do |afmodule|
-  
+
   # Checkout git repositories as Drupal modules
   git "#{node['drupal']['dir']}/sites/all/modules/#{afmodule['dirname']}" do
     repository afmodule['repo']

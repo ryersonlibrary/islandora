@@ -41,7 +41,7 @@ end
 
 # Install Islandora modules
 node['islandora']['repos'].each do |repo|
-  
+
   # Checkout git repositories as Drupal modules
   git "#{node['drupal']['dir']}/sites/all/modules/#{repo}" do
     repository "git://github.com/Islandora/#{repo}.git"

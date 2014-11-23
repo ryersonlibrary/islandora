@@ -24,5 +24,5 @@ default['djatoka']['installpath'] = '/usr/share/djatoka'
 default['djatoka']['platform'] = 'Linux-x86-64' # reported as 'x86_64-linux'
 
 # Ensure Oracle JDK since OpenJDK is incompatible
-default['java']['install_flavor'] = "oracle" 
+default['java']['install_flavor'] = "oracle"
 default['java']['oracle']['accept_oracle_download_terms'] = true

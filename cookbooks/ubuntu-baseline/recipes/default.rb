@@ -3,7 +3,7 @@
 # Recipe:: default
 #
 # Copyright (C) 2013 MJ Suhonos
-# 
+#
 # MIT License <http://mit-license.org>
 #
 
