@@ -247,12 +247,5 @@ end
 # template php.ini
 template "/etc/php5/apache2/php.ini" do
   source "php.ini.erb"
+  notifies :restart, "service[apache2]"
 end
-
-# restart apache2
-execute "restart apache2 php.ini" do
-  environment ({'DEBIAN_FRONTEND' => 'noninteractive'})
-  command "sudo service apache2 restart"
-  ignore_failure false
-end
-

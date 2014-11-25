@@ -45,6 +45,33 @@ end
 
 include_recipe 'git'
 
+# Checkout islandora XACML policies
+directory "#{node['fedora']['installpath']}/data/fedora-xacml-policies/repository-policies/islandora" do
+  user node['tomcat']['user']
+  group node['tomcat']['group']
+  mode 0755
+  action :create
+end
+
+git "#{node['fedora']['installpath']}/data/fedora-xacml-policies/repository-policies/islandora" do
+  repository "https://github.com/Islandora/islandora-xacml-policies.git"
+  #destination "islandora"
+  action :checkout
+  user node['tomcat']['user']
+  group node['tomcat']['group']
+end
+
+# Remove default purge deny files
+file "#{node['fedora']['installpath']}/data/fedora-xacml-policies/repository-policies/default/deny-purge-datastream-if-active-or-inactive.xml" do
+  action :delete
+end
+
+# Remove default purge deny files
+file "#{node['fedora']['installpath']}/data/fedora-xacml-policies/repository-policies/default/deny-purge-object-if-active-or-inactive.xml" do
+  action :delete
+end
+
+
 # Checkout solr config from YorkU repo (because it's the most recent / Solr 4.2.O)
 git "#{node['solr']['installpath']}/#{node['solr']['core_name']}/conf/basic-solr-config" do
   repository "git://github.com/yorkulibraries/basic-solr-config.git"
@@ -124,23 +151,6 @@ execute "copy xslt files into gsearch" do
   ignore_failure false
 end
 
-# Checkout islandora module to get XACML policies
-# NB: this will clone the WHOLE repo, even though we only want one folder
-git "#{node['fedora']['installpath']}/data/islandora" do
-  repository "git://github.com/Islandora/islandora.git"
-  action :checkout
-
-  branch node['islandora']['version']
-
-  user node['tomcat']['user']
-  group node['tomcat']['group']
-end
-
-link "#{node['fedora']['installpath']}/data/fedora-xacml-policies/repository-policies/islandora" do
-  to "#{node['fedora']['installpath']}/data/islandora/policies"
-  owner node['tomcat']['user']
-  group node['tomcat']['group']
-end
 
 # get Solr ISO-639 filter
 directory "#{node['solr']['installpath']}/contrib/iso639/lib" do
