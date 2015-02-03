@@ -10,6 +10,7 @@ Included [Vagrant](http://www.vagrantup.com) and [Berkshelf](http://berkshelf.co
 
 * [VirtualBox](https://www.virtualbox.org/)
 * [Vagrant](http://localhost:8181) 1.5.2+
+* [BUndler](http://bundler.io/)
 * vagrant-berkshelf 2.0.1
 
 ## Platform
