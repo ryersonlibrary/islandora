@@ -9,8 +9,10 @@ Included [Vagrant](http://www.vagrantup.com) and [Berkshelf](http://berkshelf.co
 ## Requirements
 
 * [VirtualBox](https://www.virtualbox.org/)
+* Ruby ([rbenv](https://github.com/sstephenson/rbenv) is handy for managing your Ruby installs)
 * [Vagrant](http://localhost:8181) 1.5.2+
-* [BUndler](http://bundler.io/)
+* [Bundler](http://bundler.io/) (`gem install bundler`)
+* Berkshelf (`gem install berkshelf`)
 * vagrant-berkshelf 2.0.1
 
 ## Platform
