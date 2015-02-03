@@ -88,4 +88,4 @@ If you get an error like [this](https://gist.github.com/ruebot/439c6a23992e6660e
 
 ## Acknowledgements
 
-Many thanks to Graham Stewart and others at the University of Toronto Libraries for [LibraryChef](https://github.com/LibraryChef).
+Many thanks to [Graham Stewart](https://github.com/whitepine23) and others at the University of Toronto Libraries for [LibraryChef](https://github.com/utlib/chef-islandora).

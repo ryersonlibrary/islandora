@@ -68,12 +68,3 @@ node['islandora']['modules'].each do |mod|
     action :install
   end
 end
-
-#ark 'solr-php-client' do
-#  url "https://solr-php-client.googlecode.com/files/SolrPhpClient.r22.2009-11-09.tgz"
-#  checksum node['solr-php-client']['sha256']
-#
-#  path "#{node['drupal']['dir']}/sites/all/modules/islandora_solr_search"
-#  action :put
-#end
-
