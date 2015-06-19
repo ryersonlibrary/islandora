@@ -212,8 +212,8 @@ default['islandora']['supp_downloads_libraries'] = [
 default['islandora']['additionalFunctionalityModules'] = []
 
 # JWPlayer specific
-default['jwplayer']['version'] = "6.11"
-default['jwplayer']['sha256'] = '44e12b66319893012b355a960957c95458f6cc1b6124857484434df8284f64bc'
+default['jwplayer']['version'] = "6.12"
+default['jwplayer']['sha256'] = '1591b12198e425fe864ce04708fb3a2c98ba2fd2b8479b643cae99cc89d11fbd'
 
 # Video.js specific
 default['videojs']['version'] = "4.0.0"
