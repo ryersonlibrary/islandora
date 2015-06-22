@@ -80,7 +80,7 @@ default['islandora']['libraries'] = [
   # media-handling libraries
   'ffmpeg2theora',
   'lame',
-  'libavcodec-extra-53',
+  'libavcodec-extra-54',
   'libimage-exiftool-perl',
   'libogg0',
   'libtheora0',
