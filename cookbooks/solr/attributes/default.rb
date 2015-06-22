@@ -18,6 +18,6 @@
 #
 
 default['solr']['version'] = "4.2.0" # must be at least 4.2.0 due to filename change; versions > 4.2.0 fail for reasons currently unknown
-default['solr']['sha256'] = "8726fa10c6b92aa1d2235768092ee2d4cd486eea1738695f91b33c3fd8bc4bd7"
+default['solr']['sha256']  = "6929d06fafea1a8b1a3e2dcee0ca4afd93db7dd9333468977aa4347da01db7ed"
 default['solr']['installpath'] = "/usr/share/solr"
 default['solr']['core_name'] = 'core1' # default core name
