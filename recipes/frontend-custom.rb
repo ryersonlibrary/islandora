@@ -22,12 +22,12 @@ php_pear "uploadprogress" do
   action :install
 end
 
-# get jwplayer from jwplayer
-ark 'jwplayer' do
-  url "https://account.jwplayer.com/static/download/jwplayer-#{node['jwplayer']['version']}.zip"
-  checksum node['jwplayer']['sha256']
-  path "#{node['drupal']['dir']}/sites/all/libraries"
-  action :put
+git "#{node['drupal']['dir']}/sites/all/modules/jwplayer" do
+    repository "https://github.com/jwplayer/jwplayer.git"
+    action :checkout
+    revision node['jwplayer']['version']
+    user node['drupal']['system']['user']
+    group node['drupal']['system']['group']
 end
 
 # get video.js from videojs
