@@ -2,7 +2,18 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.hostname = "islandora-berkshelf"
+  if Vagrant.has_plugin?("landrush")
+    config.landrush.enabled = true
+    config.vm.hostname = "islandora-berkshelf.vagrant.dev"
+  else
+    config.vm.hostname = "islandora-berkshelf"
+
+    # Forward port mappings
+    config.vm.network :forwarded_port, guest: 8080, host: 8080    # Tomcat
+    config.vm.network :forwarded_port, guest: 3306, host: 3306    # MySQL
+    config.vm.network :forwarded_port, guest: 5432, host: 5432    # PostgreSQL
+    config.vm.network :forwarded_port, guest: 80,   host: 8181    # Apache
+  end
 
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "ubuntu/trusty64"
@@ -10,12 +21,6 @@ Vagrant.configure("2") do |config|
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
 #  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
-
-  # Forward port mappings
-  config.vm.network :forwarded_port, guest: 8080, host: 8080    # Tomcat
-  config.vm.network :forwarded_port, guest: 3306, host: 3306    # MySQL
-  config.vm.network :forwarded_port, guest: 5432, host: 5432    # PostgreSQL
-  config.vm.network :forwarded_port, guest: 80,   host: 8181    # Apache
 
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--memory", '3000']
