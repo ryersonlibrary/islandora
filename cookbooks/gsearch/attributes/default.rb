@@ -18,5 +18,5 @@
 #
 
 default[:gsearch][:version] = '2.6'
-default[:gsearch][:sha256] = 'f6e02701618649ffb6a28cf432dfed783087c39c425255348debf32be629fe4e'
+default[:gsearch][:sha256] = 'd249deaef1d988555b16020d78cadac27f7619882b56b56ea5bfa88b3972594b'
 default[:gsearch][:installpath] = '/usr/share/gsearch'
