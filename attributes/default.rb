@@ -216,8 +216,9 @@ default['jwplayer']['version'] = "6.12"
 default['jwplayer']['sha256'] = '1591b12198e425fe864ce04708fb3a2c98ba2fd2b8479b643cae99cc89d11fbd'
 
 # Video.js specific
-default['videojs']['version'] = "4.0.0"
-default['videojs']['sha256'] = "bc55e6666078627879f1cd702186242210a88f39ebf955782dc8858bcf7fdaf9"
+default['videojs']['version'] = "4.12.12"
+# default['videojs']['sha256'] = "bc55e6666078627879f1cd702186242210a88f39ebf955782dc8858bcf7fdaf9"
+default['videojs']['sha256'] = "a47a58b91f919a1cb2481a65c138c9fcbaeb81f85129f1b268a60c797ffc37b3"
 default['videojs']['installpath'] = '/var/www/drupal/htdocs/sites/all/libraries/video-js'
 
 # FITS specific
