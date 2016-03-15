@@ -32,7 +32,7 @@ end
 
 # get video.js from videojs
 ark 'videojs' do
-  url "http://www.videojs.com/downloads/video-js-#{node['videojs']['version']}.zip"
+  url "https://github.com/videojs/video.js/releases/download/v#{node['videojs']['version']}/video-js-#{node['videojs']['version']}.zip"
   checksum node['videojs']['sha256']
   home_dir node['videojs']['installpath']
 end
