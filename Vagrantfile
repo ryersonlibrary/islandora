@@ -7,10 +7,6 @@ Vagrant.configure("2") do |config|
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = 'ubuntu/precise64' # https://atlas.hashicorp.com/ubuntu/boxes/precise64
 
-  # The url from where the 'config.vm.box' box will be fetched if it
-  # doesn't already exist on the user's system.
-  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
-
   # Forward port mappings
   config.vm.network :forwarded_port, guest: 8080, host: 8080    # Tomcat
   config.vm.network :forwarded_port, guest: 3306, host: 3306    # MySQL
