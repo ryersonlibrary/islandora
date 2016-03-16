@@ -8,12 +8,11 @@ Included [Vagrant](http://www.vagrantup.com) and [Berkshelf](http://berkshelf.co
 
 ## Requirements
 
+* [ChefDK](https://downloads.chef.io/chef-dk/)
 * [VirtualBox](https://www.virtualbox.org/)
-* Ruby ([rbenv](https://github.com/sstephenson/rbenv) is handy for managing your Ruby installs)
 * [Vagrant](http://localhost:8181) 1.5.2+
-* [Bundler](http://bundler.io/) (`gem install bundler`)
-* Berkshelf (`gem install berkshelf`)
-* vagrant-berkshelf 2.0.1
+* vagrant-berkshelf
+* vagrant-omnibus
 
 ## Platform
 
@@ -61,18 +60,18 @@ Included [Vagrant](http://www.vagrantup.com) and [Berkshelf](http://berkshelf.co
 * `node['fits']['techmd_dsid']` - The default datastream ID for FITS, default is `TECHMD_FITS`.
 * `node['tesseract']['version']` - Version of Tesseract to install, default is `3.02.02`.
 * `node['ffmpeg']['version']` - Version of FFmpeg to install, default is `1.1.4`.
-* `node['jwplayer']['version']` - Version of JWPlayer to install, default is `6.10`.
+* `node['jwplayer']['version']` - Version of JWPlayer to install, default is `6.12`.
 * `node['videojs']['version']` - Version of video.js to install, default is `4.0.0`.
 
-## Usage
+## Quickstart
 
-1. `git clone https://github.com/ryersonlibrary/islandora_chef`
-2. `cd islandora_chef`
-3. `bundle`
-4. `berks`
-5. `vagrant plugin install vagrant-berkshelf --plugin-version '= 2.0.1'`
-6. `vagrant plugin install vagrant-omnibus`
-7. `vagrant up`
+1. Install [ChefDK](https://downloads.chef.io/chef-dk/) (v0.11.2 as of this writing) for your platform. Refer to: https://docs.chef.io/install_dk.html for post-install instructions.
+2. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) (v5.0.16 as of this writing)
+3. Install [Vagrant](https://www.vagrantup.com/downloads.html) (v1.8.1 as of this writing)
+4. Install vagrant-berkshelf plugin `vagrant plugin install vagrant-berkshelf`
+5. Install vagrant-omnibus plugin `vagrant plugin install vagrant-omnibus`
+6. Clone the repo. `git clone https://github.com/ryersonlibrary/islandora_chef && cd islandora_chef`
+7. Start the Vagrant machine `vagrant up`
 8. Enjoy your new Islandora instance at [http://localhost:8181](http://localhost:8181)!
 
 ## Known Issues
