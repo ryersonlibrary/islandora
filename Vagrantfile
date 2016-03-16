@@ -22,11 +22,10 @@ Vagrant.configure("2") do |config|
   config.berkshelf.enabled = true
 
   # Install a specific version of Chef on the node
-  config.omnibus.chef_version = '11.12.0'
+  config.omnibus.chef_version = '11.14.2'
 
   config.vm.provision :chef_solo do |chef|
     # Log the heck out of everything
-    chef.log_level = :debug
     chef.formatter = :doc
 
     chef.json = {
