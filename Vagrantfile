@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider "virtualbox" do |vb|
     vb.name 'islandora'
-    vb.customize ["modifyvm", :id, "--memory", '3000']
+    vb.customize ["modifyvm", :id, "--memory", '4096']
   end
 
   # Enabling the Berkshelf plugin
