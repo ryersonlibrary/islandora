@@ -18,6 +18,7 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 80,   host: 8181    # Apache
 
   config.vm.provider "virtualbox" do |vb|
+    vb.name 'islandora'
     vb.customize ["modifyvm", :id, "--memory", '3000']
   end
 
