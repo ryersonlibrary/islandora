@@ -5,11 +5,7 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "islandora-berkshelf"
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "precise64-cloud"
-
-  # The url from where the 'config.vm.box' box will be fetched if it
-  # doesn't already exist on the user's system.
-  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
+  config.vm.box = 'ubuntu/precise64' # https://atlas.hashicorp.com/ubuntu/boxes/precise64
 
   # Forward port mappings
   config.vm.network :forwarded_port, guest: 8080, host: 8080    # Tomcat
@@ -18,19 +14,18 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 80,   host: 8181    # Apache
 
   config.vm.provider "virtualbox" do |vb|
-    vb.customize ["modifyvm", :id, "--memory", '3000']
+    vb.name = 'islandora'
+    vb.customize ["modifyvm", :id, "--memory", '4096']
   end
 
   # Enabling the Berkshelf plugin
   config.berkshelf.enabled = true
 
   # Install a specific version of Chef on the node
-  # Needed to workaround https://tickets.opscode.com/browse/CHEF-5041 ; https://tickets.opscode.com/browse/CHEF-5100
-  config.omnibus.chef_version = '11.6.2'
+  config.omnibus.chef_version = '11.14.2'
 
   config.vm.provision :chef_solo do |chef|
     # Log the heck out of everything
-    chef.log_level = :debug
     chef.formatter = :doc
 
     chef.json = {
